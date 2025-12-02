@@ -1,0 +1,734 @@
+[
+  {
+    "id": 1,
+    "itemName": "Chicken Nuggets",
+    "category": "Chicken",
+    "pricePerServing": 180,
+    "isAvailable": true
+  },
+  {
+    "id": 2,
+    "itemName": "Fried Chicken",
+    "category": "Chicken",
+    "pricePerServing": 250,
+    "isAvailable": true
+  },
+  {
+    "id": 3,
+    "itemName": "Chicken Cordon Bleu",
+    "category": "Chicken",
+    "pricePerServing": 350,
+    "isAvailable": true
+  },
+  {
+    "id": 4,
+    "itemName": "Chicken Barbecue",
+    "category": "Chicken",
+    "pricePerServing": 280,
+    "isAvailable": true
+  },
+  {
+    "id": 5,
+    "itemName": "Chicken Curry",
+    "category": "Chicken",
+    "pricePerServing": 280,
+    "isAvailable": true
+  },
+  {
+    "id": 6,
+    "itemName": "Roast Chicken",
+    "category": "Chicken",
+    "pricePerServing": 320,
+    "isAvailable": true
+  },
+  {
+    "id": 7,
+    "itemName": "Chicken Teriyaki",
+    "category": "Chicken",
+    "pricePerServing": 290,
+    "isAvailable": true
+  },
+  {
+    "id": 8,
+    "itemName": "Chicken Roulade in Gravy Sauce",
+    "category": "Chicken",
+    "pricePerServing": 360,
+    "isAvailable": true
+  },
+  {
+    "id": 9,
+    "itemName": "Chicken Pastel",
+    "category": "Chicken",
+    "pricePerServing": 300,
+    "isAvailable": true
+  },
+  {
+    "id": 10,
+    "itemName": "Sweet and Sour Chicken",
+    "category": "Chicken",
+    "pricePerServing": 290,
+    "isAvailable": true
+  },
+  {
+    "id": 11,
+    "itemName": "Soy Chicken",
+    "category": "Chicken",
+    "pricePerServing": 270,
+    "isAvailable": true
+  },
+  {
+    "id": 12,
+    "itemName": "Chicken Galentina",
+    "category": "Chicken",
+    "pricePerServing": 380,
+    "isAvailable": true
+  },
+  {
+    "id": 13,
+    "itemName": "Pineapple Chicken with Sweet and Sour Sauce",
+    "category": "Chicken",
+    "pricePerServing": 300,
+    "isAvailable": true
+  },
+  {
+    "id": 14,
+    "itemName": "Tropical Chicken",
+    "category": "Chicken",
+    "pricePerServing": 310,
+    "isAvailable": true
+  },
+  {
+    "id": 15,
+    "itemName": "Chicken Honey",
+    "category": "Chicken",
+    "pricePerServing": 290,
+    "isAvailable": true
+  },
+  {
+    "id": 16,
+    "itemName": "D'sis Chicken Special",
+    "category": "Chicken",
+    "pricePerServing": 350,
+    "isAvailable": true
+  },
+  {
+    "id": 17,
+    "itemName": "Chicken with Lemon",
+    "category": "Chicken",
+    "pricePerServing": 280,
+    "isAvailable": true
+  },
+  {
+    "id": 18,
+    "itemName": "Chicken Ala King",
+    "category": "Chicken",
+    "pricePerServing": 320,
+    "isAvailable": true
+  },
+  {
+    "id": 19,
+    "itemName": "Buttered Chicken",
+    "category": "Chicken",
+    "pricePerServing": 270,
+    "isAvailable": true
+  },
+  {
+    "id": 20,
+    "itemName": "Buffalo Wings",
+    "category": "Chicken",
+    "pricePerServing": 260,
+    "isAvailable": true
+  },
+  {
+    "id": 21,
+    "itemName": "Chicken My Adobo",
+    "category": "Chicken",
+    "pricePerServing": 250,
+    "isAvailable": true
+  },
+  {
+    "id": 22,
+    "itemName": "Creamy Chicken",
+    "category": "Chicken",
+    "pricePerServing": 300,
+    "isAvailable": true
+  },
+  {
+    "id": 23,
+    "itemName": "Roast Beef",
+    "category": "Beef",
+    "pricePerServing": 450,
+    "isAvailable": true
+  },
+  {
+    "id": 24,
+    "itemName": "Beef Stroganoff",
+    "category": "Beef",
+    "pricePerServing": 420,
+    "isAvailable": true
+  },
+  {
+    "id": 25,
+    "itemName": "Beef Brocoli",
+    "category": "Beef",
+    "pricePerServing": 400,
+    "isAvailable": true
+  },
+  {
+    "id": 26,
+    "itemName": "Braised Beef in Tomato Sauce",
+    "category": "Beef",
+    "pricePerServing": 410,
+    "isAvailable": true
+  },
+  {
+    "id": 27,
+    "itemName": "Ampalaya Con Karne",
+    "category": "Beef",
+    "pricePerServing": 380,
+    "isAvailable": true
+  },
+  {
+    "id": 28,
+    "itemName": "Beef Stew",
+    "category": "Beef",
+    "pricePerServing": 400,
+    "isAvailable": true
+  },
+  {
+    "id": 29,
+    "itemName": "Beef Ala Pobre",
+    "category": "Beef",
+    "pricePerServing": 430,
+    "isAvailable": true
+  },
+  {
+    "id": 30,
+    "itemName": "Beef Magallon",
+    "category": "Beef",
+    "pricePerServing": 420,
+    "isAvailable": true
+  },
+  {
+    "id": 31,
+    "itemName": "Beef Mongolian",
+    "category": "Beef",
+    "pricePerServing": 410,
+    "isAvailable": true
+  },
+  {
+    "id": 32,
+    "itemName": "Beef Salpicao",
+    "category": "Beef",
+    "pricePerServing": 460,
+    "isAvailable": true
+  },
+  {
+    "id": 33,
+    "itemName": "D'sis Salpicao Vegetable",
+    "category": "Vegetables",
+    "pricePerServing": 250,
+    "isAvailable": true
+  },
+  {
+    "id": 34,
+    "itemName": "Chopsuey",
+    "category": "Vegetables",
+    "pricePerServing": 220,
+    "isAvailable": true
+  },
+  {
+    "id": 35,
+    "itemName": "Mixed Vegetables with Seafood or Beef",
+    "category": "Vegetables",
+    "pricePerServing": 280,
+    "isAvailable": true
+  },
+  {
+    "id": 36,
+    "itemName": "Mushroom in White Sauce",
+    "category": "Vegetables",
+    "pricePerServing": 240,
+    "isAvailable": true
+  },
+  {
+    "id": 37,
+    "itemName": "Broccoli with Garlic",
+    "category": "Vegetables",
+    "pricePerServing": 260,
+    "isAvailable": true
+  },
+  {
+    "id": 38,
+    "itemName": "Buttered Vegetables",
+    "category": "Vegetables",
+    "pricePerServing": 200,
+    "isAvailable": true
+  },
+  {
+    "id": 39,
+    "itemName": "Sipo Egg",
+    "category": "Vegetables",
+    "pricePerServing": 230,
+    "isAvailable": true
+  },
+  {
+    "id": 40,
+    "itemName": "Broccoli and Button Mushroom with Tofu and Fillet",
+    "category": "Vegetables",
+    "pricePerServing": 270,
+    "isAvailable": true
+  },
+  {
+    "id": 41,
+    "itemName": "Vegetable Saute",
+    "category": "Vegetables",
+    "pricePerServing": 180,
+    "isAvailable": true
+  },
+  {
+    "id": 42,
+    "itemName": "Broccoli with Shrimp",
+    "category": "Vegetables",
+    "pricePerServing": 300,
+    "isAvailable": true
+  },
+  {
+    "id": 43,
+    "itemName": "Kani Salad",
+    "category": "Salad/Sidedishes",
+    "pricePerServing": 220,
+    "isAvailable": true
+  },
+  {
+    "id": 44,
+    "itemName": "Vegetable Salad",
+    "category": "Salad/Sidedishes",
+    "pricePerServing": 180,
+    "isAvailable": true
+  },
+  {
+    "id": 45,
+    "itemName": "Potato Salad",
+    "category": "Salad/Sidedishes",
+    "pricePerServing": 200,
+    "isAvailable": true
+  },
+  {
+    "id": 46,
+    "itemName": "Vegeroni Salad",
+    "category": "Salad/Sidedishes",
+    "pricePerServing": 210,
+    "isAvailable": true
+  },
+  {
+    "id": 47,
+    "itemName": "Macaroni Salad",
+    "category": "Salad/Sidedishes",
+    "pricePerServing": 200,
+    "isAvailable": true
+  },
+  {
+    "id": 48,
+    "itemName": "Thousand Island",
+    "category": "Salad/Sidedishes",
+    "pricePerServing": 190,
+    "isAvailable": true
+  },
+  {
+    "id": 49,
+    "itemName": "Calamares Fritos",
+    "category": "Seafood",
+    "pricePerServing": 280,
+    "isAvailable": true
+  },
+  {
+    "id": 50,
+    "itemName": "Breaded Fish Fillet",
+    "category": "Seafood",
+    "pricePerServing": 300,
+    "isAvailable": true
+  },
+  {
+    "id": 51,
+    "itemName": "Fish with Creamy and Ham",
+    "category": "Seafood",
+    "pricePerServing": 320,
+    "isAvailable": true
+  },
+  {
+    "id": 52,
+    "itemName": "Sweet and Sour Fish Fillet",
+    "category": "Seafood",
+    "pricePerServing": 310,
+    "isAvailable": true
+  },
+  {
+    "id": 53,
+    "itemName": "Seafood Assorted with Italian Sauce",
+    "category": "Seafood",
+    "pricePerServing": 350,
+    "isAvailable": true
+  },
+  {
+    "id": 54,
+    "itemName": "Tempura",
+    "category": "Seafood",
+    "pricePerServing": 330,
+    "isAvailable": true
+  },
+  {
+    "id": 55,
+    "itemName": "Breaded Assorted Seafood",
+    "category": "Seafood",
+    "pricePerServing": 340,
+    "isAvailable": true
+  },
+  {
+    "id": 56,
+    "itemName": "Halaboz na Supo",
+    "category": "Seafood",
+    "pricePerServing": 380,
+    "isAvailable": true
+  },
+  {
+    "id": 57,
+    "itemName": "Shrimp Roll",
+    "category": "Seafood",
+    "pricePerServing": 300,
+    "isAvailable": true
+  },
+  {
+    "id": 58,
+    "itemName": "Creamy Dory Steak",
+    "category": "Seafood",
+    "pricePerServing": 310,
+    "isAvailable": true
+  },
+  {
+    "id": 59,
+    "itemName": "Salpicao",
+    "category": "Seafood",
+    "pricePerServing": 400,
+    "isAvailable": true
+  },
+  {
+    "id": 60,
+    "itemName": "Grilled Shrimp with Buttered Veggie",
+    "category": "Seafood",
+    "pricePerServing": 360,
+    "isAvailable": true
+  },
+  {
+    "id": 61,
+    "itemName": "Cheesy Baked Shrimp",
+    "category": "Seafood",
+    "pricePerServing": 380,
+    "isAvailable": true
+  },
+  {
+    "id": 62,
+    "itemName": "Supreme Seafood",
+    "category": "Seafood",
+    "pricePerServing": 420,
+    "isAvailable": true
+  },
+  {
+    "id": 63,
+    "itemName": "Creamy Shrimp",
+    "category": "Seafood",
+    "pricePerServing": 370,
+    "isAvailable": true
+  },
+  {
+    "id": 64,
+    "itemName": "Spicy Seafood",
+    "category": "Seafood",
+    "pricePerServing": 360,
+    "isAvailable": true
+  },
+  {
+    "id": 65,
+    "itemName": "D'sis Special Grilled Cut Ribs",
+    "category": "Pork",
+    "pricePerServing": 350,
+    "isAvailable": true
+  },
+  {
+    "id": 66,
+    "itemName": "Pork Spareribs BBQ",
+    "category": "Pork",
+    "pricePerServing": 320,
+    "isAvailable": true
+  },
+  {
+    "id": 67,
+    "itemName": "Pork with Pepper",
+    "category": "Pork",
+    "pricePerServing": 300,
+    "isAvailable": true
+  },
+  {
+    "id": 68,
+    "itemName": "Pork Sweet and Sour with Pineapple",
+    "category": "Pork",
+    "pricePerServing": 310,
+    "isAvailable": true
+  },
+  {
+    "id": 69,
+    "itemName": "Pork Caldereta Special Cut",
+    "category": "Pork",
+    "pricePerServing": 340,
+    "isAvailable": true
+  },
+  {
+    "id": 70,
+    "itemName": "Pork Mongolian",
+    "category": "Pork",
+    "pricePerServing": 330,
+    "isAvailable": true
+  },
+  {
+    "id": 71,
+    "itemName": "Pork Ala Pobre",
+    "category": "Pork",
+    "pricePerServing": 320,
+    "isAvailable": true
+  },
+  {
+    "id": 72,
+    "itemName": "Pork Lengua",
+    "category": "Pork",
+    "pricePerServing": 380,
+    "isAvailable": true
+  },
+  {
+    "id": 73,
+    "itemName": "Pork Baby Backribs BBQ",
+    "category": "Pork",
+    "pricePerServing": 360,
+    "isAvailable": true
+  },
+  {
+    "id": 74,
+    "itemName": "Pork Korean Style",
+    "category": "Pork",
+    "pricePerServing": 330,
+    "isAvailable": true
+  },
+  {
+    "id": 75,
+    "itemName": "Asado Special with Banana Chips",
+    "category": "Pork",
+    "pricePerServing": 310,
+    "isAvailable": true
+  },
+  {
+    "id": 76,
+    "itemName": "Embutido Special",
+    "category": "Pork",
+    "pricePerServing": 280,
+    "isAvailable": true
+  },
+  {
+    "id": 77,
+    "itemName": "Roast Pork Loin with Red Wine Sauce",
+    "category": "Pork",
+    "pricePerServing": 360,
+    "isAvailable": true
+  },
+  {
+    "id": 78,
+    "itemName": "Pork Spareribs with Pepper",
+    "category": "Pork",
+    "pricePerServing": 330,
+    "isAvailable": true
+  },
+  {
+    "id": 79,
+    "itemName": "Carbonara",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 250,
+    "isAvailable": true
+  },
+  {
+    "id": 80,
+    "itemName": "Fettuccini",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 260,
+    "isAvailable": true
+  },
+  {
+    "id": 81,
+    "itemName": "Fettuccini Ala Salad",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 270,
+    "isAvailable": true
+  },
+  {
+    "id": 82,
+    "itemName": "Spaghetti",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 200,
+    "isAvailable": true
+  },
+  {
+    "id": 83,
+    "itemName": "Spaghetti with White Sauce",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 220,
+    "isAvailable": true
+  },
+  {
+    "id": 84,
+    "itemName": "Shrimp Scampi Pasta",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 300,
+    "isAvailable": true
+  },
+  {
+    "id": 85,
+    "itemName": "Chapchae Korean Noodles",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 280,
+    "isAvailable": true
+  },
+  {
+    "id": 86,
+    "itemName": "Baked Mac and Cheese",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 240,
+    "isAvailable": true
+  },
+  {
+    "id": 87,
+    "itemName": "Pesto Chicken Pasta",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 270,
+    "isAvailable": true
+  },
+  {
+    "id": 88,
+    "itemName": "Fajita Pasta",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 260,
+    "isAvailable": true
+  },
+  {
+    "id": 89,
+    "itemName": "Creamy White Sauce Penne Pasta",
+    "category": "Pasta/Noodles",
+    "pricePerServing": 250,
+    "isAvailable": true
+  },
+  {
+    "id": 90,
+    "itemName": "Panna Cotta UBE Ledhe Flan",
+    "category": "Dessert",
+    "pricePerServing": 150,
+    "isAvailable": true
+  },
+  {
+    "id": 91,
+    "itemName": "Duko Pandam",
+    "category": "Dessert",
+    "pricePerServing": 120,
+    "isAvailable": true
+  },
+  {
+    "id": 92,
+    "itemName": "Fresh Fruits",
+    "category": "Dessert",
+    "pricePerServing": 140,
+    "isAvailable": true
+  },
+  {
+    "id": 93,
+    "itemName": "Leche Flan",
+    "category": "Dessert",
+    "pricePerServing": 160,
+    "isAvailable": true
+  },
+  {
+    "id": 94,
+    "itemName": "Ice Cream with Stick-O",
+    "category": "Dessert",
+    "pricePerServing": 100,
+    "isAvailable": true
+  },
+  {
+    "id": 95,
+    "itemName": "Tropical Fruits with Syrup",
+    "category": "Dessert",
+    "pricePerServing": 130,
+    "isAvailable": true
+  },
+  {
+    "id": 96,
+    "itemName": "Tochio del Cielo",
+    "category": "Dessert",
+    "pricePerServing": 140,
+    "isAvailable": true
+  },
+  {
+    "id": 97,
+    "itemName": "Rice Cake",
+    "category": "Dessert",
+    "pricePerServing": 90,
+    "isAvailable": true
+  },
+  {
+    "id": 98,
+    "itemName": "Crema de Fruta",
+    "category": "Dessert",
+    "pricePerServing": 170,
+    "isAvailable": true
+  },
+  {
+    "id": 99,
+    "itemName": "Tarts/Sylvanna",
+    "category": "Dessert",
+    "pricePerServing": 150,
+    "isAvailable": true
+  },
+  {
+    "id": 100,
+    "itemName": "D'sis Red Iced Tea",
+    "category": "Drinks",
+    "pricePerServing": 60,
+    "isAvailable": true
+  },
+  {
+    "id": 101,
+    "itemName": "Nestea Lemon Iced Tea",
+    "category": "Drinks",
+    "pricePerServing": 60,
+    "isAvailable": true
+  },
+  {
+    "id": 102,
+    "itemName": "Softdrinks - Lemonade",
+    "category": "Drinks",
+    "pricePerServing": 50,
+    "isAvailable": true
+  },
+  {
+    "id": 103,
+    "itemName": "Softdrinks - Cucumber Juice",
+    "category": "Drinks",
+    "pricePerServing": 70,
+    "isAvailable": true
+  },
+  {
+    "id": 104,
+    "itemName": "Chicken BBQ",
+    "description": "",
+    "category": "Chicken",
+    "pricePerServing": 180,
+    "imageUrl": "",
+    "isAvailable": true,
+    "createdAt": "2025-11-28T02:36:02.283Z",
+    "updatedAt": "2025-11-28T02:36:02.283Z"
+  }
+]

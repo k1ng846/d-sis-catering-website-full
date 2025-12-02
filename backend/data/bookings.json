@@ -1,0 +1,638 @@
+[
+  {
+    "id": 1,
+    "bookingId": "BK-1759931318007",
+    "customerName": "Maria Santos",
+    "customerEmail": "maria.santos@email.com",
+    "customerPhone": "+63 917 123 4567",
+    "eventType": "reunion",
+    "eventDate": "2020-12-31",
+    "eventVenue": "SM MOA",
+    "numGuests": 210,
+    "specialInstructions": "Please ensure all dishes are halal-friendly",
+    "bookingStatus": "cancelled",
+    "totalAmount": 13190,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 8,
+        "unitPrice": 500,
+        "totalPrice": 4000
+      },
+      {
+        "itemId": 2,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 5,
+        "unitPrice": 350,
+        "totalPrice": 1750
+      },
+      {
+        "itemId": 3,
+        "itemName": "Lasagna",
+        "quantity": 5,
+        "unitPrice": 300,
+        "totalPrice": 1500
+      },
+      {
+        "itemId": 4,
+        "itemName": "Shanghai Rolls",
+        "quantity": 13,
+        "unitPrice": 200,
+        "totalPrice": 2600
+      },
+      {
+        "itemId": 5,
+        "itemName": "Fruit Salad",
+        "quantity": 13,
+        "unitPrice": 150,
+        "totalPrice": 1950
+      },
+      {
+        "itemId": 6,
+        "itemName": "Rice",
+        "quantity": 7,
+        "unitPrice": 50,
+        "totalPrice": 350
+      },
+      {
+        "itemId": 7,
+        "itemName": "Soft Drinks",
+        "quantity": 8,
+        "unitPrice": 30,
+        "totalPrice": 240
+      },
+      {
+        "itemId": 8,
+        "itemName": "Cucumber Juice",
+        "quantity": 10,
+        "unitPrice": 80,
+        "totalPrice": 800
+      }
+    ],
+    "createdAt": "2025-10-08T13:48:38.007Z"
+  },
+  {
+    "id": 2,
+    "bookingId": "BK-1760351258668",
+    "customerName": "jacob dev",
+    "customerEmail": "jacob@gmail.com",
+    "customerPhone": "2432543654",
+    "eventType": "birthday",
+    "eventDate": "2025-10-16",
+    "eventVenue": "Qatar",
+    "numGuests": 4,
+    "specialInstructions": "n",
+    "bookingStatus": "cancelled",
+    "totalAmount": 1200,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 1,
+        "unitPrice": 500,
+        "totalPrice": 500
+      },
+      {
+        "itemId": 2,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 1,
+        "unitPrice": 350,
+        "totalPrice": 350
+      },
+      {
+        "itemId": 5,
+        "itemName": "Fruit Salad",
+        "quantity": 1,
+        "unitPrice": 150,
+        "totalPrice": 150
+      },
+      {
+        "itemId": 4,
+        "itemName": "Shanghai Rolls",
+        "quantity": 1,
+        "unitPrice": 200,
+        "totalPrice": 200
+      }
+    ],
+    "createdAt": "2025-10-13T10:27:38.668Z"
+  },
+  {
+    "id": 3,
+    "bookingId": "BK-1760352353077",
+    "customerName": "jacob dev",
+    "customerEmail": "jacob@gmail.com",
+    "customerPhone": "2432543654",
+    "eventType": "birthday",
+    "eventDate": "2025-10-21",
+    "eventVenue": "war",
+    "numGuests": 6,
+    "specialInstructions": "wut",
+    "bookingStatus": "cancelled",
+    "totalAmount": 500,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 1,
+        "unitPrice": 500,
+        "totalPrice": 500
+      }
+    ],
+    "createdAt": "2025-10-13T10:45:53.077Z"
+  },
+  {
+    "id": 4,
+    "bookingId": "BK-1760354504387",
+    "customerName": "code dev",
+    "customerEmail": "adad@hotmail.com",
+    "customerPhone": "2432543654",
+    "eventType": "birthday",
+    "eventDate": "2025-10-15",
+    "eventVenue": "wt",
+    "numGuests": 9,
+    "specialInstructions": "er",
+    "bookingStatus": "confirmed",
+    "totalAmount": 850,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 1,
+        "unitPrice": 500,
+        "totalPrice": 500
+      },
+      {
+        "itemId": 2,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 1,
+        "unitPrice": 350,
+        "totalPrice": 350
+      }
+    ],
+    "createdAt": "2025-10-13T11:21:44.387Z"
+  },
+  {
+    "id": 5,
+    "bookingId": "BK-1760356848772",
+    "customerName": "allen allen",
+    "customerEmail": "adad@hotmail.com",
+    "customerPhone": "2432543654",
+    "eventType": "birthday",
+    "eventDate": "2025-10-22",
+    "eventVenue": "ew",
+    "numGuests": 30,
+    "specialInstructions": "ugh",
+    "bookingStatus": "cancelled",
+    "totalAmount": 800,
+    "items": [
+      {
+        "itemId": 3,
+        "itemName": "Lasagna",
+        "quantity": 1,
+        "unitPrice": 300,
+        "totalPrice": 300
+      },
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 1,
+        "unitPrice": 500,
+        "totalPrice": 500
+      }
+    ],
+    "createdAt": "2025-10-13T12:00:48.772Z"
+  },
+  {
+    "id": 6,
+    "bookingId": "BK-1763285366783",
+    "customerName": "btr vfdv",
+    "customerEmail": "adad@hotmail.com",
+    "customerPhone": "2432543654",
+    "eventType": "anniversary",
+    "eventDate": "2025-11-17",
+    "eventVenue": "werw",
+    "numGuests": 43,
+    "specialInstructions": "ee",
+    "bookingStatus": "confirmed",
+    "totalAmount": 200,
+    "items": [
+      {
+        "itemId": 4,
+        "itemName": "Shanghai Rolls",
+        "quantity": 1,
+        "unitPrice": 200,
+        "totalPrice": 200
+      }
+    ],
+    "createdAt": "2025-11-16T09:29:26.783Z"
+  },
+  {
+    "id": 7,
+    "bookingId": "BK-1763285370405",
+    "customerName": "btr vfdv",
+    "customerEmail": "adad@hotmail.com",
+    "customerPhone": "2432543654",
+    "eventType": "anniversary",
+    "eventDate": "2025-11-17",
+    "eventVenue": "werw",
+    "numGuests": 43,
+    "specialInstructions": "ee",
+    "bookingStatus": "confirmed",
+    "totalAmount": 200,
+    "items": [
+      {
+        "itemId": 4,
+        "itemName": "Shanghai Rolls",
+        "quantity": 1,
+        "unitPrice": 200,
+        "totalPrice": 200
+      }
+    ],
+    "createdAt": "2025-11-16T09:29:30.405Z"
+  },
+  {
+    "id": 8,
+    "bookingId": "BK-1763285376392",
+    "customerName": "btr vfdv",
+    "customerEmail": "adad@hotmail.com",
+    "customerPhone": "2432543654",
+    "eventType": "anniversary",
+    "eventDate": "2025-11-17",
+    "eventVenue": "werw",
+    "numGuests": 43,
+    "specialInstructions": "ee",
+    "bookingStatus": "cancelled",
+    "totalAmount": 200,
+    "items": [
+      {
+        "itemId": 4,
+        "itemName": "Shanghai Rolls",
+        "quantity": 1,
+        "unitPrice": 200,
+        "totalPrice": 200
+      }
+    ],
+    "createdAt": "2025-11-16T09:29:36.392Z"
+  },
+  {
+    "id": 9,
+    "bookingId": "BK-1763287313491",
+    "customerName": "few dvv",
+    "customerEmail": "adad@hotmail.com",
+    "customerPhone": "2432543654",
+    "eventType": "wedding",
+    "eventDate": "2025-11-17",
+    "eventVenue": "ewfwefw",
+    "numGuests": 7,
+    "specialInstructions": "d",
+    "bookingStatus": "pending",
+    "totalAmount": 1700,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 2,
+        "unitPrice": 500,
+        "totalPrice": 1000
+      },
+      {
+        "itemId": 2,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 2,
+        "unitPrice": 350,
+        "totalPrice": 700
+      }
+    ],
+    "createdAt": "2025-11-16T10:01:53.491Z"
+  },
+  {
+    "id": 10,
+    "bookingId": "BK-1763514831045",
+    "customerName": "lamer castro",
+    "customerEmail": "castro@gmail.com",
+    "customerPhone": "098765434200",
+    "eventType": "anniversary",
+    "eventDate": "2025-11-13",
+    "eventVenue": "fg",
+    "numGuests": 5,
+    "specialInstructions": "fg",
+    "bookingStatus": "pending",
+    "totalAmount": 1000,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 2,
+        "unitPrice": 500,
+        "totalPrice": 1000
+      }
+    ],
+    "createdAt": "2025-11-19T01:13:51.045Z"
+  },
+  {
+    "id": 11,
+    "bookingId": "BK-1763515221377",
+    "customerName": "lamer castro",
+    "customerEmail": "castro@gmail.com",
+    "customerPhone": "0987654342",
+    "eventType": "corporate",
+    "eventDate": "2025-11-22",
+    "eventVenue": "bahay",
+    "numGuests": 56,
+    "specialInstructions": "bahay",
+    "bookingStatus": "pending",
+    "totalAmount": 2000,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 4,
+        "unitPrice": 500,
+        "totalPrice": 2000
+      }
+    ],
+    "createdAt": "2025-11-19T01:20:21.377Z"
+  },
+  {
+    "id": 12,
+    "bookingId": "BK-1764275301985",
+    "customerName": "lamer castro",
+    "customerEmail": "castro@gmail.com",
+    "customerPhone": "0987654342",
+    "eventType": "christening",
+    "eventDate": "2025-11-29",
+    "eventVenue": "maribeths house",
+    "numGuests": 5,
+    "specialInstructions": "invite cecil",
+    "bookingStatus": "pending",
+    "totalAmount": 0,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Chicken Nuggets",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 2,
+        "itemName": "Fried Chicken",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 3,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 2,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 10,
+        "itemName": "Sweet and Sour Chicken",
+        "quantity": 3,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 17,
+        "itemName": "Chicken with Lemon",
+        "quantity": 4,
+        "unitPrice": 0,
+        "totalPrice": 0
+      }
+    ],
+    "createdAt": "2025-11-27T20:28:21.985Z"
+  },
+  {
+    "id": 13,
+    "bookingId": "BK-1764275430444",
+    "customerName": "lamer castro",
+    "customerEmail": "castro@gmail.com",
+    "customerPhone": "0987654342",
+    "eventType": "christening",
+    "eventDate": "2025-11-29",
+    "eventVenue": "maribeths house",
+    "numGuests": 5,
+    "specialInstructions": "invite cecil",
+    "bookingStatus": "pending",
+    "totalAmount": 0,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Chicken Nuggets",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 2,
+        "itemName": "Fried Chicken",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 3,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 2,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 10,
+        "itemName": "Sweet and Sour Chicken",
+        "quantity": 3,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 17,
+        "itemName": "Chicken with Lemon",
+        "quantity": 4,
+        "unitPrice": 0,
+        "totalPrice": 0
+      }
+    ],
+    "createdAt": "2025-11-27T20:30:30.444Z"
+  },
+  {
+    "id": 14,
+    "bookingId": "BK-1764276311711",
+    "customerName": "lamer castro",
+    "customerEmail": "castro@gmail.com",
+    "customerPhone": "0987654342",
+    "eventType": "anniversary",
+    "eventDate": "2025-11-30",
+    "eventVenue": "Barte household",
+    "numGuests": 100,
+    "specialInstructions": "no genggeng",
+    "bookingStatus": "pending",
+    "totalAmount": 0,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Chicken Nuggets",
+        "quantity": 30,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 2,
+        "itemName": "Fried Chicken",
+        "quantity": 2,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 3,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 2,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 4,
+        "itemName": "Chicken Barbecue",
+        "quantity": 10,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 5,
+        "itemName": "Chicken Curry",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 6,
+        "itemName": "Roast Chicken",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 7,
+        "itemName": "Chicken Teriyaki",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 24,
+        "itemName": "Beef Stroganoff",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      }
+    ],
+    "createdAt": "2025-11-27T20:45:11.712Z"
+  },
+  {
+    "id": 15,
+    "bookingId": "BK-1764306382606",
+    "customerName": "RIo Mandani",
+    "customerEmail": "mandani@gmail.com",
+    "customerPhone": "09123457845",
+    "eventType": "debut",
+    "eventDate": "2025-12-02",
+    "eventVenue": "Kingsborrow",
+    "numGuests": 30,
+    "specialInstructions": "",
+    "bookingStatus": "pending",
+    "totalAmount": 14810,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Chicken Nuggets",
+        "quantity": 2,
+        "unitPrice": 180,
+        "totalPrice": 360
+      },
+      {
+        "itemId": 3,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 1,
+        "unitPrice": 350,
+        "totalPrice": 350
+      },
+      {
+        "itemId": 5,
+        "itemName": "Chicken Curry",
+        "quantity": 40,
+        "unitPrice": 280,
+        "totalPrice": 11200
+      },
+      {
+        "itemId": 7,
+        "itemName": "Chicken Teriyaki",
+        "quantity": 10,
+        "unitPrice": 290,
+        "totalPrice": 2900
+      }
+    ],
+    "createdAt": "2025-11-28T05:06:22.606Z"
+  },
+  {
+    "id": 16,
+    "bookingId": "BK-1764309725001",
+    "customerName": "josh Bautista",
+    "customerEmail": "bautista@gmail.com",
+    "customerPhone": "09563042525",
+    "eventType": "debut",
+    "eventDate": "2025-12-03",
+    "eventVenue": "ballroom",
+    "numGuests": 9,
+    "specialInstructions": "r",
+    "bookingStatus": "pending",
+    "totalAmount": 20220,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Chicken Nuggets",
+        "quantity": 3,
+        "unitPrice": 180,
+        "totalPrice": 540
+      },
+      {
+        "itemId": 3,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 3,
+        "unitPrice": 350,
+        "totalPrice": 1050
+      },
+      {
+        "itemId": 5,
+        "itemName": "Chicken Curry",
+        "quantity": 4,
+        "unitPrice": 280,
+        "totalPrice": 1120
+      },
+      {
+        "itemId": 33,
+        "itemName": "D'sis Salpicao Vegetable",
+        "quantity": 30,
+        "unitPrice": 250,
+        "totalPrice": 7500
+      },
+      {
+        "itemId": 40,
+        "itemName": "Broccoli and Button Mushroom with Tofu and Fillet",
+        "quantity": 3,
+        "unitPrice": 270,
+        "totalPrice": 810
+      },
+      {
+        "itemId": 39,
+        "itemName": "Sipo Egg",
+        "quantity": 40,
+        "unitPrice": 230,
+        "totalPrice": 9200
+      }
+    ],
+    "createdAt": "2025-11-28T06:02:05.001Z"
+  }
+]

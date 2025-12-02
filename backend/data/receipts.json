@@ -1,0 +1,512 @@
+[
+  {
+    "id": 1,
+    "receiptId": "RCP-1760352354837",
+    "receiptNumber": "R000001",
+    "bookingId": "BK-1760352353077",
+    "customerName": "John Doe",
+    "customerEmail": "customer@test.com",
+    "eventType": "birthday",
+    "eventDate": "2025-10-21",
+    "eventVenue": "war",
+    "numGuests": 6,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 1,
+        "unitPrice": 500,
+        "totalPrice": 500
+      }
+    ],
+    "subtotal": 500,
+    "taxRate": 0.12,
+    "taxAmount": 60,
+    "totalAmount": 560,
+    "paymentMethod": "Cash",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-10-13",
+    "createdAt": "2025-10-13T10:45:54.837Z"
+  },
+  {
+    "id": 2,
+    "receiptId": "RCP-1760354505892",
+    "receiptNumber": "R000002",
+    "bookingId": "BK-1760354504387",
+    "customerName": "John Doe",
+    "customerEmail": "customer@test.com",
+    "eventType": "birthday",
+    "eventDate": "2025-10-15",
+    "eventVenue": "wt",
+    "numGuests": 9,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 1,
+        "unitPrice": 500,
+        "totalPrice": 500
+      },
+      {
+        "itemId": 2,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 1,
+        "unitPrice": 350,
+        "totalPrice": 350
+      }
+    ],
+    "subtotal": 850,
+    "taxRate": 0.12,
+    "taxAmount": 102,
+    "totalAmount": 952,
+    "paymentMethod": "Cash",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-10-13",
+    "createdAt": "2025-10-13T11:21:45.892Z"
+  },
+  {
+    "id": 3,
+    "receiptId": "RCP-1760356850156",
+    "receiptNumber": "R000003",
+    "bookingId": "BK-1760356848772",
+    "customerName": "allen allen",
+    "customerEmail": "adad@hotmail.com",
+    "customerPhone": "2432543654",
+    "eventType": "birthday",
+    "eventDate": "2025-10-22",
+    "eventVenue": "ew",
+    "numGuests": 30,
+    "items": [
+      {
+        "itemId": 3,
+        "itemName": "Lasagna",
+        "quantity": 1,
+        "unitPrice": 300,
+        "totalPrice": 300
+      },
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 1,
+        "unitPrice": 500,
+        "totalPrice": 500
+      }
+    ],
+    "subtotal": 800,
+    "taxRate": 0.12,
+    "taxAmount": 96,
+    "totalAmount": 896,
+    "paymentMethod": "Cash",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-10-13",
+    "createdAt": "2025-10-13T12:00:50.156Z"
+  },
+  {
+    "id": 4,
+    "receiptId": "RCP-1763287313499",
+    "receiptNumber": "R000004",
+    "bookingId": "BK-1763287313491",
+    "customerName": "few dvv",
+    "customerEmail": "adad@hotmail.com",
+    "customerPhone": "2432543654",
+    "eventType": "wedding",
+    "eventDate": "2025-11-17",
+    "eventVenue": "ewfwefw",
+    "numGuests": 7,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 2,
+        "unitPrice": 500,
+        "totalPrice": 1000
+      },
+      {
+        "itemId": 2,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 2,
+        "unitPrice": 350,
+        "totalPrice": 700
+      }
+    ],
+    "subtotal": 1700,
+    "taxRate": 0.12,
+    "taxAmount": 204,
+    "totalAmount": 1904,
+    "paymentMethod": "Cash/Card",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-11-16",
+    "createdAt": "2025-11-16T10:01:53.499Z"
+  },
+  {
+    "id": 5,
+    "receiptId": "RCP-1763514831075",
+    "receiptNumber": "R000005",
+    "bookingId": "BK-1763514831045",
+    "customerName": "lamer castro",
+    "customerEmail": "castro@gmail.com",
+    "customerPhone": "098765434200",
+    "eventType": "anniversary",
+    "eventDate": "2025-11-13",
+    "eventVenue": "fg",
+    "numGuests": 5,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 2,
+        "unitPrice": 500,
+        "totalPrice": 1000
+      }
+    ],
+    "subtotal": 1000,
+    "taxRate": 0.12,
+    "taxAmount": 120,
+    "totalAmount": 1120,
+    "paymentMethod": "Cash/Card",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-11-19",
+    "createdAt": "2025-11-19T01:13:51.075Z"
+  },
+  {
+    "id": 6,
+    "receiptId": "RCP-1763515221393",
+    "receiptNumber": "R000006",
+    "bookingId": "BK-1763515221377",
+    "customerName": "lamer castro",
+    "customerEmail": "castro@gmail.com",
+    "customerPhone": "0987654342",
+    "eventType": "corporate",
+    "eventDate": "2025-11-22",
+    "eventVenue": "bahay",
+    "numGuests": 56,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Lechon",
+        "quantity": 4,
+        "unitPrice": 500,
+        "totalPrice": 2000
+      }
+    ],
+    "subtotal": 2000,
+    "taxRate": 0.12,
+    "taxAmount": 240,
+    "totalAmount": 2240,
+    "paymentMethod": "Cash/Card",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-11-19",
+    "createdAt": "2025-11-19T01:20:21.393Z"
+  },
+  {
+    "id": 7,
+    "receiptId": "RCP-1764275301992",
+    "receiptNumber": "R000007",
+    "bookingId": "BK-1764275301985",
+    "customerName": "lamer castro",
+    "customerEmail": "castro@gmail.com",
+    "customerPhone": "0987654342",
+    "eventType": "christening",
+    "eventDate": "2025-11-29",
+    "eventVenue": "maribeths house",
+    "numGuests": 5,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Chicken Nuggets",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 2,
+        "itemName": "Fried Chicken",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 3,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 2,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 10,
+        "itemName": "Sweet and Sour Chicken",
+        "quantity": 3,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 17,
+        "itemName": "Chicken with Lemon",
+        "quantity": 4,
+        "unitPrice": 0,
+        "totalPrice": 0
+      }
+    ],
+    "subtotal": 0,
+    "taxRate": 0.12,
+    "taxAmount": 0,
+    "totalAmount": 0,
+    "paymentMethod": "Cash/Card",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-11-27",
+    "createdAt": "2025-11-27T20:28:21.993Z"
+  },
+  {
+    "id": 8,
+    "receiptId": "RCP-1764275430449",
+    "receiptNumber": "R000008",
+    "bookingId": "BK-1764275430444",
+    "customerName": "lamer castro",
+    "customerEmail": "castro@gmail.com",
+    "customerPhone": "0987654342",
+    "eventType": "christening",
+    "eventDate": "2025-11-29",
+    "eventVenue": "maribeths house",
+    "numGuests": 5,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Chicken Nuggets",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 2,
+        "itemName": "Fried Chicken",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 3,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 2,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 10,
+        "itemName": "Sweet and Sour Chicken",
+        "quantity": 3,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 17,
+        "itemName": "Chicken with Lemon",
+        "quantity": 4,
+        "unitPrice": 0,
+        "totalPrice": 0
+      }
+    ],
+    "subtotal": 0,
+    "taxRate": 0.12,
+    "taxAmount": 0,
+    "totalAmount": 0,
+    "paymentMethod": "Cash/Card",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-11-27",
+    "createdAt": "2025-11-27T20:30:30.449Z"
+  },
+  {
+    "id": 9,
+    "receiptId": "RCP-1764276311718",
+    "receiptNumber": "R000009",
+    "bookingId": "BK-1764276311711",
+    "customerName": "lamer castro",
+    "customerEmail": "castro@gmail.com",
+    "customerPhone": "0987654342",
+    "eventType": "anniversary",
+    "eventDate": "2025-11-30",
+    "eventVenue": "Barte household",
+    "numGuests": 100,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Chicken Nuggets",
+        "quantity": 30,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 2,
+        "itemName": "Fried Chicken",
+        "quantity": 2,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 3,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 2,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 4,
+        "itemName": "Chicken Barbecue",
+        "quantity": 10,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 5,
+        "itemName": "Chicken Curry",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 6,
+        "itemName": "Roast Chicken",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 7,
+        "itemName": "Chicken Teriyaki",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      },
+      {
+        "itemId": 24,
+        "itemName": "Beef Stroganoff",
+        "quantity": 1,
+        "unitPrice": 0,
+        "totalPrice": 0
+      }
+    ],
+    "subtotal": 0,
+    "taxRate": 0.12,
+    "taxAmount": 0,
+    "totalAmount": 0,
+    "paymentMethod": "Cash/Card",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-11-27",
+    "createdAt": "2025-11-27T20:45:11.718Z"
+  },
+  {
+    "id": 10,
+    "receiptId": "RCP-1764306382618",
+    "receiptNumber": "R000010",
+    "bookingId": "BK-1764306382606",
+    "customerName": "RIo Mandani",
+    "customerEmail": "mandani@gmail.com",
+    "customerPhone": "09123457845",
+    "eventType": "debut",
+    "eventDate": "2025-12-02",
+    "eventVenue": "Kingsborrow",
+    "numGuests": 30,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Chicken Nuggets",
+        "quantity": 2,
+        "unitPrice": 180,
+        "totalPrice": 360
+      },
+      {
+        "itemId": 3,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 1,
+        "unitPrice": 350,
+        "totalPrice": 350
+      },
+      {
+        "itemId": 5,
+        "itemName": "Chicken Curry",
+        "quantity": 40,
+        "unitPrice": 280,
+        "totalPrice": 11200
+      },
+      {
+        "itemId": 7,
+        "itemName": "Chicken Teriyaki",
+        "quantity": 10,
+        "unitPrice": 290,
+        "totalPrice": 2900
+      }
+    ],
+    "subtotal": 14810,
+    "taxRate": 0.12,
+    "taxAmount": 1777.2,
+    "totalAmount": 16587.2,
+    "paymentMethod": "Cash/Card",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-11-28",
+    "createdAt": "2025-11-28T05:06:22.619Z"
+  },
+  {
+    "id": 11,
+    "receiptId": "RCP-1764309725010",
+    "receiptNumber": "R000011",
+    "bookingId": "BK-1764309725001",
+    "customerName": "josh Bautista",
+    "customerEmail": "bautista@gmail.com",
+    "customerPhone": "09563042525",
+    "eventType": "debut",
+    "eventDate": "2025-12-03",
+    "eventVenue": "ballroom",
+    "numGuests": 9,
+    "items": [
+      {
+        "itemId": 1,
+        "itemName": "Chicken Nuggets",
+        "quantity": 3,
+        "unitPrice": 180,
+        "totalPrice": 540
+      },
+      {
+        "itemId": 3,
+        "itemName": "Chicken Cordon Bleu",
+        "quantity": 3,
+        "unitPrice": 350,
+        "totalPrice": 1050
+      },
+      {
+        "itemId": 5,
+        "itemName": "Chicken Curry",
+        "quantity": 4,
+        "unitPrice": 280,
+        "totalPrice": 1120
+      },
+      {
+        "itemId": 33,
+        "itemName": "D'sis Salpicao Vegetable",
+        "quantity": 30,
+        "unitPrice": 250,
+        "totalPrice": 7500
+      },
+      {
+        "itemId": 40,
+        "itemName": "Broccoli and Button Mushroom with Tofu and Fillet",
+        "quantity": 3,
+        "unitPrice": 270,
+        "totalPrice": 810
+      },
+      {
+        "itemId": 39,
+        "itemName": "Sipo Egg",
+        "quantity": 40,
+        "unitPrice": 230,
+        "totalPrice": 9200
+      }
+    ],
+    "subtotal": 20220,
+    "taxRate": 0.12,
+    "taxAmount": 2426.4,
+    "totalAmount": 22646.4,
+    "paymentMethod": "Cash/Card",
+    "paymentStatus": "pending",
+    "issuedDate": "2025-11-28",
+    "createdAt": "2025-11-28T06:02:05.010Z"
+  }
+]

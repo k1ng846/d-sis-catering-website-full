@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "code": "XMAS25",
+    "discountPercent": 25,
+    "description": "Something's going down your chimney is it santa?! No it's our winter promo code! Only available to 5 users! Claim it now before december ends!",
+    "usageLimit": 5,
+    "usageCount": 0,
+    "startAt": "2025-11-28T02:46:00.000Z",
+    "endAt": "2025-12-31T02:46:00.000Z",
+    "active": true,
+    "createdAt": "2025-11-28T02:48:23.181Z",
+    "updatedAt": "2025-11-28T02:48:23.181Z"
+  },
+  {
+    "id": 2,
+    "code": "WEDDING25",
+    "discountPercent": 25,
+    "description": "",
+    "usageLimit": 5,
+    "usageCount": 0,
+    "startAt": "2025-11-28T06:06:00.000Z",
+    "endAt": "2025-12-06T06:06:00.000Z",
+    "active": true,
+    "createdAt": "2025-11-28T06:07:31.087Z",
+    "updatedAt": "2025-11-28T06:07:31.087Z"
+  }
+]
