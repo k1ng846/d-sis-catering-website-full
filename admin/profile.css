@@ -1,0 +1,23 @@
+/* Admin profile page styles (scoped to admin/profile.html) */
+.profile-container { max-width: 1000px; margin: 0 auto; }
+.profile-header h1 { margin-bottom: 6px; font-size: 22px; }
+.profile-header p { margin: 0 0 8px 0; color: #666; }
+.profile-content { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 16px; }
+.profile-section { background: #fff; padding: 18px; border-radius: 8px; border: 1px solid #eee; }
+.section-header h2 { margin: 0 0 10px 0; font-size: 18px; }
+.form-group { margin-bottom: 12px; }
+.form-group label { display: block; margin-bottom: 6px; font-weight: 600; }
+.form-group input { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; }
+.form-text { color: #777; font-size: 0.9rem; }
+.form-actions { display: flex; gap: 12px; margin-top: 10px; }
+.btn-primary { background: #6a1b9a; color: #fff; border: none; padding: 8px 14px; border-radius: 6px; }
+.btn-secondary { background: #f0f0f0; color: #333; border: none; padding: 8px 14px; border-radius: 6px; }
+.account-info .info-item { display: flex; gap: 12px; margin-bottom: 8px; }
+.info-label { font-weight: 700; color: #444; }
+.info-value { color: #333; }
+.badge-admin { background:#6a1b9a; color:#fff; padding:6px 10px; border-radius:6px; font-weight:600 }
+
+/* Responsive: two columns on wider screens */
+@media (min-width: 768px) {
+  .profile-content { grid-template-columns: 1fr 1fr; }
+}

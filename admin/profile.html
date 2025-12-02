@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile Settings - d'sis Catering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="admin-layout.css">
+    <style>
+        /* === COLOR VARIABLES from main.css === */
+        :root {
+            /* Accent colors */
+            --royal-blue: #007bff8f;
+            --gold-accent: #d4af37;
+            
+            /* BACKGROUND COLORS */
+            --body-start-color: #050505; 
+            --header-footer-bg: #111010; 
+            --card-background: #111010; 
+            --sidebar-bg: #111010;
+
+            /* Darker shades for hover */
+            --royal-blue-darker: #0056b38f; 
+            --gold-accent-darker: #b3902f;
+            
+            /* Text & Borders */
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --border-color: #333333;
+            --bg-hover: rgba(255, 255, 255, 0.05);
+            --input-bg: #1a1a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: var(--body-start-color); 
+            color: var(--text-main); 
+        }
+
+        /* === HEADER === */
+        .header { 
+            background: var(--header-footer-bg); 
+            padding: 20px 40px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5); 
+            display: flex; justify-content: space-between; align-items: center; 
+            border-bottom: 1px solid var(--gold-accent); /* Gold Outline */
+        }
+        
+        .logo-section { display:flex; align-items:center }
+        .logo-image { 
+            width:80px; height:80px; border-radius:50%; 
+            margin-right:20px; object-fit:cover;
+            border: 2px solid var(--gold-accent);
+        }
+        .company-name { font-size:32px; font-weight:bold; color:var(--text-main); }
+        .admin-section { text-align:right }
+        .admin-title { font-size:24px; font-weight:bold; color:white; margin-bottom:10px }
+        
+        .profile-button { 
+            background:none; 
+            border: 2px solid var(--gold-accent); /* Gold Outline */
+            border-radius:50%; width:60px; height:60px; 
+            cursor:pointer; display:flex; align-items:center; justify-content:center; 
+            transition:all 0.3s; color: white; text-decoration: none;
+        }
+        .profile-button:hover{ background:var(--royal-blue); border-color:var(--royal-blue); color:white }
+        .profile-button i { font-size: 24px; }
+
+        /* === MAIN LAYOUT === */
+        .main-content { display:flex; min-height: calc(100vh - 120px); }
+        
+        /* === SIDEBAR === */
+        .sidebar { 
+            background: var(--sidebar-bg); 
+            width:250px; padding:30px 20px; 
+            position:relative; 
+            border-right: 1px solid var(--gold-accent); /* Gold Outline */
+        }
+        .sidebar-title { 
+            color:var(--text-main); font-size:28px; font-weight:bold; 
+            margin-bottom:30px; text-align:center;
+            border-bottom: 2px solid var(--royal-blue); padding-bottom: 15px;
+        }
+        
+        .nav-menu { list-style:none }
+        .nav-menu li { margin-bottom:15px }
+        .nav-menu a { 
+            color:var(--text-muted); text-decoration:none; 
+            padding:12px 15px; display:flex; align-items: center; gap: 10px;
+            border-radius:8px; transition:all 0.3s;
+            border: 1px solid transparent;
+        }
+        .nav-menu a:hover { 
+            background: rgba(0, 123, 255, 0.1); 
+            color: var(--royal-blue); border-color: var(--royal-blue);
+        }
+        .nav-menu a.active { 
+            background: var(--royal-blue); 
+            color:white; font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+        }
+
+        /* === CONTENT AREA === */
+        .content-area { flex:1; padding:30px }
+        .page-title { 
+            font-size:32px; font-weight:bold; 
+            color:var(--text-main); margin-bottom:30px 
+        }
+
+        /* === FORMS & SECTIONS === */
+        .form-section {
+            background: var(--card-background);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--gold-accent); /* Gold Accent */
+        }
+
+        .form-section h3 {
+            margin-bottom: 20px;
+            color: var(--gold-accent);
+            font-size: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-grid.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+        
+        .form-group label i { color: var(--royal-blue); margin-right: 5px; }
+
+        .form-group input {
+            padding: 12px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 14px;
+            color: var(--text-main);
+            font-family: Arial, sans-serif;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        .form-group small {
+            margin-top: 5px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* === BUTTONS === */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--royal-blue);
+            color: white;
+        }
+        .btn-primary:hover { background: var(--royal-blue-darker); }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted);
+        }
+        .btn-secondary:hover { 
+            border-color: var(--text-main); 
+            color: var(--text-main); 
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* === MESSAGES === */
+        .success {
+            background: #0a2912;
+            color: #4cd137;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #28a745;
+        }
+
+        .error {
+            background: #3d0a0e;
+            color: #ff6b6b;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-section">
+            <img src="pics/logo.png" alt="d'sis Catering Logo" class="logo-image">
+            <div class="company-name">d'sis Catering</div>
+        </div>
+        <div class="admin-section">
+            <div class="admin-title">Admin</div>
+            <a class="profile-button" href="profile.html" title="Profile">
+                <i class="fas fa-user-cog"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="sidebar">
+            <div class="sidebar-title">Settings</div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="bookings.html"><i class="fas fa-calendar-check"></i> Bookings</a></li>
+                <li><a href="admin_message.html"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                <li><a href="menu_management.html"><i class="fas fa-utensils"></i> Menu Management</a></li>
+                <li><a href="profile.html" class="active"><i class="fas fa-user-cog"></i> Profile Settings</a></li>
+                <li><a href="../main.html"><i class="fas fa-home"></i> View Site</a></li>
+                <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="content-area">
+            <h1 class="page-title"><i class="fas fa-user-cog"></i> Profile Settings</h1>
+
+            <div id="success-message" class="success" style="display: none;"></div>
+            <div id="error-message" class="error" style="display: none;"></div>
+
+            <div class="form-section">
+                <h3><i class="fas fa-user"></i> Personal Information</h3>
+                <form id="profile-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName"><i class="fas fa-user"></i> First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName"><i class="fas fa-user"></i> Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid full">
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="phoneNumber"><i class="fas fa-phone"></i> Phone Number</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g., 09123456789">
+                        </div>
+                        <div class="form-group">
+                            <label for="username"><i class="fas fa-at"></i> Username</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="loadProfile()">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-section">
+                <h3><i class="fas fa-lock"></i> Change Password</h3>
+                <form id="password-form">
+                    <div class="form-grid full">
+                        <div class="form-group">
+                            <label for="currentPassword"><i class="fas fa-key"></i> Current Password</label>
+                            <input type="password" id="currentPassword" name="currentPassword" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="newPassword"><i class="fas fa-lock"></i> New Password</label>
+                            <input type="password" id="newPassword" name="newPassword" required minlength="6">
+                            <small>Password must be at least 6 characters long</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm New Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-key"></i> Change Password
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3000/api';
+
+        // Check if admin is logged in when page loads
+        window.addEventListener('load', function() {
+            const userRaw = localStorage.getItem('dsis_user');
+            if (!userRaw) {
+                window.location.href = '../login.html';
+                return;
+            }
+
+            try {
+                const user = JSON.parse(userRaw);
+                const userType = user.userType || user.user_type;
+                if (userType !== 'admin') {
+                    window.location.href = '../main.html';
+                    return;
+                }
+            } catch (e) {
+                window.location.href = '../login.html';
+                return;
+            }
+
+            loadProfile();
+            setupFormHandlers();
+        });
+
+        // Load profile data from localStorage
+        function loadProfile() {
+            try {
+                const userRaw = localStorage.getItem('dsis_user');
+                const user = JSON.parse(userRaw);
+                
+                document.getElementById('firstName').value = user.firstName || user.first_name || '';
+                document.getElementById('lastName').value = user.lastName || user.last_name || '';
+                document.getElementById('email').value = user.email || '';
+                document.getElementById('phoneNumber').value = user.phoneNumber || user.phone_number || '';
+                document.getElementById('username').value = user.username || '';
+            } catch (error) {
+                console.error('Error loading profile:', error);
+                showError('Failed to load profile data');
+            }
+        }
+
+        // Setup form handlers
+        function setupFormHandlers() {
+            const profileForm = document.getElementById('profile-form');
+            const passwordForm = document.getElementById('password-form');
+
+            if (profileForm) {
+                profileForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        firstName: document.getElementById('firstName').value.trim(),
+                        lastName: document.getElementById('lastName').value.trim(),
+                        email: document.getElementById('email').value.trim(),
+                        phoneNumber: document.getElementById('phoneNumber').value.trim(),
+                        username: document.getElementById('username').value.trim()
+                    };
+
+                    try {
+                        const submitBtn = e.target.querySelector('button[type="submit"]');
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+                        const response = await fetch(`${API_BASE_URL}/auth/profile`, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(formData)
+                        });
+
+                        const body = await response.json().catch(() => ({}));
+
+                        if (response.ok) {
+                            const userRaw = localStorage.getItem('dsis_user');
+                            const user = JSON.parse(userRaw);
+                            const updatedUser = {
+                                ...user,
+                                firstName: formData.firstName,
+                                lastName: formData.lastName,
+                                first_name: formData.firstName,
+                                last_name: formData.lastName,
+                                email: formData.email,
+                                phoneNumber: formData.phoneNumber,
+                                phone_number: formData.phoneNumber,
+                                username: formData.username
+                            };
+                            localStorage.setItem('dsis_user', JSON.stringify(updatedUser));
+                            
+                            showSuccess('Profile updated successfully!');
+                        } else {
+                            showError(body.error || 'Failed to update profile');
+                        }
+                    } catch (error) {
+                        console.error('Error updating profile:', error);
+                        showError('Failed to update profile: ' + error.message);
+                    } finally {
+                        const submitBtn = e.target.querySelector('button[type="submit"]');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+                    }
+                });
+            }
+
+            if (passwordForm) {
+                passwordForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const currentPassword = document.getElementById('currentPassword').value;
+                    const newPassword = document.getElementById('newPassword').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+
+                    if (newPassword !== confirmPassword) {
+                        showError('New passwords do not match');
+                        return;
+                    }
+
+                    if (newPassword.length < 6) {
+                        showError('Password must be at least 6 characters long');
+                        return;
+                    }
+
+                    try {
+                        const submitBtn = e.target.querySelector('button[type="submit"]');
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Changing...';
+
+                        const userRaw = localStorage.getItem('dsis_user');
+                        const user = JSON.parse(userRaw);
+
+                        const response = await fetch(`${API_BASE_URL}/auth/change-password`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                email: user.email,
+                                currentPassword,
+                                newPassword
+                            })
+                        });
+
+                        const body = await response.json().catch(() => ({}));
+
+                        if (response.ok) {
+                            showSuccess('Password changed successfully!');
+                            passwordForm.reset();
+                        } else {
+                            showError(body.error || 'Failed to change password');
+                        }
+                    } catch (error) {
+                        console.error('Error changing password:', error);
+                        showError('Failed to change password: ' + error.message);
+                    } finally {
+                        const submitBtn = e.target.querySelector('button[type="submit"]');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-key"></i> Change Password';
+                    }
+                });
+            }
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            const successDiv = document.getElementById('success-message');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('dsis_user');
+                localStorage.removeItem('dsis_token');
+                window.location.href = '../login.html';
+            }
+        }
+    </script>
+</body>
+</html>

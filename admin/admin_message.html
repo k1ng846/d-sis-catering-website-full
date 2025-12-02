@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Messages - d'sis Catering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="admin-layout.css">
+    <style>
+        /* === COLOR VARIABLES === */
+        :root {
+            /* Accent colors */
+            --royal-blue: #007bff8f;
+            --gold-accent: #d4af37;
+            
+            /* BACKGROUND COLORS */
+            --body-start-color: #050505; 
+            --header-footer-bg: #111010; 
+            --card-background: #111010; 
+            --sidebar-bg: #111010;
+
+            /* Darker shades for hover */
+            --royal-blue-darker: #0056b38f; 
+            --gold-accent-darker: #b3902f;
+            
+            /* Text & Borders */
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --border-color: #333333;
+            --bg-hover: rgba(255, 255, 255, 0.05);
+            --reply-bg: #0a2912;
+            --reply-border: #28a745;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--body-start-color);
+            color: var(--text-main);
+        }
+
+        /* === HEADER === */
+        .header {
+            background: var(--header-footer-bg);
+            padding: 20px 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--gold-accent); /* Gold Outline */
+        }
+
+        .logo-section { display: flex; align-items: center; }
+        .logo-image {
+            width: 80px; height: 80px; border-radius: 50%;
+            margin-right: 20px; object-fit: cover;
+            border: 2px solid var(--gold-accent);
+        }
+        .company-name { font-size: 32px; font-weight: bold; color: var(--text-main); }
+        .admin-section { text-align: right; }
+        
+        /* Admin Title - White */
+        .admin-title { font-size: 24px; font-weight: bold; color: white; margin-bottom: 10px; }
+
+        /* Profile Button - Gold Outline & Bigger Icon */
+        .mail-button {
+            background: none; 
+            border: 2px solid var(--gold-accent); /* Gold Outline */
+            border-radius: 50%;
+            width: 60px; height: 60px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s; color: white; text-decoration: none;
+        }
+        .mail-button:hover { background: var(--royal-blue); border-color: var(--royal-blue); color: white; }
+        
+        /* Icon Size - Matched to Dashboard */
+        .mail-button i { font-size: 24px; }
+
+        /* === MAIN LAYOUT === */
+        .main-content {
+            display: flex;
+            min-height: calc(100vh - 120px);
+            position: relative;
+        }
+
+        /* === MAIN SIDEBAR === */
+        .sidebar {
+            background: var(--sidebar-bg);
+            width: 250px;
+            padding: 30px 20px;
+            position: relative;
+            border-right: 1px solid var(--gold-accent); /* Gold Outline */
+            z-index: 10;
+        }
+
+        .sidebar-title {
+            color: var(--text-main);
+            font-size: 28px; font-weight: bold;
+            margin-bottom: 30px; text-align: center;
+            border-bottom: 2px solid var(--royal-blue);
+            padding-bottom: 15px;
+        }
+
+        .nav-menu { list-style: none; }
+        .nav-menu li { margin-bottom: 15px; }
+        .nav-menu a {
+            color: var(--text-muted); text-decoration: none;
+            padding: 12px 15px; display: flex; align-items: center; gap: 10px;
+            border-radius: 8px; transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        .nav-menu a:hover {
+            background: rgba(0, 123, 255, 0.1);
+            color: var(--royal-blue);
+            border-color: var(--royal-blue);
+        }
+        .nav-menu a.active {
+            background: var(--royal-blue);
+            color: white; font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+        }
+
+        /* === CONTENT AREA === */
+        .content-area {
+            flex: 1; padding: 30px; position: relative;
+            padding-left: 230px; /* Space for inner sidebar */
+            transition: padding-left 0.3s ease;
+        }
+        
+        /* Minimized state */
+        .content-area.sidebar-minimized { padding-left: 90px; }
+
+        .page-title {
+            font-size: 32px; font-weight: bold;
+            color: var(--text-main); margin-bottom: 30px;
+        }
+
+        /* === INNER TABS SIDEBAR (Collapsible) === */
+        .tabs-container {
+            display: flex; flex-direction: column; gap: 0;
+            width: 200px;
+            position: absolute; left: 0; top: 0; bottom: 0;
+            background: var(--card-background);
+            border-right: 1px solid var(--border-color);
+            padding-top: 10px; transition: width 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .tabs-container.minimized { width: 60px; }
+
+        .toggle-sidebar-btn {
+            align-self: flex-end; margin: 0 10px 10px 0;
+            background: none; border: none;
+            color: var(--text-muted); cursor: pointer;
+            font-size: 16px; padding: 5px; border-radius: 4px;
+        }
+        .toggle-sidebar-btn:hover { color: var(--gold-accent); background: var(--bg-hover); }
+
+        .tab-button {
+            padding: 15px 20px; background: none; border: none;
+            font-size: 16px; font-weight: 500;
+            color: var(--text-muted); cursor: pointer;
+            border-left: 4px solid transparent;
+            transition: all 0.3s; text-align: left;
+            display: flex; align-items: center; gap: 12px;
+            white-space: nowrap;
+        }
+        
+        .tab-button:hover { color: var(--gold-accent); background: var(--bg-hover); }
+        .tab-button.active {
+            color: var(--royal-blue);
+            border-left-color: var(--royal-blue);
+            background: rgba(0, 123, 255, 0.1);
+        }
+
+        /* Minimized Styles */
+        .tabs-container.minimized .tab-text, 
+        .tabs-container.minimized .count-badge { display: none; }
+        
+        .tabs-container.minimized .tab-button {
+            padding: 15px 0; justify-content: center;
+        }
+        .tabs-container.minimized .tab-button i { margin: 0; font-size: 20px; }
+
+        .count-badge {
+            margin-left: auto;
+            background: var(--royal-blue); color: white;
+            padding: 2px 8px; border-radius: 12px;
+            font-size: 12px; font-weight: bold;
+        }
+
+        /* === CUSTOMER CARDS === */
+        .customer-card {
+            background: var(--card-background);
+            border-radius: 12px; padding: 20px; margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--royal-blue);
+            cursor: pointer; transition: all 0.3s;
+        }
+        .customer-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--royal-blue);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .customer-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px; }
+        .customer-name { font-size: 18px; font-weight: bold; color: var(--text-main); }
+        .customer-email { color: var(--text-muted); font-size: 14px; margin-bottom: 8px; }
+        
+        .customer-stats { display: flex; gap: 20px; font-size: 13px; color: var(--text-muted); }
+        .stat-badge { padding: 2px 6px; border-radius: 3px; font-weight: bold; color: #000; }
+        
+        .status-badge-unread { background: var(--gold-accent); color: #000; }
+        .status-badge-read { background: #28a745; color: white; }
+        .status-badge-replied { background: var(--royal-blue); color: white; }
+
+        /* === MESSAGE AREA === */
+        .expanded-message-area {
+            background: var(--bg-hover); padding: 15px;
+            border-radius: 8px; margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .message-status { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .status-unread { background: var(--gold-accent); color: #000; }
+        .status-read { background: #28a745; color: white; }
+        .status-replied { background: var(--royal-blue); color: white; }
+
+        .admin-reply-display {
+            background: var(--reply-bg); padding: 10px; border-radius: 5px;
+            font-size: 0.9em; margin-top: 10px; border: 1px solid var(--reply-border);
+            color: #fff;
+        }
+
+        /* === BUTTONS & FORMS === */
+        .btn {
+            padding: 8px 16px; border: none; border-radius: 5px;
+            cursor: pointer; font-weight: bold; text-decoration: none;
+            display: inline-block; text-align: center; font-size: 13px;
+            transition: 0.3s;
+        }
+        .btn-primary { background: var(--royal-blue); color: white; }
+        .btn-primary:hover { background: var(--royal-blue-darker); }
+        .btn-cancel { background: transparent; color: var(--text-muted); border: 1px solid var(--border-color); }
+        .btn-cancel:hover { color: white; border-color: white; }
+
+        .reply-form {
+            background: #000; padding: 15px; border-radius: 8px;
+            margin-top: 15px; display: none; border: 1px solid var(--border-color);
+        }
+        .reply-form textarea {
+            width: 100%; padding: 10px;
+            background: #1a1a1a; color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 5px; resize: vertical; min-height: 80px;
+            margin-bottom: 10px;
+        }
+        .reply-form textarea:focus { outline: none; border-color: var(--royal-blue); }
+
+        /* === SCROLLABLE CONTAINERS === */
+        .scroll-container {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .scroll-container::-webkit-scrollbar-track {
+            background: var(--card-background);
+            border-radius: 6px;
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: var(--gold-accent);
+            border-radius: 6px;
+            border: 2px solid var(--card-background);
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-accent-darker);
+        }
+
+        /* === UTILITY === */
+        .loading { text-align: center; padding: 40px; color: var(--text-muted); }
+        .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+        .customers-list, .customer-messages { display: none; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-section">
+            <img src="pics/logo.png" alt="d'sis Catering Logo" class="logo-image">
+            <div class="company-name">d'sis Catering</div>
+        </div>
+        <div class="admin-section">
+            <div class="admin-title">Admin</div>
+            <a class="mail-button" href="profile.html" title="Profile">
+                <i class="fas fa-user-cog"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="sidebar">
+            <div class="sidebar-title">Messages</div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="bookings.html"><i class="fas fa-calendar-check"></i> Bookings</a></li>
+                <li><a href="admin_message.html" class="active"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                <li><a href="menu_management.html"><i class="fas fa-utensils"></i> Menu Management</a></li>
+                <li><a href="profile.html"><i class="fas fa-user-cog"></i> Profile Settings</a></li>
+                <li><a href="../main.html"><i class="fas fa-home"></i> View Site</a></li>
+                <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="content-area" id="main-content-area">
+            <div class="tabs-container" id="tabs-container" style="display: none;">
+                <button class="toggle-sidebar-btn" onclick="toggleInnerSidebar()" title="Minimize Sidebar">
+                    <i class="fas fa-chevron-left" id="toggle-icon"></i>
+                </button>
+
+                <button class="tab-button active" onclick="switchTab(event, 'customers')" title="Customers">
+                    <i class="fas fa-users"></i>
+                    <span class="tab-text">Customers</span>
+                    <span class="count-badge" id="customer-count">0</span>
+                </button>
+                <button class="tab-button" onclick="switchTab(event, 'all-messages')" title="All Messages">
+                    <i class="fas fa-envelope"></i>
+                    <span class="tab-text">Messages</span>
+                    <span class="count-badge" id="message-count">0</span>
+                </button>
+            </div>
+            
+            <h1 class="page-title">Customer Messages</h1>
+            
+            <div id="loading-message" class="loading">
+                <i class="fas fa-spinner fa-spin"></i> Loading messages...
+            </div>
+            
+            <div id="customers-view" class="customers-list">
+                <div class="scroll-container" id="customers-container"></div>
+            </div>
+            
+            <div id="all-messages-view" class="customer-messages">
+                <div class="scroll-container" id="messages-container"></div>
+            </div>
+            
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <i class="fas fa-envelope-open"></i>
+                <h3>No messages yet</h3>
+                <p>Customer messages will appear here when they contact you.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script>
+        const API_BASE_URL = CONFIG.API_BASE_URL;
+        let allMessages = [];
+        let currentTab = 'customers';
+
+        // Toggle Inner Sidebar (Minimize/Maximize)
+        function toggleInnerSidebar() {
+            const sidebar = document.getElementById('tabs-container');
+            const content = document.getElementById('main-content-area');
+            const icon = document.getElementById('toggle-icon');
+
+            sidebar.classList.toggle('minimized');
+            content.classList.toggle('sidebar-minimized');
+
+            if (sidebar.classList.contains('minimized')) {
+                icon.className = 'fas fa-chevron-right';
+            } else {
+                icon.className = 'fas fa-chevron-left';
+            }
+        }
+
+        // Auth Check
+        window.addEventListener('load', function() {
+            const userRaw = localStorage.getItem('dsis_user');
+            if (!userRaw) { window.location.href = '../login.html'; return; }
+            try {
+                const user = JSON.parse(userRaw);
+                if ((user.userType || user.user_type) !== 'admin') {
+                    window.location.href = '../main.html'; return;
+                }
+            } catch (e) { window.location.href = '../login.html'; return; }
+
+            loadMessages();
+        });
+
+        // Load Messages
+        async function loadMessages() {
+            try {
+                // Mock API call simulation if api.js fails
+                let result;
+                if (typeof api !== 'undefined' && api.adminGetAllMessages) {
+                    result = await api.adminGetAllMessages();
+                } else {
+                    const res = await fetch(`${API_BASE_URL}/admin/messages`);
+                    result = await res.json();
+                }
+
+                allMessages = result.messages || [];
+                document.getElementById('loading-message').style.display = 'none';
+                
+                if (allMessages.length > 0) {
+                    document.getElementById('tabs-container').style.display = 'flex';
+                    document.getElementById('customers-view').style.display = 'block';
+                    displayCustomers(allMessages);
+                    displayMessages(allMessages);
+                    updateCounts();
+                } else {
+                    document.getElementById('empty-state').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('loading-message').style.display = 'none';
+                // Fallback for prototype viewing if API fails
+                document.getElementById('empty-state').style.display = 'block'; 
+            }
+        }
+
+        function switchTab(event, tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            if (tab === 'customers') {
+                document.getElementById('customers-view').style.display = 'block';
+                document.getElementById('all-messages-view').style.display = 'none';
+            } else {
+                document.getElementById('customers-view').style.display = 'none';
+                document.getElementById('all-messages-view').style.display = 'block';
+            }
+        }
+
+        function updateCounts() {
+            const uniqueCustomers = new Set(allMessages.map(m => m.userEmail || m.customerEmail)).size;
+            document.getElementById('customer-count').textContent = uniqueCustomers;
+            document.getElementById('message-count').textContent = allMessages.length;
+        }
+
+        // --- Render Customers List ---
+        function displayCustomers(messages) {
+            const container = document.getElementById('customers-container');
+            const customerMap = {};
+            
+            messages.forEach(m => {
+                const email = m.userEmail || m.customerEmail || 'unknown';
+                if (!customerMap[email]) {
+                    customerMap[email] = {
+                        email: email,
+                        name: m.userName || m.customerName || 'Unknown',
+                        messages: [],
+                        unread: 0
+                    };
+                }
+                customerMap[email].messages.push(m);
+                if ((m.messageStatus||'').toLowerCase() === 'unread') customerMap[email].unread++;
+            });
+
+            const customers = Object.values(customerMap).sort((a,b) => b.messages.length - a.messages.length);
+            
+            container.innerHTML = customers.map((c, i) => `
+                <div class="customer-card" onclick="expandCustomer(this, '${c.email}')">
+                    <div class="customer-header">
+                        <div>
+                            <div class="customer-name">${c.name}</div>
+                            <div class="customer-email">${c.email}</div>
+                        </div>
+                        ${c.unread > 0 ? `<div class="stat-badge status-badge-unread">${c.unread} New</div>` : ''}
+                    </div>
+                    <div class="customer-stats">
+                        <span>${c.messages.length} Messages</span>
+                    </div>
+                    <div id="msgs-${i}" style="display:none; margin-top:15px; border-top:1px solid #333; padding-top:15px;"></div>
+                </div>
+            `).join('');
+        }
+
+        // --- Expand Customer & Show Messages ---
+        function expandCustomer(el, email) {
+            const idx = Array.from(el.parentNode.children).indexOf(el);
+            const container = document.getElementById(`msgs-${idx}`);
+            
+            // Toggle Visibility
+            if (container.style.display !== 'none') {
+                container.style.display = 'none';
+                return;
+            }
+
+            const msgs = allMessages.filter(m => (m.userEmail || m.customerEmail) === email);
+            
+            container.innerHTML = msgs.map(m => `
+                <div class="expanded-message-area" onclick="event.stopPropagation()">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                        <strong>${m.subject}</strong>
+                        <span class="message-status status-${m.messageStatus||'unread'}">${m.messageStatus||'unread'}</span>
+                    </div>
+                    <p style="color:#aaa; font-size:0.9em; margin-bottom:10px;">${m.messageContent||m.message}</p>
+                    
+                    ${m.adminResponse ? `<div class="admin-reply-display"><strong>You:</strong> ${m.adminResponse}</div>` : ''}
+                    
+                    <div style="margin-top:10px;">
+                        <button class="btn btn-primary" onclick="showReplyForm(${m.id})">Reply</button>
+                    </div>
+                    
+                    <div id="reply-form-${m.id}" class="reply-form">
+                        <textarea id="reply-text-${m.id}" placeholder="Type your reply here..."></textarea>
+                        <div style="display:flex; gap:10px;">
+                            <button class="btn btn-primary" onclick="sendReply(${m.id})">Send Reply</button>
+                            <button class="btn btn-cancel" onclick="hideReplyForm(${m.id})">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.style.display = 'block';
+        }
+
+        // --- All Messages Tab Render ---
+        function displayMessages(messages) {
+            const container = document.getElementById('messages-container');
+            container.innerHTML = messages.map(m => `
+                <div class="customer-card" style="cursor:default; border-left-color: var(--gold-accent);">
+                    <div class="customer-header">
+                        <div>
+                            <div class="customer-name">${m.userName||m.customerName}</div>
+                            <div class="customer-email">${m.userEmail||m.customerEmail} • ${new Date(m.createdAt).toLocaleDateString()}</div>
+                        </div>
+                        <div class="message-status status-${m.messageStatus||'unread'}">${m.messageStatus||'unread'}</div>
+                    </div>
+                    <div style="margin: 10px 0; color: #ddd;">
+                        <strong>${m.subject}</strong><br>
+                        ${m.messageContent||m.message}
+                    </div>
+                    ${m.adminResponse ? `<div class="admin-reply-display"><strong>You:</strong> ${m.adminResponse}</div>` : ''}
+                    <div style="margin-top:15px;">
+                        <button class="btn btn-primary" onclick="showReplyForm(${m.id})">Reply</button>
+                    </div>
+                    <div id="reply-form-${m.id}" class="reply-form">
+                        <textarea id="reply-text-${m.id}" placeholder="Type your reply here..."></textarea>
+                        <div style="display:flex; gap:10px;">
+                            <button class="btn btn-primary" onclick="sendReply(${m.id})">Send Reply</button>
+                            <button class="btn btn-cancel" onclick="hideReplyForm(${m.id})">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- Form Logic ---
+        function showReplyForm(id) { 
+            const form = document.getElementById(`reply-form-${id}`);
+            if(form) form.style.display = 'block'; 
+        }
+        
+        function hideReplyForm(id) { 
+            const form = document.getElementById(`reply-form-${id}`);
+            if(form) form.style.display = 'none'; 
+        }
+
+        // --- SEND REPLY LOGIC ---
+        async function sendReply(id) {
+            const textArea = document.getElementById(`reply-text-${id}`);
+            const text = textArea.value.trim();
+            
+            if(!text) {
+                alert("Please enter a message");
+                return;
+            }
+
+            // 1. Update Local Data State
+            const msg = allMessages.find(m => m.id === id);
+            if(msg) {
+                msg.adminResponse = text;
+                msg.messageStatus = 'replied';
+            }
+
+            // 2. DOM Manipulation for Immediate Visual Update
+            const formDiv = document.getElementById(`reply-form-${id}`);
+            const parentContainer = formDiv.parentElement;
+            
+            let replyDiv = parentContainer.querySelector('.admin-reply-display');
+            
+            if (!replyDiv) {
+                replyDiv = document.createElement('div');
+                replyDiv.className = 'admin-reply-display';
+                const btnContainer = formDiv.previousElementSibling; 
+                parentContainer.insertBefore(replyDiv, btnContainer);
+            }
+            
+            replyDiv.innerHTML = `<strong>You:</strong> ${text}`;
+            
+            const statusBadge = parentContainer.querySelector('.message-status');
+            if(statusBadge) {
+                statusBadge.className = 'message-status status-replied';
+                statusBadge.textContent = 'REPLIED';
+            }
+
+            // 3. Cleanup
+            textArea.value = '';
+            hideReplyForm(id);
+            
+            try {
+                if (typeof api !== 'undefined' && api.adminRespondToMessage) {
+                    await api.adminRespondToMessage(id, text);
+                }
+            } catch(e) { console.log('API not connected, using local update'); }
+        }
+
+        function logout() {
+            if(confirm('Logout?')) { localStorage.removeItem('dsis_user'); window.location.href = '../login.html'; }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Menu Checklist - d'sis Catering</title>
+    <link rel="stylesheet" href="checklist.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="admin-layout.css">
+    
+    <style>
+        /* === COLOR VARIABLES from main.css === */
+        :root {
+            /* Accent colors */
+            --royal-blue: #007bff8f;
+            --gold-accent: #d4af37;
+            
+            /* BACKGROUND COLORS */
+            --body-start-color: #050505; /* Deep dark background */
+            --header-footer-bg: #111010; 
+            --card-background: #111010; 
+            --item-bg: #1a1a1a;
+            
+            /* Darker shades for hover */
+            --royal-blue-darker: #0056b38f; 
+            --gold-accent-darker: #b3902f;
+            
+            /* Text & Borders */
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --border-color: #333333;
+            --bg-hover: rgba(255, 255, 255, 0.05);
+            
+            /* Status Colors */
+            --success-bg: #0a2912;
+            --success-border: #28a745;
+            --success-text: #4cd137;
+        }
+
+        /* === RESET & BODY === */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+        body {
+            background-color: var(--body-start-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: 100px;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        /* === HEADER === */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 40px;
+            background-color: var(--header-footer-bg);
+            border-bottom: 1px solid var(--border-color);
+            width: 100%; position: fixed; top: 0; left: 0; z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .logo-container { display: flex; align-items: center; }
+        .header-logo { 
+            width: 70px; height: 70px; margin-right: 15px; 
+            border-radius: 50%; border: 2px solid var(--gold-accent); 
+        }
+        .logo { font-size: 24px; font-weight: bold; color: var(--text-main); font-style: italic; }
+
+        /* Back Button Style */
+        .btn-outline-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-muted);
+            padding: 8px 15px; border-radius: 5px;
+            cursor: pointer; margin-right: 15px; font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-secondary:hover {
+            border-color: var(--royal-blue);
+            color: var(--royal-blue);
+            background: rgba(0, 123, 255, 0.1);
+        }
+
+        nav ul { list-style: none; display: flex; align-items: center; margin: 0; padding: 0; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a { color: var(--text-main); text-decoration: none; transition: color 0.3s; }
+        nav ul li a:hover { color: var(--royal-blue); }
+
+        /* === MAIN CONTENT FIX === */
+        /* Explicitly set main background to dark to override checklist.css */
+        main {
+            flex-grow: 1; display: flex; justify-content: center; align-items: flex-start;
+            padding: 40px 20px;
+            background-color: var(--body-start-color) !important;
+        }
+
+        /* Checklist Container - Dark Card Style */
+        .admin-checklist-container {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            width: 100%; max-width: 900px;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--gold-accent);
+        }
+
+        .admin-checklist-container h1 {
+            text-align: center; color: var(--gold-accent);
+            margin-bottom: 30px; font-size: 2.5rem;
+            border-bottom: 1px solid var(--border-color); padding-bottom: 15px;
+        }
+
+        /* User Info Box */
+        .user-info-static {
+            background: var(--bg-hover);
+            padding: 15px; border-radius: 8px;
+            margin-bottom: 30px; border: 1px solid var(--border-color);
+        }
+        .user-info-static h2 { color: var(--text-main); font-size: 1.5rem; margin-bottom: 5px; }
+        .user-info-static p { color: var(--text-muted); }
+
+        /* === CHECKLIST ITEMS === */
+        .menu-checklist {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; margin-bottom: 40px;
+        }
+
+        .menu-checklist-item {
+            background-color: var(--item-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px; padding: 20px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            min-height: 150px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+        }
+
+        .menu-checklist-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            border-color: var(--royal-blue);
+        }
+
+        /* Completed State - Dark Green Theme */
+        .menu-checklist-item.completed {
+            background-color: var(--success-bg);
+            border-color: var(--success-border);
+            opacity: 1;
+        }
+
+        .item-details h3 {
+            font-size: 1.3rem; color: var(--text-main); margin-bottom: 8px;
+        }
+        
+        .menu-checklist-item.completed h3 { color: var(--success-text); } 
+
+        .item-details .description {
+            font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; flex-grow: 1;
+        }
+
+        /* Checkbox Styling */
+        .checkbox-container {
+            display: flex; align-items: center; margin-top: 15px; cursor: pointer;
+        }
+        .checkbox-container input[type="checkbox"] {
+            width: 20px; height: 20px; margin-right: 10px; cursor: pointer;
+            accent-color: var(--royal-blue);
+        }
+        .checkbox-container label {
+            font-size: 1rem; color: var(--text-main); cursor: pointer;
+        }
+
+        /* === ACTION BUTTON === */
+        .save-button {
+            display: block; width: 100%; max-width: 300px; margin: 0 auto;
+            padding: 15px 25px; font-size: 1.1rem; font-weight: bold;
+            color: #fff; background-color: var(--royal-blue);
+            border: none; border-radius: 8px; cursor: pointer;
+            text-decoration: none; text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .save-button:hover {
+            background-color: var(--royal-blue-darker);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+           <button onclick="history.back()" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i></button>
+            <img src="pics/logo.png" alt="d'sis Catering Logo" class="header-logo">
+            <div class="logo">d'sis Catering</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="login.html"><i class="fas fa-user-circle" style="font-size: 24px;"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="admin-checklist-container">
+            <h1>User Menu Order Checklist</h1>
+
+            <div class="user-info-static">
+                <h2>Order for: Allen Mirienda</h2>
+                <p>Order Date: June 9, 2025</p>
+            </div>
+
+            <div id="menuChecklist" class="menu-checklist">
+                <div class="menu-checklist-item">
+                    <div class="item-details">
+                        <h3>Roast Chicken</h3>
+                        <p class="description">Whole roasted chicken with herbs</p>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="static-item-1">
+                        <label for="static-item-1">Mark Complete</label>
+                    </div>
+                </div>
+
+                <div class="menu-checklist-item">
+                    <div class="item-details">
+                        <h3>Pasta Carbonara</h3>
+                        <p class="description">Creamy pasta with bacon and egg</p>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="static-item-2">
+                        <label for="static-item-2">Mark Complete</label>
+                    </div>
+                </div>
+
+                <div class="menu-checklist-item completed">
+                    <div class="item-details">
+                        <h3>Fresh Garden Salad</h3>
+                        <p class="description">Mixed greens with vinaigrette</p>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="static-item-3" checked>
+                        <label for="static-item-3">Completed</label>
+                    </div>
+                </div>
+
+                <div class="menu-checklist-item">
+                    <div class="item-details">
+                        <h3>Chocolate Mousse</h3>
+                        <p class="description">Rich chocolate dessert</p>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="static-item-4">
+                        <label for="static-item-4">Mark Complete</label>
+                    </div>
+                </div>
+            </div>
+
+            <a href="bookings.html" class="save-button">Complete Checklist</a>
+        </div>
+    </main>
+
+    <script>
+        // Simple interaction script to toggle "completed" visual state
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.menu-checklist-item input[type="checkbox"]');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const itemCard = this.closest('.menu-checklist-item');
+                    const label = this.nextElementSibling;
+                    
+                    if (this.checked) {
+                        itemCard.classList.add('completed');
+                        label.textContent = "Completed";
+                    } else {
+                        itemCard.classList.remove('completed');
+                        label.textContent = "Mark Complete";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

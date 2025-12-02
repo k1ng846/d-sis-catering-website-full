@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Management - d'sis Catering Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="admin-layout.css">
+    <style>
+        /* Import the same color variables as dashboard */
+        :root {
+            --royal-blue: #007bff8f;
+            --gold-accent: #d4af37;
+            --body-start-color: #050505; 
+            --header-footer-bg: #111010; 
+            --card-background: #111010; 
+            --sidebar-bg: #111010;
+            --royal-blue-darker: #0056b38f; 
+            --gold-accent-darker: #b3902f;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --border-color: #333333;
+            --bg-hover: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--body-start-color);
+            color: var(--text-main);
+        }
+
+        /* Header styles */
+        .header {
+            background: var(--header-footer-bg);
+            padding: 20px 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--gold-accent);
+        }
+
+        .logo-section { display: flex; align-items: center; }
+        .logo-image {
+            width: 80px; height: 80px; border-radius: 50%;
+            margin-right: 20px; object-fit: cover;
+            border: 2px solid var(--gold-accent);
+        }
+        .company-name { font-size: 32px; font-weight: bold; color: var(--text-main); }
+        .admin-section { text-align: right; }
+        .admin-title { font-size: 24px; font-weight: bold; color: white; margin-bottom: 10px; }
+
+        .mail-button {
+            background: none; 
+            border: 2px solid var(--gold-accent); 
+            border-radius: 50%;
+            width: 60px; height: 60px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s; color: white; text-decoration: none;
+        }
+        .mail-button:hover { background: var(--royal-blue); border-color: var(--royal-blue); color: white; }
+        .mail-button i { font-size: 24px; }
+
+        /* Main content */
+        .main-content {
+            display: flex;
+            min-height: calc(100vh - 120px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--sidebar-bg);
+            width: 250px;
+            padding: 30px 20px;
+            position: relative;
+            border-right: 1px solid var(--gold-accent);
+        }
+
+        .sidebar-title {
+            color: var(--text-main);
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--royal-blue);
+            padding-bottom: 15px;
+        }
+
+        .nav-menu { list-style: none; }
+        .nav-menu li { margin-bottom: 15px; }
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 15px;
+            display: block;
+            border-radius: 8px;
+            transition: background 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(0, 123, 255, 0.1);
+            color: var(--royal-blue);
+            border-color: var(--royal-blue);
+        }
+
+        .nav-menu a.active {
+            background: var(--royal-blue);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+        }
+
+        /* Content area */
+        .content-area {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 30px;
+        }
+
+        /* Table styles */
+        .table-container {
+            background: var(--card-background);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Scrollable table wrapper */
+        .table-scroll-wrapper {
+            max-height: 500px;
+            overflow-y: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Custom scrollbar styling for the scroll wrapper */
+        .table-scroll-wrapper::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .table-scroll-wrapper::-webkit-scrollbar-track {
+            background: var(--card-background);
+            border-radius: 6px;
+        }
+
+        .table-scroll-wrapper::-webkit-scrollbar-thumb {
+            background: var(--gold-accent);
+            border-radius: 6px;
+            border: 2px solid var(--card-background);
+        }
+
+        .table-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-accent-darker);
+        }
+
+        /* Sticky header within scroll wrapper */
+        .table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #1a1a1a;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th {
+            background: #1a1a1a;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            color: var(--gold-accent);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Button styles */
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: 0.3s;
+            margin: 2px;
+        }
+
+        .btn-primary {
+            background: var(--royal-blue);
+            color: white;
+        }
+        .btn-primary:hover { background: var(--royal-blue-darker); }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover { background: #545b62; }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        .btn-success:hover { background: #218838; }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover { background: #c82333; }
+
+        .btn-warning {
+            background: var(--gold-accent);
+            color: black;
+        }
+        .btn-warning:hover { background: var(--gold-accent-darker); }
+
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            background-color: var(--card-background);
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            color: var(--text-main);
+        }
+
+        .close {
+            color: var(--text-muted);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: -10px;
+        }
+
+        .close:hover {
+            color: var(--gold-accent);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--gold-accent);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: #333;
+            color: var(--text-main);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+
+        /* Status badges */
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-available {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            border: 1px solid #28a745;
+        }
+
+        .status-unavailable {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-section">
+            <img src="pics/logo.png" alt="d'sis Catering Logo" class="logo-image">
+            <div class="company-name">d'sis Catering</div>
+        </div>
+        <div class="admin-section">
+            <div class="admin-title">Admin</div>
+            <a class="mail-button" href="profile.html" title="Profile">
+                <i class="fas fa-user-cog"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="sidebar">
+            <div class="sidebar-title">Menu Management</div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="bookings.html"><i class="fas fa-calendar-check"></i> Bookings</a></li>
+                <li><a href="admin_message.html"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                <li><a href="menu_management.html" class="active"><i class="fas fa-utensils"></i> Menu Management</a></li>
+                <li><a href="profile.html"><i class="fas fa-user-cog"></i> Profile Settings</a></li>
+                <li><a href="../main.html"><i class="fas fa-home"></i> View Site</a></li>
+                <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="content-area">
+            <h1 class="page-title">Menu Items Management</h1>
+            
+            <div class="menu-controls" style="margin-bottom: 20px; display: flex; gap: 10px; align-items: center;">
+                <button id="add-item-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add New Menu Item
+                </button>
+                <div style="margin-left: auto; display: flex; gap: 10px; align-items: center;">
+                    <input type="text" id="search-input" placeholder="Search menu items..." 
+                           style="padding: 8px; border: 1px solid var(--border-color); background: var(--card-background); color: var(--text-main); border-radius: 5px;">
+                    <select id="category-filter" style="padding: 8px; border: 1px solid var(--border-color); background: var(--card-background); color: var(--text-main); border-radius: 5px;">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div id="loading-message" class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Loading menu items...
+                </div>
+                <div class="table-scroll-wrapper" id="table-scroll-wrapper" style="display: none;">
+                    <table class="table" id="menu-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Item Name</th>
+                                <th>Category</th>
+                                <th>Price per Serving</th>
+                                <th>Available</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="menu-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Edit Menu Item</h2>
+            <form id="menu-form">
+                <input type="hidden" id="item-id">
+                <div class="form-group">
+                    <label for="item-name">Item Name:</label>
+                    <input type="text" id="item-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="item-category">Category:</label>
+                    <input type="text" id="item-category" required>
+                </div>
+                <div class="form-group">
+                    <label for="item-price">Price per Serving (₱):</label>
+                    <input type="number" id="item-price" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="item-available">Available:</label>
+                    <select id="item-available" required>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script>
+        const API_BASE_URL = CONFIG.API_BASE_URL;
+        let menuItems = [];
+        let filteredItems = [];
+        let isEditing = false;
+
+        // Authentication check
+        window.addEventListener('load', function() {
+            const userRaw = localStorage.getItem('dsis_user');
+            if (!userRaw) { 
+                window.location.href = '../login.html'; 
+                return; 
+            }
+            
+            try {
+                const user = JSON.parse(userRaw);
+                const userType = user.userType || user.user_type;
+                if (userType !== 'admin') { 
+                    window.location.href = '../main.html'; 
+                    return; 
+                }
+            } catch (e) { 
+                window.location.href = '../login.html'; 
+                return; 
+            }
+
+            loadMenuItems();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('add-item-btn').addEventListener('click', () => openModal(false));
+            document.getElementById('search-input').addEventListener('input', filterItems);
+            document.getElementById('category-filter').addEventListener('change', filterItems);
+            document.getElementById('menu-form').addEventListener('submit', handleFormSubmit);
+        }
+
+        async function loadMenuItems() {
+            try {
+                document.getElementById('loading-message').style.display = 'block';
+                document.getElementById('table-scroll-wrapper').style.display = 'none';
+
+                const response = await fetch(`${API_BASE_URL}/menu`);
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    menuItems = data.items || [];
+                    filteredItems = [...menuItems];
+                    populateCategoryFilter();
+                    renderMenuTable();
+                } else {
+                    throw new Error(data.message || 'Failed to load menu items');
+                }
+            } catch (error) {
+                console.error('Error loading menu items:', error);
+                showNotification('Error loading menu items: ' + error.message, 'error');
+                // Load sample data for demonstration
+                loadSampleData();
+            } finally {
+                document.getElementById('loading-message').style.display = 'none';
+                document.getElementById('table-scroll-wrapper').style.display = 'block';
+            }
+        }
+
+        function loadSampleData() {
+            menuItems = [
+                { id: 1, itemName: "Chicken Nuggets", category: "Chicken", pricePerServing: 180, isAvailable: true },
+                { id: 2, itemName: "Fried Chicken", category: "Chicken", pricePerServing: 250, isAvailable: true },
+                { id: 3, itemName: "Chicken Cordon Bleu", category: "Chicken", pricePerServing: 350, isAvailable: true },
+                { id: 4, itemName: "Beef Caldereta", category: "Beef", pricePerServing: 580, isAvailable: true },
+                { id: 5, itemName: "Pork Belly Lechon", category: "Pork", pricePerServing: 850, isAvailable: true },
+                { id: 6, itemName: "Seafood Paella", category: "Seafood", pricePerServing: 680, isAvailable: true },
+                { id: 7, itemName: "Caesar Salad", category: "Salad", pricePerServing: 350, isAvailable: true },
+                { id: 8, itemName: "Chocolate Fountain", category: "Dessert", pricePerServing: 1200, isAvailable: false }
+            ];
+            filteredItems = [...menuItems];
+            populateCategoryFilter();
+            renderMenuTable();
+        }
+
+        function populateCategoryFilter() {
+            const categories = [...new Set(menuItems.map(item => item.category))].sort();
+            const filter = document.getElementById('category-filter');
+            filter.innerHTML = '<option value="">All Categories</option>';
+            
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                filter.appendChild(option);
+            });
+        }
+
+        function filterItems() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const categoryFilter = document.getElementById('category-filter').value;
+            
+            filteredItems = menuItems.filter(item => {
+                const matchesSearch = item.itemName.toLowerCase().includes(searchTerm);
+                const matchesCategory = !categoryFilter || item.category === categoryFilter;
+                return matchesSearch && matchesCategory;
+            });
+            
+            renderMenuTable();
+        }
+
+        function renderMenuTable() {
+            const tbody = document.getElementById('menu-body');
+            
+            if (filteredItems.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No menu items found</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = filteredItems.map(item => `
+                <tr>
+                    <td>${item.id}</td>
+                    <td>${item.itemName}</td>
+                    <td>${item.category}</td>
+                    <td>₱${parseFloat(item.pricePerServing).toFixed(2)}</td>
+                    <td>
+                        <span class="status-badge ${item.isAvailable ? 'status-available' : 'status-unavailable'}">
+                            ${item.isAvailable ? 'Available' : 'Unavailable'}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" onclick="editItem(${item.id})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn ${item.isAvailable ? 'btn-danger' : 'btn-success'}" 
+                                onclick="toggleAvailability(${item.id})">
+                            <i class="fas ${item.isAvailable ? 'fa-eye-slash' : 'fa-eye'}"></i>
+                            ${item.isAvailable ? 'Disable' : 'Enable'}
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openModal(editing, item = null) {
+            isEditing = editing;
+            const modal = document.getElementById('edit-modal');
+            const title = document.getElementById('modal-title');
+            const form = document.getElementById('menu-form');
+            
+            title.textContent = editing ? 'Edit Menu Item' : 'Add New Menu Item';
+            
+            if (editing && item) {
+                document.getElementById('item-id').value = item.id;
+                document.getElementById('item-name').value = item.itemName;
+                document.getElementById('item-category').value = item.category;
+                document.getElementById('item-price').value = item.pricePerServing;
+                document.getElementById('item-available').value = item.isAvailable.toString();
+            } else {
+                form.reset();
+                document.getElementById('item-id').value = '';
+                document.getElementById('item-available').value = 'true';
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('edit-modal').style.display = 'none';
+        }
+
+        function editItem(id) {
+            const item = menuItems.find(item => item.id === id);
+            if (item) {
+                openModal(true, item);
+            }
+        }
+
+        async function toggleAvailability(id) {
+            try {
+                const item = menuItems.find(item => item.id === id);
+                if (!item) return;
+                
+                const newAvailability = !item.isAvailable;
+                
+                // Try to update via API
+                try {
+                    const response = await fetch(`${API_BASE_URL}/menu/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            ...item,
+                            isAvailable: newAvailability
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('API update failed');
+                    }
+                } catch (apiError) {
+                    console.log('API not available, updating locally');
+                }
+                
+                // Update local data
+                item.isAvailable = newAvailability;
+                filterItems(); // Refresh the table
+                showNotification(`Item ${newAvailability ? 'enabled' : 'disabled'} successfully`, 'success');
+                
+            } catch (error) {
+                console.error('Error toggling availability:', error);
+                showNotification('Error updating item availability', 'error');
+            }
+        }
+
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const formData = {
+                itemName: document.getElementById('item-name').value,
+                category: document.getElementById('item-category').value,
+                pricePerServing: parseFloat(document.getElementById('item-price').value),
+                isAvailable: document.getElementById('item-available').value === 'true'
+            };
+            
+            try {
+                if (isEditing) {
+                    const id = parseInt(document.getElementById('item-id').value);
+                    await updateMenuItem(id, formData);
+                } else {
+                    await addMenuItem(formData);
+                }
+                
+                closeModal();
+                loadMenuItems(); // Refresh the table
+                
+            } catch (error) {
+                console.error('Error saving menu item:', error);
+                showNotification('Error saving menu item: ' + error.message, 'error');
+            }
+        }
+
+        async function addMenuItem(itemData) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/menu`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(itemData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to add item via API');
+                }
+                
+                showNotification('Menu item added successfully', 'success');
+            } catch (apiError) {
+                console.log('API not available, adding locally');
+                // Add locally for demonstration
+                const newId = Math.max(...menuItems.map(item => item.id)) + 1;
+                menuItems.push({ id: newId, ...itemData });
+                showNotification('Menu item added locally (API not available)', 'warning');
+            }
+        }
+
+        async function updateMenuItem(id, itemData) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/menu/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(itemData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to update item via API');
+                }
+                
+                showNotification('Menu item updated successfully', 'success');
+            } catch (apiError) {
+                console.log('API not available, updating locally');
+                // Update locally for demonstration
+                const item = menuItems.find(item => item.id === id);
+                if (item) {
+                    Object.assign(item, itemData);
+                }
+                showNotification('Menu item updated locally (API not available)', 'warning');
+            }
+        }
+
+        function showNotification(message, type) {
+            // Create a simple notification
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                z-index: 2000;
+                background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#ffc107'};
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('dsis_user');
+                localStorage.removeItem('dsis_token');
+                window.location.href = '../login.html';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('edit-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

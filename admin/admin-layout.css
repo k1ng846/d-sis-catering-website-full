@@ -1,0 +1,123 @@
+/* Admin layout styles: header, nav, footer for admin pages - Updated for Dark Theme */
+* { box-sizing: border-box; }
+body { 
+    font-family: Arial, sans-serif; 
+    background: #302d2d; /* Dark background base */
+    color: #ccc; /* Light text color */
+    margin: 0; 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+header, .header { 
+    background: #111010; /* Dark header background */
+    padding: 18px 20px; 
+    /* Gold accent border and shadow */
+    box-shadow: 0 2px 4px rgba(212, 175, 55, 0.4); 
+    border-bottom: 3px solid #d4af37;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+}
+.logo-container { display: flex; align-items: center; gap: 12px; }
+.header-logo, .logo-image { width: 64px; height: 64px; object-fit: cover; border-radius: 6px; }
+.logo { 
+    font-size: 22px; 
+    font-weight: 700; 
+    color: #d4af37; /* Gold accent */
+}
+nav ul { list-style: none; display: flex; gap: 12px; align-items: center; margin: 0; padding: 0; }
+nav ul li { display: inline-block; }
+nav ul li a { 
+    color: white; /* Light link text */
+    text-decoration: none; 
+    padding: 8px 12px; 
+    border-radius: 6px; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+nav ul li a:hover { 
+    background: #000; /* Dark hover */
+    color: #d4af37; /* Gold text on hover */
+}
+.contact-btn { display: inline-flex; align-items: center; gap: 8px; }
+.btn-outline-secondary { background: none; border: 1px solid #ccc; padding: 6px 8px; border-radius: 6px; }
+
+/* Admin specific small button style used for profile area */
+.mail-button { 
+    background: none; 
+    border: 2px solid #d4af37; /* Gold border */
+    border-radius: 50%; 
+    width: 56px; 
+    height: 56px; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: white; /* White icon */
+    text-decoration: none; 
+}
+.mail-button:hover { 
+    background: #d4af37; /* Gold hover */
+    color: #111010; /* Dark icon on hover */
+}
+
+/* Main content spacing */
+main { padding: 28px; flex: 1 0 auto; }
+
+/* Footer - Not fully included in the HTML, but styled for consistency */
+footer { background: #111010; padding: 20px 0; margin-top: auto; border-top: 1px solid #d4af37; }
+.footer-content { max-width: 1100px; margin: 0 auto; display: flex; gap: 20px; justify-content: space-between; align-items: flex-start; padding: 0 16px; }
+.footer-links { display: flex; gap: 36px; }
+.footer-links h4 { margin-bottom: 8px; color: #007bff; } /* Royal Blue links title */
+.footer-links a { display: block; color: #ccc; text-decoration: none; margin-bottom: 6px; }
+.footer-links a:hover { color: #fff; text-decoration: underline; }
+.social-icons a { color: #ccc; text-decoration: none; font-size: 18px; }
+
+/* Admin profile page specific */
+.profile-container { max-width: 1000px; margin: 0 auto; }
+.profile-header h1 { margin-bottom: 6px; color: #d4af37; } /* Gold title */
+.profile-content { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 16px; }
+.profile-section { 
+    background: #111010; /* Dark section card */
+    padding: 18px; 
+    border-radius: 8px; 
+    border: 1px solid #d4af37; /* Gold border */
+}
+.section-header h2 { margin: 0 0 10px 0; color: #d4af37; } /* Gold subtitle */
+.form-group { margin-bottom: 12px; }
+.form-group label { 
+    display: block; 
+    margin-bottom: 6px; 
+    font-weight: 600; 
+    color: #ccc; /* Light label text */
+}
+.form-group input { 
+    width: 100%; 
+    padding: 8px 10px; 
+    background: #333; /* Dark input background */
+    color: white; /* Light input text */
+    border: 1px solid #d4af37; /* Gold border */
+    border-radius: 6px; 
+}
+.form-actions { display: flex; gap: 12px; margin-top: 10px; }
+.btn-primary { 
+    background: #007bff; /* Royal Blue */
+    color: #fff; 
+    border: none; 
+    padding: 8px 14px; 
+    border-radius: 6px; 
+}
+.btn-secondary { 
+    background: #d4af37; /* Gold Accent */
+    color: #000; /* Dark text on gold */
+    border: none; 
+    padding: 8px 14px; 
+    border-radius: 6px; 
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .profile-content { grid-template-columns: 1fr 1fr; }
+}
