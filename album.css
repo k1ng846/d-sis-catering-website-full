@@ -1,0 +1,436 @@
+/* === COLOR VARIABLES === */
+:root {
+    /* Existing accent colors */
+    --royal-blue: #007bff8f; /* Vibrant blue */
+    --gold-accent: #d4af37; /* Gold accent */
+    
+    /* BACKGROUND COLORS */
+    --body-start-color: #000000fd; /* Dark Gray (New Start of Body Gradient) */ 
+    --header-footer-bg: #111010; /* Lighter charcoal for high contrast header/footer */
+    --card-background: #111010; /* Dark grey for card backgrounds */
+
+    /* NEW: Darker shades for button hover effects */
+    --royal-blue-darker: #0056b3; /* Darker Royal Blue */
+    --gold-accent-darker: #b3902f; /* Darker Gold Accent */
+}
+
+/* === UNIVERSAL RESET & COMMON BODY === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Use the standard body font from main.css */
+    font-family: Arial, sans-serif;
+}
+
+body {
+    /* Main body background: copied from main.css */
+    background: linear-gradient(180deg, var(--body-start-color) 0%, #302d2d 100%);
+    background-attachment: fixed;
+    /* Text color for the body is now light/gray for contrast against the dark gradient */
+    color: #cccccc; 
+    line-height: 1.6;
+    padding-top: 100px;
+    min-height: 100vh;
+}
+
+/* === HEADER STYLING (Copied from main.css) === */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: var(--header-footer-bg); 
+    border-bottom: 3px solid var(--gold-accent); 
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+}
+
+/* --- LOGO FONT STYLE (Copied from main.css) --- */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white; 
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+}
+
+/* Navigation & Accent Colors */
+nav ul {
+    display: flex;
+    list-style: none;
+    margin-bottom: 0;
+    /* Ensures the list itself is centered in the header height */
+    align-items: center;
+}
+
+/* 🚀 KEY FIX: Apply flexbox to ALL <li> items for perfect vertical centering */
+nav ul li {
+    margin-left: 20px;
+    /* Forces content inside the <li> (the <a> tag) to align centrally */
+    display: flex; 
+    align-items: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white; 
+    font-weight: 500;
+    /* Using padding: 5px 0; helps position text links */
+    padding: 5px 0; 
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--gold-accent); /* Gold accent on hover */
+}
+
+/* Navigation compensation class for proper spacing */
+.nav-compensate {
+    padding: 10px 18px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* OVAL BUTTON STYLE */
+.oval-btn {
+    border-radius: 50px !important; 
+    /* FIX: Reduced padding for a more compact button globally */
+    padding: 6px 15px; 
+}
+
+/* --- .contact-btn: Messages Button --- */
+.contact-btn {
+    background-color: var(--royal-blue); 
+    color: #fff !important;
+    /* FIX: Base padding reduced for smaller default size */
+    padding: 6px 10px;
+    border-radius: 5px; 
+    border: 1px solid var(--royal-blue);
+    font-weight: bold;
+    /* FIX: Use flexbox for internal alignment of icon and text */
+    display: flex;
+    align-items: center;
+    /* Reset vertical margin since alignment is now handled by parent <li> */
+    margin-top: 0;
+    text-decoration: none;
+}
+
+/* FIX: Spacing between icon and text */
+.contact-btn i {
+    margin-right: 6px; /* Slightly less spacing */
+}
+
+.contact-btn.oval-btn {
+    /* FIX: Make it small and thin - Minimal top/bottom padding for a thin look */
+    padding: 6px 15px;
+}
+
+.contact-btn:hover {
+    background-color: var(--royal-blue-darker); 
+    color: #fff !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+    border-color: var(--royal-blue-darker);
+}
+
+/* --- .btn-outline-secondary: Copied from main.css --- */
+.btn-outline-secondary { 
+    font-size: 24px;
+    padding: 0px 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
+    color: white; 
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.btn-outline-secondary:hover {
+    color: #ccc;
+    text-shadow: 0 0 5px var(--gold-accent); 
+}
+
+/* --- .btn-dark: Used for "Book Event Now" CTA (Copied from main.css) --- */
+.btn-dark {
+    background-color: var(--card-background); 
+    color: var(--gold-accent); 
+    border: 1px solid var(--gold-accent);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-dark:hover {
+    background-color: #000000; 
+    color: var(--gold-accent); 
+    border: 1px solid var(--gold-accent-darker);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); 
+}
+
+/* Add an extra class for larger buttons */
+.btn-lg {
+    padding: 12px 30px;
+    font-size: 18px;
+}
+
+
+/* === FOOTER STYLING (Copied from main.css) === */
+footer {
+    background-color: var(--header-footer-bg); 
+    color: #f5f5f5;
+    padding: 40px 50px;
+    border-top: 3px solid var(--gold-accent);
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-content > p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--gold-accent); 
+}
+
+.footer-links {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.footer-links div {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--royal-blue); 
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.social-icons a {
+    color: #ccc;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--royal-blue); 
+}
+
+/* === UTILITIES & LAYOUT (Copied from main.css) === */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.text-center { text-align: center; }
+.py-5 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+.lead {
+    font-size: 1.25rem;
+}
+
+
+/* --- ALBUM PAGE SPECIFIC STYLES --- */
+
+/* Mimics the section-heading from main.css */
+.gallery-hero { 
+    margin-top: 0;
+    margin-bottom: 40px;
+    text-align: center;
+    /* Removed background-color and border-bottom to blend with body */
+    background-color: transparent; /* Makes it transparent to show body gradient */
+    border-bottom: none; /* Removes the border */
+    padding: 60px 0;
+}
+
+/* Mimics the H2 font style from main.css section-heading */
+.album-heading {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--gold-accent); /* Gold Heading */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+/* Mimics the section-heading lead/paragraph style */
+.album-lead {
+    color: #EEEEEE; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
+    font-size: 1.25rem;
+    /* UPDATED: Constrain width and center for better alignment */
+    max-width: 800px;
+    margin: 0 auto 30px auto; /* Added bottom margin */
+}
+
+/* Gallery Grid Styling */
+.image-gallery { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding-top: 20px; 
+    padding-bottom: 40px;
+}
+
+.gallery-item {
+    /* Mimics card styling from main.css */
+    border: 1px solid var(--gold-accent);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--card-background); /* Dark background */
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Stronger hover shadow */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+/* UPDATED CTA section styling for alignment */
+.cta-event-booking {
+    background-color: transparent; 
+    border: none;
+    /* Use flexbox to center content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Specifically remove underline from CTA button */
+.cta-event-booking .btn {
+    text-decoration: none !important;
+}
+
+/* === RESPONSIVE ADJUSTMENTS (Copied from main.css) === */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px 20px;
+        align-items: flex-start;
+    }
+    .logo-container{
+        margin-bottom: 10px;
+    }
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        padding-left: 0;
+        /* Reset ul alignment for mobile stacking */
+        align-items: flex-start;
+    }
+    nav ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: left;
+        /* Ensure <li> uses default block display for stacking on mobile */
+        display: block; 
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 10px 0;
+    }
+    .contact-btn {
+        width: auto;
+        text-align: center;
+        /* Use inline-flex for mobile to maintain icon/text alignment within the button */
+        display: inline-flex; 
+        justify-content: center;
+        /* Reset vertical margin for mobile view */
+        margin-top: 0; 
+    }
+
+    body {
+        /* Increased padding for the stacked header */
+        padding-top: 220px; 
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-links {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+    }
+    .social-icons {
+        margin-top: 20px;
+        justify-content: center;
+    }
+    /* Album specific responsive */
+    .album-heading {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 20px; }
+    .header-logo { width: 50px; height: 50px; }
+    body { 
+        /* Adjusted padding again for smaller screens */
+        padding-top: 200px; 
+    }
+}

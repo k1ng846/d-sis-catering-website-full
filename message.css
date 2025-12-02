@@ -1,0 +1,478 @@
+/* === COLOR VARIABLES === */
+:root {
+    /* Existing accent colors */
+    --royal-blue: #007bff8f; /* Vibrant blue */
+    --gold-accent: #d4af37; /* Gold accent */
+    
+    /* BACKGROUND COLORS */
+    --body-start-color: #000000fd; 
+    --header-footer-bg: #111010; 
+    --card-background: #111010; 
+
+    /* NEW: Darker shades for button hover effects */
+    --royal-blue-darker: #0056b3; 
+    --gold-accent-darker: #b3902f; 
+}
+
+/* === UNIVERSAL RESET & COMMON BODY === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; 
+}
+
+body {
+    /* Main CSS dark gradient background */
+    background: linear-gradient(180deg, var(--body-start-color) 0%, #302d2d 100%);
+    background-attachment: fixed;
+    /* Main CSS body text color */
+    color: #EEEEEE; 
+    line-height: 1.6;
+    padding-top: 100px; /* For fixed header */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+/* === COMMON HEADER === */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: var(--header-footer-bg); /* Dark background */
+    border-bottom: 3px solid var(--gold-accent); /* Gold border */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    font-style: italic;
+    /* Main CSS Logo Font */
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+}
+
+/* === COMMON NAVIGATION === */
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white; /* Nav link color */
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a:hover {
+    color: var(--gold-accent); /* Hover color */
+}
+
+nav ul li a i {
+    margin-right: 8px;
+}
+
+/* === COMMON BUTTONS (UPDATED FOR OVAL SHAPE) === */
+.btn {
+    padding: 10px 18px;
+    border-radius: 5px; /* Default small radius for .btn */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.contact-btn {
+    background-color: var(--royal-blue); /* Royal Blue */
+    color: #fff !important;
+    padding: 8px 15px;
+    border: 1px solid var(--royal-blue);
+    font-weight: bold;
+    /* --- OVAL SHAPE ADDED HERE --- */
+    border-radius: 20px; 
+    /* ----------------------------- */
+}
+
+.contact-btn:hover {
+    background-color: var(--royal-blue-darker); /* Darker Blue hover */
+    color: #fff !important;
+    border-color: var(--royal-blue-darker);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.btn-outline-secondary {
+    font-size: 24px;
+    padding: 0px 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.btn-outline-secondary:hover {
+    color: #ccc;
+    text-shadow: 0 0 5px var(--gold-accent); /* Gold text shadow hover */
+}
+
+/* === COMMON FOOTER === */
+footer {
+    background-color: var(--header-footer-bg); /* Dark background */
+    color: #f5f5f5;
+    padding: 40px 50px;
+    border-top: 3px solid var(--gold-accent); /* Gold border */
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-content > p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--gold-accent); /* Gold text */
+}
+
+.footer-links {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.footer-links div {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--royal-blue); /* Royal Blue text */
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.social-icons a {
+    color: #ccc;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--royal-blue); /* Royal Blue hover */
+}
+
+/* === COMMON RESPONSIVE ADJUSTMENTS === */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px 20px;
+        align-items: flex-start;
+    }
+    .logo-container {
+        margin-bottom: 10px;
+    }
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+    nav ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: left;
+    }
+    nav ul li a {
+        display: block;
+        padding: 10px 0;
+    }
+    .contact-btn {
+        width: 100%;
+        text-align: center;
+    }
+    body {
+        padding-top: 220px; /* Adjusted to 220px to match previous dark theme standard */
+    }
+    .footer-content, .footer-links {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+}
+
+/* END OF COMMON STYLES */
+
+/* --- Message Page Specific Styles (Dark Theme Chat) --- */
+
+.chat-container {
+    display: flex;
+    width: 100%;
+    max-width: 950px;
+    height: 700px;
+    /* Use dark card background */
+    background-color: var(--card-background);
+    border-radius: 10px;
+    overflow: hidden;
+    /* Apply gold border and dark shadow */
+    border: 2px solid var(--gold-accent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.chat-body {
+    display: flex;
+    width: 100%;
+}
+
+.chat-sidebar {
+    width: 100px;
+    /* Use header/footer background for sidebar */
+    background-color: var(--header-footer-bg);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid #333; /* Subtle divider */
+}
+
+.sidebar-item {
+    color: #bdc3c7; /* Lighter grey for icons */
+    font-size: 24px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.sidebar-item:hover {
+    color: var(--gold-accent); /* Gold hover */
+}
+
+.sidebar-item.active {
+    color: var(--royal-blue); /* Royal Blue active */
+    background-color: #302d2d; /* Subtle dark active background */
+}
+
+.sidebar-text {
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+.profile-sidebar-item {
+    margin-top: auto;
+}
+
+.profile-sidebar-item i {
+    font-size: 32px;
+}
+
+.chat-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    /* Use a slightly different dark background for the main chat area */
+    background-color: #302d2d; 
+}
+
+/* Set default text color for the main chat area to blue */
+.chat-main, .admin-header-info {
+    color: var(--royal-blue); 
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    /* Header background and border */
+    background-color: var(--card-background);
+    border-bottom: 1px solid var(--gold-accent);
+}
+
+.chat-header .chat-info {
+    display: flex;
+    align-items: center;
+}
+
+.chat-header .chat-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 1px solid var(--royal-blue); /* Accent border on chat partner logo */
+}
+
+.chat-header .chat-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--gold-accent); /* Gold text for chat partner name */
+}
+
+.admin-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-text {
+    font-size: 1rem;
+    color: #ccc; /* Light text for admin info */
+}
+
+.admin-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.admin-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    /* Slightly lighter background than header */
+    background-color: #1a1919; 
+    border-bottom: 1px solid #333;
+    font-size: 0.9rem;
+}
+
+.admin-label {
+    font-weight: bold;
+    color: var(--royal-blue); /* Blue text for label */
+}
+
+.admin-number {
+    color: #ccc; /* Light text for number */
+}
+
+.convo-area {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex; 
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Update the color of the empty hint text (matches the blue theme) */
+#empty-hint {
+    color: var(--royal-blue) !important; 
+}
+
+.message-input-area {
+    padding: 15px;
+    /* Use dark background */
+    background-color: var(--card-background);
+    border-top: 1px solid var(--gold-accent);
+    display: flex;
+    gap: 10px;
+}
+
+.message-input-area input {
+    flex-grow: 1;
+    padding: 12px 20px;
+    /* Dark input field style */
+    border: 1px solid #555;
+    background-color: #302d2d;
+    color: white;
+    /* Use same large radius for input */
+    border-radius: 25px; 
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Focus style for input */
+.message-input-area input:focus {
+    border-color: var(--royal-blue);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+}
+
+.message-input-area .btn-send {
+    /* Royal Blue Send Button */
+    background-color: var(--royal-blue);
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    line-height: 50px;
+    text-align: center;
+    font-size: 1.2rem;
+    /* Ensure it respects button transitions */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.message-input-area .btn-send:hover {
+    background-color: var(--royal-blue-darker);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}

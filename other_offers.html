@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Limited Offers - d'sis Catering</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="other_offers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <style>
+            /* Ensure footer stays at bottom when content is short */
+            html, body { height: 100%; }
+            body { display: flex; flex-direction: column; min-height: 100vh; }
+            main { flex: 1 0 auto; }
+            footer { flex-shrink: 0; }
+        </style>
+</head>
+<body>
+
+    <!-- Header (copied from main.html for consistent nav) -->
+    <header>
+        <div class="logo-container">
+                <button onclick="history.back()" class="btn btn-outline-secondary">←</button>
+                <img src="img/logo.png" class="header-logo">
+                <div class="logo">d'sis Catering</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="main.html" class="nav-compensate">Home</a></li>
+                <li><a href="menu.html" class="nav-compensate">Menu</a></li>
+                <li><a href="album.html" class="nav-compensate">Design</a></li>
+                <li><a href="other_offers.html" class="nav-compensate">Other Offers</a></li>
+                <li><a href="message.html" class="contact-btn oval-btn"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="login.html" class="nav-compensate"><i class="fas fa-user-circle" style="font-size: 24px;"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="py-5">
+        <div class="container">
+            <h1 class="text-center mb-4" style="font-size:45px;">Limited Offers & Promo Codes</h1>
+
+            <!-- Promo Codes Section -->
+            <div class="mb-5">
+                <h2 class="text-center mb-4" style="color: #1e3c72; font-size: 32px;">🎫 Available Promo Codes</h2>
+                <div id="promo-codes-container">
+                    <div class="text-center text-white">Loading promo codes...</div>
+                </div>
+            </div>
+
+            <!-- Limited Time Offers Section -->
+            <div>
+                <h2 class="text-center mb-4" style="color: #d4af37; font-size: 32px;">🏷️ Limited Time Offers</h2>
+                <div id="offers-container">
+                    <div class="text-center text-white">Loading active offers...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (copied from main.html) -->
+    <footer>
+            <div class="container footer-content">
+                    <p>d'sis Catering</p>
+                    <div class="footer-links">
+                            <div>
+                                    <h4>Explore</h4>
+                                    <a href="main.html">Home</a>
+                                    <a href="menu.html">Menu</a>
+                                    <a href="album.html">Design</a>
+                                    <a href="other_offers.html">Other Offers</a>
+                            </div>
+                            <div>
+                                    <h4>Connect</h4>
+                                    <a href="https://www.facebook.com/kykzj" target="_blank">Facebook</a>
+                                    <a>Email</a>
+                            </div>
+                            <div>
+                                    <h4>Contact</h4>
+                                    <a>+63 908 342 2706</a>
+                                    <a>dsis_catering28@yahoo.com</a>
+                                <a>San Lorenzo,Mexico,Pampanga,San Fernando, Philippines</a>
+                            </div>
+                    </div>
+                    <div class="social-icons">
+                            <a href="https://www.facebook.com/kykzj" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+            </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Load active offers and render them into the page
+        // API configuration moved to config.js
+
+        function formatDateShort(iso){
+            if (!iso) return '—';
+            try{ const d = new Date(iso); return d.toLocaleString(); }catch(e){ return iso }
+        }
+
+        function createOfferCard(o){
+            const wrapper = document.createElement('div');
+            wrapper.className = 'package-card mb-4 p-3 d-flex align-items-center';
+            wrapper.style.gap = '16px';
+
+            const imgDiv = document.createElement('div');
+            imgDiv.style.width = '160px'; imgDiv.style.flex = '0 0 160px';
+            
+            // Handle both imageUrl and imageData (base64)
+            const imageSrc = o.imageData || o.imageUrl;
+            if (imageSrc){
+                const img = document.createElement('img'); 
+                img.src = imageSrc; 
+                img.alt = o.title || 'Offer'; 
+                img.style.width = '100%'; 
+                img.style.height = '100px'; 
+                img.style.objectFit = 'cover'; 
+                img.style.borderRadius='8px'; 
+                img.onerror = function() {
+                    // Fallback if image fails to load
+                    this.parentNode.innerHTML = '<div style="width:100%;height:100px;background:#f2f2f2;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#999">No Image</div>';
+                };
+                imgDiv.appendChild(img);
+            } else {
+                imgDiv.innerHTML = '<div style="width:100%;height:100px;background:#f2f2f2;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#999">No Image</div>';
+            }
+
+            const meta = document.createElement('div'); meta.style.flex='1';
+            const title = document.createElement('h3'); title.textContent = o.title || 'Untitled Offer';
+            const desc = document.createElement('p'); desc.className = 'subheading'; desc.textContent = o.description || '';
+            
+            // Add benefits if available
+            if (o.benefits) {
+                const benefits = document.createElement('div');
+                benefits.style.cssText = 'background: rgba(212, 175, 55, 0.1); padding: 8px 12px; border-radius: 6px; margin: 8px 0; border-left: 3px solid #d4af37;';
+                benefits.innerHTML = `<strong style="color: #d4af37;">✨ Benefits:</strong><br><span style="color: #ffffff; font-size: 0.9em;">${o.benefits}</span>`;
+                meta.appendChild(benefits);
+            }
+            
+            const valid = document.createElement('p'); valid.className = 'price'; valid.style.cssText = 'font-size:0.95rem; color: #ffffff;'; valid.textContent = `Valid: ${o.startAt?formatDateShort(o.startAt):'Now'} — ${o.endAt?formatDateShort(o.endAt):'Until removed'}`;
+
+            meta.appendChild(title); meta.appendChild(desc); meta.appendChild(valid);
+            
+            // Promo codes are now in separate section
+
+            const actions = document.createElement('div'); actions.style.flex='0 0 140px'; actions.style.textAlign='center';
+            const btn = document.createElement('a'); btn.className = 'btn btn-book btn-primary'; btn.href = `book.html${o.id?('?offerId='+encodeURIComponent(o.id)):''}`; btn.textContent = 'Book Now!';
+            actions.appendChild(btn);
+
+            wrapper.appendChild(imgDiv); wrapper.appendChild(meta); wrapper.appendChild(actions);
+            return wrapper;
+        }
+
+
+        async function loadOffers(){
+            const container = document.getElementById('offers-container');
+            container.innerHTML = '<div class="text-center text-muted">Loading active offers...</div>';
+            
+            try{
+                const res = await fetch(CONFIG.API_BASE_URL + '/offers/active');
+                if (!res.ok) throw new Error('Network response was not ok');
+                const data = await res.json();
+                const list = data.offers || [];
+                
+                container.innerHTML = '';
+                if (list.length === 0){
+                    container.innerHTML = '<div class="text-center text-white">No active offers at the moment. Check back later for exciting deals!</div>';
+                    return;
+                }
+                list.forEach(o=>{ container.appendChild(createOfferCard(o)); });
+            }catch(err){
+                console.error('Failed to load offers:', err);
+                container.innerHTML = '<div class="text-center text-danger">Unable to load offers at the moment. Please try again later.</div>';
+            }
+        }
+
+        async function loadPromoCodes(){
+            const container = document.getElementById('promo-codes-container');
+            container.innerHTML = '<div class="text-center text-white">Loading promo codes...</div>';
+            
+            try{
+                const promoResponse = await fetch(CONFIG.API_BASE_URL + '/promo-codes');
+                if (!promoResponse.ok) throw new Error('Failed to fetch promo codes');
+                const promoData = await promoResponse.json();
+                
+                const activeCodes = (promoData.promoCodes || []).filter(code => {
+                    if (!code.active) return false;
+                    
+                    const now = new Date();
+                    const startDate = code.startAt ? new Date(code.startAt) : null;
+                    const endDate = code.endAt ? new Date(code.endAt) : null;
+                    
+                    // Check if started
+                    if (startDate && startDate > now) return false;
+                    
+                    // Check if not expired
+                    if (endDate && endDate < now) return false;
+                    
+                    return true;
+                });
+                
+                container.innerHTML = '';
+                if (activeCodes.length === 0){
+                    container.innerHTML = '<div class="text-center text-white">No active promo codes at the moment. Check back later for exciting discounts!</div>';
+                    return;
+                }
+                
+                activeCodes.forEach(code => {
+                    const promoCard = createPromoCodeCard(code);
+                    container.appendChild(promoCard);
+                });
+            }catch(err){
+                console.error('Failed to load promo codes:', err);
+                container.innerHTML = '<div class="text-center text-danger">Unable to load promo codes at the moment. Please try again later.</div>';
+            }
+        }
+
+        function createPromoCodeCard(code) {
+            const card = document.createElement('div');
+            card.className = 'package-card mb-4 p-4';
+            card.style.cssText = 'background: linear-gradient(135deg, #1e3c72, #2a5298); border-radius: 15px; border: 2px solid #1e3c72; box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);';
+            
+            card.innerHTML = `
+                <div class="row align-items-center">
+                    <div class="col-md-3 text-center">
+                        <div class="promo-code-display" style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; cursor: pointer;" onclick="copyToClipboard('${code.code}', this)">
+                            <div style="font-family: monospace; font-size: 24px; font-weight: bold; color: #ffffff; margin-bottom: 5px;">${code.code}</div>
+                            <div style="background: #28a745; color: white; padding: 5px 15px; border-radius: 20px; font-size: 14px; font-weight: bold;">${code.discountPercent}% OFF</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 style="color: #ffffff; margin-bottom: 10px;">🎫 Promo Code Discount</h4>
+                        <p style="color: #ffffff; font-size: 16px; margin-bottom: 10px;">${code.description}</p>
+                        <div style="color: #ffffff; font-size: 14px;">
+                            <i class="fas fa-clock"></i> Valid until: ${formatDateShort(code.endAt)}
+                            ${code.usageLimit ? `<br><i class="fas fa-users"></i> Limited to ${code.usageLimit} users` : ''}
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <button class="btn btn-light btn-lg" onclick="copyToClipboard('${code.code}', this)" style="font-weight: bold; padding: 12px 25px;">
+                            <i class="fas fa-copy"></i> Copy Code
+                        </button>
+                        <div style="color: #ffffff; font-size: 12px; margin-top: 8px; font-style: italic;">Click to copy!</div>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Old promo code section function removed - now using separate section
+
+        function copyToClipboard(text, element) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Visual feedback
+                const originalBg = element.style.background;
+                element.style.background = 'rgba(40, 167, 69, 0.3)';
+                element.style.border = '1px solid #28a745';
+                
+                // Show temporary message
+                const message = document.createElement('div');
+                message.style.cssText = 'position: absolute; background: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; z-index: 1000; top: -30px; left: 50%; transform: translateX(-50%);';
+                message.textContent = 'Copied!';
+                
+                element.style.position = 'relative';
+                element.appendChild(message);
+                
+                setTimeout(() => {
+                    element.style.background = originalBg;
+                    element.style.border = 'none';
+                    if (message.parentNode) {
+                        message.parentNode.removeChild(message);
+                    }
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert(`Promo code: ${text}`);
+            });
+        }
+
+        // Load both sections
+        loadOffers();
+        loadPromoCodes();
+        
+        // Refresh every minute to pick up new offers and promo codes
+        setInterval(() => {
+            loadOffers();
+            loadPromoCodes();
+        }, 60*1000);
+    </script>
+</body>
+</html>

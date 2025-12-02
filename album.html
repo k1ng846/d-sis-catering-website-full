@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>d'sis Catering - Design Album</title>
+    <link rel="stylesheet" href="album.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <button onclick="history.back()" class="btn btn-outline-secondary">←</button>
+            <img src="img/logo.png" alt="d'sis Catering Logo" class="header-logo">
+            <div class="logo">d'sis Catering</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="main.html" class="nav-compensate">Home</a></li>
+                <li><a href="menu.html" class="nav-compensate">Menu</a></li>
+                <li><a href="album.html" class="nav-compensate">Design</a></li>
+                <li><a href="other_offers.html" class="nav-compensate">Other Offers</a></li>
+                <li><a href="message.html" class="contact-btn oval-btn"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="login.html" class="nav-compensate"><i class="fas fa-user-circle" style="font-size: 24px;"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="gallery-hero">
+            <div class="container text-center">
+                <h2 class="album-heading">Our Design Portfolio</h2>
+                <p class="album-lead">Explore a collection of our meticulously crafted event designs, showcasing our creativity and attention to detail.</p>
+            </div>
+        </section>
+
+        <section class="image-gallery container">
+            <div class="gallery-item">
+                <img src="img/reunion.jpg" alt="Family Reunion Design">
+            </div>
+            <div class="gallery-item">
+                <img src="img/1.jpg" alt="Wedding Setup"> 
+            </div>
+            <div class="gallery-item">
+                <img src="img/bday1.jpg" alt="Birthday Party Design">
+            </div>
+            <div class="gallery-item">
+                <img src="img/2.jpg" alt="Corporate Event Setup">
+            </div>
+            <div class="gallery-item">
+                <img src="img/3.jpg" alt="Elegant Dining Setup">
+            </div>
+            <div class="gallery-item">
+                <img src="img/4.jpg" alt="Outdoor Event">
+            </div>
+            <div class="gallery-item">
+                <img src="img/5.jpg" alt="Intimate Gathering">
+            </div>
+            <div class="gallery-item">
+                <img src="img/6.jpg" alt="Buffet Arrangement">
+            </div>
+        </section>
+
+        <section class="cta-event-booking container text-center py-5">
+            <h2 class="album-heading">Love Our Designs?</h2>
+            <p class="album-lead">Let's create something beautiful for your special occasion. Book your event design consultation today!</p>
+            <a href="book.html" class="btn btn-dark btn-lg oval-btn" style="margin-top: 15px;">Book for an Event Now!</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>d'sis Catering</p>
+            <div class="footer-links">
+                <div>
+                    <h4>Explore</h4>
+                    <a href="main.html">Home</a>
+                    <a href="menu.html">Menu</a>
+                    <a href="album.html">Design</a>
+                    <a href="other_offers.html">Other Offers</a>
+                </div>
+                <div>
+                    <h4>Connect</h4>
+                    <a href="https://www.facebook.com/kykzj" target="_blank">Facebook</a>
+                    <a>Email</a>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <a>+63 908 342 2706</a>
+                    <a>dsis_catering28@yahoo.com</a>
+                    <a>San Lorenzo,Mexico,Pampanga,San Fernando, Philippines</a>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/kykzj" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="auth.js"></script>
+
+    <!-- Add this right before the closing </body> tag in album.html -->
+<div id="lightbox" class="lightbox">
+    <span class="close-lightbox">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <div id="caption"></div>
+</div>
+
+<style>
+/* Lightbox styles */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    text-align: center;
+    padding-top: 50px;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80vh;
+    animation: zoom 0.3s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#caption {
+    margin: 15px auto;
+    color: #fff;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+/* Add hover effect to gallery images */
+.gallery-item img {
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.03);
+}
+</style>
+
+<script>
+// Lightbox functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the lightbox and its elements
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const captionText = document.getElementById('caption');
+    const closeBtn = document.querySelector('.close-lightbox');
+    
+    // Get all gallery images
+    const galleryImages = document.querySelectorAll('.gallery-item img');
+    
+    // Add click event to each image
+    galleryImages.forEach(img => {
+        img.addEventListener('click', function() {
+            lightbox.style.display = 'block';
+            lightboxImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        });
+    });
+    
+    // Close lightbox when clicking the close button
+    closeBtn.addEventListener('click', function() {
+        lightbox.style.display = 'none';
+    });
+    
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            lightbox.style.display = 'none';
+        }
+    });
+    
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            lightbox.style.display = 'none';
+        }
+    });
+});
+</script>
+</body>
+</html>

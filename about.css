@@ -1,0 +1,492 @@
+/* === COLOR VARIABLES (COPIED FROM MAIN CSS) === */
+:root {
+    /* Existing accent colors */
+    --royal-blue: #007bff8f; /* Vibrant blue */
+    --gold-accent: #d4af37; /* Gold accent */
+    
+    /* BACKGROUND COLORS */
+    --body-start-color: #000000fd; 
+    --header-footer-bg: #111010; 
+    --card-background: #111010; 
+
+    /* NEW: Darker shades for button hover effects */
+    --royal-blue-darker: #0056b3; 
+    --gold-accent-darker: #b3902f; 
+}
+
+/* === UNIVERSAL RESET & COMMON BODY (UPDATED FONTS/COLORS) === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Main CSS uses Arial for general text */
+    font-family: Arial, sans-serif; 
+}
+
+body {
+    /* Main CSS dark gradient background */
+    background: linear-gradient(180deg, var(--body-start-color) 0%, #302d2d 100%);
+    background-attachment: fixed;
+    /* Main CSS body text color */
+    color: #EEEEEE; 
+    line-height: 1.6;
+    padding-top: 100px; /* For fixed header */
+    min-height: 100vh;
+}
+
+/* === COMMON HEADER (UPDATED COLORS) === */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: var(--header-footer-bg); /* Dark background */
+    border-bottom: 3px solid var(--gold-accent); /* Gold border */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    font-style: italic;
+    /* Main CSS Logo Font */
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+}
+
+/* === COMMON NAVIGATION (UPDATED COLORS) === */
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white; /* Nav link color */
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--gold-accent); /* Hover color */
+}
+
+/* === COMMON BUTTONS (UPDATED COLORS/HOVERS) === */
+.btn {
+    padding: 10px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-btn {
+    background-color: var(--royal-blue); /* Royal Blue */
+    color: #fff !important;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 1px solid var(--royal-blue);
+    font-weight: bold;
+}
+
+.contact-btn:hover {
+    background-color: var(--royal-blue-darker); /* Darker Blue hover */
+    color: #fff !important;
+    border-color: var(--royal-blue-darker);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.btn-outline-secondary { /* For icon/back buttons */
+    font-size: 24px;
+    padding: 0px 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.btn-outline-secondary:hover {
+    color: #ccc;
+    text-shadow: 0 0 5px var(--gold-accent); /* Gold text shadow hover */
+}
+
+.btn-dark {
+    background-color: var(--card-background); /* Dark background */
+    color: var(--gold-accent); /* Gold text */
+    border: 1px solid var(--gold-accent);
+}
+
+.btn-dark:hover {
+    background-color: #000000; /* Darker background hover */
+    color: var(--gold-accent); 
+    border: 1px solid var(--gold-accent-darker);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); 
+}
+
+.btn-secondary {
+    background-color: var(--gold-accent); /* Gold background */
+    color: #000; /* Black text */
+    border: 1px solid var(--gold-accent);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gold-accent-darker); /* Darker Gold hover */
+    color: #000;
+    border: 1px solid var(--gold-accent-darker);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+/* === COMMON FOOTER (UPDATED COLORS) === */
+footer {
+    background-color: var(--header-footer-bg); /* Dark background */
+    color: #f5f5f5;
+    padding: 40px 50px;
+    border-top: 3px solid var(--gold-accent); /* Gold border */
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-content > p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--gold-accent); /* Gold text */
+}
+
+.footer-links {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.footer-links div {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--royal-blue); /* Royal Blue text */
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.social-icons a {
+    color: #ccc;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--royal-blue); /* Royal Blue hover */
+}
+
+/* === COMMON UTILITIES === */
+.container { 
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.text-center { text-align: center; }
+.mb-1 { margin-bottom: 0.25rem !important; }
+.mb-4 { margin-bottom: 1.5rem !important; }
+.mt-4 { margin-top: 1.5rem !important; }
+.mt-5 { margin-top: 3rem !important; }
+.py-4 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+.py-5 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+
+/* === COMMON RESPONSIVE ADJUSTMENTS === */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px 20px;
+        align-items: flex-start;
+    }
+    .logo-container{
+        margin-bottom: 10px;
+    }
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        padding-left: 0;
+        align-items: flex-start; 
+    }
+    nav ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: left;
+    }
+    nav ul li a {
+        display: block;
+        padding: 10px 0;
+    }
+    .contact-btn {
+        width: auto;
+        text-align: center;
+    }
+
+    /* Adjusted padding-top to accommodate the stacked header */
+    body {
+        padding-top: 220px; 
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-links {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+    }
+    .footer-links div {
+        align-items: center;
+    }
+    .social-icons {
+        margin-top: 20px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+    .header-logo {
+        width: 50px;
+        height: 50px;
+    }
+    body {
+        padding-top: 200px;
+    }
+}
+
+/* END OF COMMON STYLES */
+
+/* --- About Page (UPDATED FONTS/COLORS) --- */
+.about-us { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 30px; 
+    /* Changed background to match card/dark theme style */
+    background-color: var(--card-background); 
+    margin-top: 40px; 
+    margin-bottom: 40px; 
+    border-radius: 10px;
+    gap: 40px;
+    flex-wrap: wrap; 
+    /* Changed border and shadow to match main card style */
+    border: 1px solid var(--gold-accent);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.about-content {
+    flex-basis: 50%;
+    min-width: 300px;
+}
+
+.about-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    /* Font and color from main headings */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: var(--gold-accent); 
+}
+
+.about-content h3 {
+    font-size: 1.25rem;
+    color: #ccc; /* Lighter color for secondary heading in dark theme */
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+.about-content p {
+    font-size: 1rem;
+    color: #ddd; /* Light text color for readability */
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-image {
+    flex-basis: 40%;
+    min-width: 300px;
+    text-align: center; 
+}
+.about-image img {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    /* Border to match other images */
+    border: 2px solid var(--gold-accent);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+/* Contact Us Section on About Page */
+.contact-us { 
+    padding: 50px 0; 
+    /* Changed background to dark theme color */
+    background-color: var(--header-footer-bg); 
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border-radius: 10px;
+    /* Border and shadow to match dark theme style */
+    border: 1px solid var(--gold-accent);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    color: #ddd; /* Ensure text is light */
+}
+
+.contact-us h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    /* Font and color from main headings */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: var(--gold-accent);
+}
+
+form { 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 15px; 
+}
+
+.form-group {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group input {
+    width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    padding: 12px 15px;
+    /* Light border/background for form fields in dark theme */
+    border: 1px solid #555;
+    background-color: #302d2d; 
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    /* Focus border color Royal Blue */
+    border-color: var(--royal-blue); 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+    outline: none;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+form button[type="submit"] {
+    /* Use contact button styling */
+    background-color: var(--royal-blue);
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+    font-weight: bold;
+}
+
+form button[type="submit"]:hover {
+    background-color: var(--royal-blue-darker);
+}
+
+/* Specific Responsive Adjustments for About Page */
+@media (max-width: 768px) {
+    .about-us {
+        flex-direction: column;
+        padding: 30px 15px;
+    }
+    .about-content, .about-image {
+        flex-basis: 100%;
+    }
+    .form-group {
+        flex-direction: column;
+    }
+     .about-content h1, .contact-us h2 {
+        font-size: 2.5rem; /* Adjusted down slightly from 3rem on mobile for better fit */
+    }
+}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Messages - d'sis Catering</title>
+    <link rel="stylesheet" href="message.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <button onclick="history.back()" class="btn btn-outline-secondary">←</button>
+            <img src="img/logo.png" alt="d'sis Catering Logo" class="header-logo">
+            <div class="logo">d'sis Catering</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="main.html" class="nav-compensate">Home</a></li>
+                <li><a href="menu.html" class="nav-compensate">Menu</a></li>
+                <li><a href="album.html" class="nav-compensate">Design</a></li>
+                <li><a href="other_offers.html" class="nav-compensate">Other Offers</a></li>
+                <li><a href="message.html" class="contact-btn oval-btn"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li>
+                    <a href="login.html" class="nav-compensate">
+                        <i class="fas fa-user-circle" style="font-size: 24px;"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="chat-container">
+            <div class="chat-body">
+                <div class="chat-sidebar">
+                    <div class="sidebar-item active">
+                        <i class="fas fa-envelope"></i> 
+                        <span class="sidebar-text">Message</span>
+                    </div>
+                    <div class="sidebar-item profile-sidebar-item">
+                        <i class="fas fa-user"></i>
+                        <span class="sidebar-text">Admin</span>
+                    </div>
+                </div>
+                <div class="chat-main">
+                    <div class="chat-header">
+                        <div class="chat-info">
+                            <img src="img/logo.png" alt="d'sis Catering Logo" class="chat-logo">
+                            <span class="chat-name">d'sis Catering</span>
+                        </div>
+                        <div class="admin-display">
+                            <span class="admin-text" id="user-display">Loading...</span>
+                            <img src="https://placehold.co/60x60/EFEFEF/333333?text=User" alt="User Profile" class="admin-profile-pic">
+                        </div>
+                    </div>
+                    <div class="admin-header-info">
+                        <span class="admin-label">Admin</span>
+                        <span class="admin-number">0912-345-6789</span>
+                    </div>
+                    <div class="convo-area" id="convo-area">
+                        <p class="text-center" id="empty-hint" style="color: #888; margin-top: 20px;">No messages yet. Start the conversation!</p>
+                    </div>
+                    <div class="message-input-area">
+                        <input type="text" id="message-input" placeholder="Type Here...">
+                        <button class="btn btn-send" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>d'sis Catering</p>
+            <div class="footer-links">
+                <div>
+                    <h4>Explore</h4>
+                    <a href="main.html">Home</a>
+                    <a href="menu.html">Menu</a>
+                    <a href="album.html">Design</a>
+                    <a href="other_offers.html">Other Offers</a>
+                </div>
+                <div>
+                    <h4>Connect</h4>
+                    <a href="https://www.facebook.com/kykzj" target="_blank">Facebook</a>
+                    <a>Email</a>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <a >+63 908 342 2706</a>
+                    <a>dsis_catering28@yahoo.com</a>
+                    <a>San Lorenzo,Mexico,Pampanga,San Fernando, Philippines</a>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/kykzj" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Simple customer-admin messaging (JSON-backed)
+        const convoArea = document.getElementById('convo-area');
+        const emptyHint = document.getElementById('empty-hint');
+        const inputEl = document.getElementById('message-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        function getCurrentUserEmail() {
+            try {
+                const raw = localStorage.getItem('dsis_user');
+                if (!raw) return null;
+                const user = JSON.parse(raw);
+                return user.email;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function getCurrentUserName() {
+            try {
+                const raw = localStorage.getItem('dsis_user');
+                if (!raw) return '';
+                const user = JSON.parse(raw);
+                return (user.firstName || user.first_name || '') + ' ' + (user.lastName || user.last_name || '');
+            } catch (e) {
+                console.log('Error getting current user name:', e); // Debug log
+                return '';
+            }
+        }
+
+        function renderMessages(messages) {
+            const email = getCurrentUserEmail();
+            console.log('Rendering messages:', { email, messages }); // Debug log
+            let html = '';
+            messages.forEach(m => {
+                // Modified: Using dark background and blue text for messages
+                html += `
+                    <div style="margin: 10px 0;">
+                        <div style="font-size: 12px; color: #99A9FF;">${m.userName || 'You'} • ${new Date(m.createdAt).toLocaleString()}</div>
+                        <div style="background:#1a1919; padding:10px; border-radius:8px; color: var(--royal-blue); border: 1px solid var(--royal-blue);">
+                            ${m.messageContent}
+                        </div>
+                        ${m.adminResponse ? `
+                        <div style="margin-top:6px; font-size:12px; color:#99A9FF;">Admin response</div>
+                        <div style="background:#0c0c0c; padding:10px; border-radius:8px; color: var(--royal-blue); border: 1px solid var(--gold-accent);">
+                            ${m.adminResponse}
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+            // Update empty hint text color to blue
+            convoArea.innerHTML = html || '<p class="text-center" style="color: var(--royal-blue); margin-top: 20px;">No messages yet. Start the conversation!</p>';
+        }
+
+        async function loadMyMessages() {
+            const email = getCurrentUserEmail();
+            if (!email) {
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                // Pass email for simple backend compatibility
+                const result = await api.getMyMessages(email);
+                renderMessages(result.messages || []);
+            } catch (e) {
+                console.error('Failed to load messages', e);
+                // Show error to user
+                convoArea.innerHTML = '<p class="text-center" style="color: #d32f2f; margin-top: 20px;">Failed to load messages. Please try again.</p>';
+            }
+        }
+
+        async function sendMessage() {
+            const body = inputEl.value.trim();
+            if (!body) return;
+            const email = getCurrentUserEmail();
+            const name = getCurrentUserName();
+            console.log('Sending message with:', { email, name }); // Debug log
+            if (!email) {
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                // Disable send button during request
+                sendBtn.disabled = true;
+                sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                
+                await api.sendMessage({ subject: 'Customer message', messageContent: body, userEmail: email, userName: name });
+                inputEl.value = '';
+                await loadMyMessages();
+            } catch (e) {
+                console.error('Failed to send message', e);
+                alert('Failed to send message: ' + (e.message || 'Unknown error'));
+            } finally {
+                // Re-enable send button
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i>';
+            }
+        }
+
+        sendBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            sendMessage();
+        });
+        inputEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Update user display name when page loads
+        window.addEventListener('load', () => {
+            loadMyMessages();
+            const userDisplay = document.getElementById('user-display');
+            if (userDisplay) {
+                const name = getCurrentUserName().trim();
+                userDisplay.textContent = name || 'User';
+            }
+        });
+
+        // User dropdown: use the same name/email as auth.js (first + last name)
+        (function () {
+            const userMenuToggle = document.getElementById('userMenuToggle');
+            const userDropdown = document.getElementById('userDropdown');
+            const logoutLink = document.getElementById('userMenuLogout');
+            const profileLink = document.querySelector('.profile-settings-link');
+            const nameSpan = document.querySelector('.admin-user-name');
+            const emailSpan = document.querySelector('.admin-user-email');
+            const loginListItem = document.querySelector('.user-menu-item');
+
+            try {
+                const userRaw = localStorage.getItem('dsis_user');
+                if (userRaw) {
+                    const user = JSON.parse(userRaw);
+                    const firstName = user.firstName || user.first_name || '';
+                    const lastName = user.lastName || user.last_name || '';
+                    const email = user.email || '';
+                    const isAdmin = (user.userType === 'admin') || (user.user_type === 'admin');
+
+                    const fullName = `${firstName} ${lastName}`.trim();
+                    if (nameSpan) nameSpan.textContent = fullName || email || 'User';
+                    if (emailSpan) emailSpan.textContent = email;
+                    if (profileLink) profileLink.href = isAdmin ? 'admin/profile.html' : 'profile.html';
+
+                    if (userMenuToggle && userDropdown) {
+                        userMenuToggle.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            userDropdown.classList.toggle('active');
+                        });
+
+                        document.addEventListener('click', function (e) {
+                            if (!userMenuToggle.contains(e.target) &&
+                                !userDropdown.contains(e.target)) {
+                                userDropdown.classList.remove('active');
+                            }
+                        });
+                    }
+
+                    if (logoutLink) {
+                        logoutLink.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            localStorage.removeItem('dsis_user');
+                            localStorage.removeItem('dsis_token');
+                            window.location.href = 'login.html';
+                        });
+                    }
+                } else if (loginListItem) {
+                    // Not logged in: show simple link to login page
+                    loginListItem.innerHTML = '<a href="login.html"><i class="fas fa-user-circle" style="font-size: 24px;"></i></a>';
+                }
+            } catch (err) {
+                console.error('User menu setup error', err);
+            }
+        })();
+
+        // Back button is always visible on message page for all users
+    </script>
+</body>
+</html>

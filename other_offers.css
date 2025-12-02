@@ -1,0 +1,591 @@
+/* === COLOR VARIABLES (Copied from main.css) === */
+:root {
+    /* Existing accent colors */
+    --royal-blue: #007bff8f; /* Vibrant blue */
+    --gold-accent: #d4af37; /* Gold accent */
+    
+    /* BACKGROUND COLORS */
+    --body-start-color: #000000fd; /* Light Gray (New Start of Body Gradient) */ 
+    
+    /* Kept dark for contrast/consistency with original design intent */
+    --header-footer-bg: #111010; /* Lighter charcoal for high contrast header/footer */
+    --card-background: #111010; /* Dark grey for card backgrounds */
+
+    /* NEW: Darker shades for button hover effects */
+    --royal-blue-darker: #0056b3; /* Darker Royal Blue */
+    --gold-accent-darker: #b3902f; /* Darker Gold Accent */
+}
+
+/* === UNIVERSAL RESET & COMMON BODY (Updated for dark theme) === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    /* Main body background: starts very light and transitions to white */
+    background: linear-gradient(180deg, var(--body-start-color) 0%, #302d2d 100%);
+    background-attachment: fixed;
+    /* CHANGED: Text color for the body is now light for contrast against dark background */
+    color: #f5f5f5; 
+    line-height: 1.6;
+    padding-top: 100px; /* For fixed header */
+    min-height: 100vh;
+}
+
+/* === COMMON HEADER (Updated for dark theme and gold border) === */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    /* Uses the lighter charcoal for contrast (kept dark) */
+    background-color: var(--header-footer-bg); 
+    /* CHANGED: Gold border for the bottom of the header */
+    border-bottom: 3px solid var(--gold-accent); 
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    /* Kept white as it's against a dark header */
+    color: white; 
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+}
+
+/* === COMMON NAVIGATION (Updated for gold hover) === */
+nav ul {
+    display: flex;
+    list-style: none;
+    margin-bottom: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    /* Kept white as it's against a dark header */
+    color: white; 
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--gold-accent); /* Gold accent on hover */
+}
+
+/* === COMMON BUTTONS (Updated to match main.css styling) === */
+.btn {
+    padding: 10px 18px;
+    /* Removed default 5px radius to let .oval-btn control it */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    /* Add box-shadow to transition for the shadow effect */
+    transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
+}
+
+.oval-btn {
+    /* Key for the oval shape: sets the border-radius to a large value */
+    border-radius: 50px !important; 
+    padding: 10px 25px; /* Increase padding for a more pronounced oval */
+}
+
+/* --- .contact-btn: Royal Blue primary button --- */
+.contact-btn {
+    background-color: var(--royal-blue); /* Royal Blue Button */
+    color: #fff !important;
+    padding: 8px 15px;
+    border-radius: 5px; /* Default for non-oval, overridden by .oval-btn */
+    border: 1px solid var(--royal-blue);
+    font-weight: bold;
+}
+
+.contact-btn:hover {
+    /* CHANGED: Darker shade of Royal Blue */
+    background-color: var(--royal-blue-darker); 
+    color: #fff !important;
+    /* Added a subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+    border-color: var(--royal-blue-darker);
+}
+
+/* --- .btn-outline-secondary: Back arrow/text button (Kept white on dark header) --- */
+.btn-outline-secondary { 
+    font-size: 24px;
+    padding: 0px 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
+    color: white; 
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.btn-outline-secondary:hover {
+    /* CHANGED: Text gets slightly darker (less bright white) and adds a shadow */
+    color: #ccc;
+    text-shadow: 0 0 5px var(--gold-accent); /* Subtle gold glow/shadow */
+}
+
+/* Navigation compensation class for proper spacing */
+.nav-compensate {
+    padding: 10px 18px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* User Menu Dropdown Styles */
+.user-menu-item {
+    list-style: none;
+    margin-left: 20px;
+}
+
+.user-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.user-icon {
+    color: white !important;
+    font-size: 24px;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    margin-right: 0;
+}
+
+.user-icon:hover {
+    color: var(--gold-accent) !important;
+    text-shadow: none;
+}
+
+.user-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    min-width: 200px;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    padding: 0;
+    display: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.user-dropdown-menu.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.user-info-section {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+}
+
+.admin-user-name {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    font-size: 14px;
+}
+
+.admin-user-email {
+    color: #666;
+    font-size: 12px;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-link:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-link i {
+    margin-right: 8px;
+    width: 16px;
+}
+
+.profile-settings-link i:first-child {
+    margin-right: 5px;
+}
+
+.profile-settings-link i:last-child {
+    margin-left: -7px;
+    font-size: 0.8em;
+}
+
+/* --- .btn-book (Used in original as .btn-dark) - Dark button with Gold text --- */
+.btn-book { /* Renamed to .btn-dark for consistency */
+    /* Uses the dark color variable for the button background */
+    background-color: var(--card-background); 
+    color: var(--gold-accent); /* Gold Text */
+    border: 1px solid var(--gold-accent);
+}
+
+.btn-book:hover {
+    /* CHANGED: Darken the background color and add a shadow */
+    background-color: #000000; /* Pure black, darker than --card-background */
+    color: var(--gold-accent); /* Keep gold text */
+    border: 1px solid var(--gold-accent-darker);
+    /* Added a shadow effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); 
+}
+
+/* --- .btn-secondary: Gold button with dark text --- */
+.btn-secondary {
+    background-color: var(--gold-accent); /* Gold Button */
+    color: #000; /* Black text */
+    border: 1px solid var(--gold-accent);
+}
+
+.btn-secondary:hover {
+    /* CHANGED: Darker shade of Gold */
+    background-color: var(--gold-accent-darker); 
+    color: #000;
+    border: 1px solid var(--gold-accent-darker);
+    /* Added a shadow effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* === COMMON FOOTER (Updated for dark theme and gold border) === */
+footer {
+    /* Uses the lighter charcoal for contrast (kept dark) */
+    background-color: var(--header-footer-bg); 
+    color: #f5f5f5;
+    padding: 40px 50px;
+    /* CHANGED: Gold border for the top of the footer */
+    border-top: 3px solid var(--gold-accent);
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px; /* Limit footer width and center it */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-content > p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--gold-accent); /* Gold Brand Name */
+}
+
+.footer-links {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.footer-links div {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--royal-blue); /* Royal Blue Headers */
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.social-icons a {
+    color: #ccc;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--royal-blue); /* Royal Blue social icons on hover */
+}
+
+/* === COMMON UTILITIES === */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* === COMMON RESPONSIVE ADJUSTMENTS (Slight body padding adjustment) === */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px 20px;
+        align-items: flex-start;
+    }
+    .logo-container{
+        margin-bottom: 10px;
+    }
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        padding-left: 0;
+    }
+    nav ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: left;
+    }
+    nav ul li a {
+         display: block;
+         padding: 10px 0;
+    }
+    .contact-btn {
+        width: auto;
+        text-align: center;
+        display: inline-block;
+    }
+
+    body {
+        padding-top: 220px; /* Adjusted for taller stacked header */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-links {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+    }
+    .footer-links div {
+        align-items: center;
+    }
+    .social-icons {
+        margin-top: 20px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+    .header-logo {
+        width: 50px;
+        height: 50px;
+    }
+    body {
+        padding-top: 200px;
+    }
+}
+
+/* END OF COMMON STYLES */
+
+/* --- Other Offers Page Specific Styles (Updated colors) --- */
+
+
+main {
+    padding-top: 40px;
+}
+
+.packages-section {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.package-card {
+    /* CHANGED: Dark card background, gold border, and light text */
+    background-color: var(--card-background); 
+    border: 1px solid var(--gold-accent);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    flex: 1;
+    min-width: 280px;
+    text-align: left;
+    color: #ccc; /* Light text for dark background */
+}
+
+.package-card h2 {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+    color: var(--royal-blue); /* Royal Blue Title */
+}
+
+.package-card .subheading {
+    font-size: 1rem;
+    color: #ddd; /* Lighter gray */
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.package-card .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--gold-accent); /* Gold Price */
+    margin-bottom: 15px;
+}
+
+.package-card .description {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.package-card .fine-print {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.inquire-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+/* Reuses the new .btn-dark style for the enquire button */
+.inquire-section .btn-dark {
+    background-color: var(--card-background); 
+    color: var(--gold-accent); 
+    border: 1px solid var(--gold-accent);
+    padding: 15px 50px;
+    font-size: 1.2rem;
+    border-radius: 50px; /* Use oval style */
+}
+
+.inquire-section .btn-dark:hover {
+    background-color: #000000;
+    border-color: var(--gold-accent-darker);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); 
+}
+
+.other-products-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    /* CHANGED: Gold heading with a dark underline */
+    color: var(--gold-accent); 
+    border-bottom: 2px solid var(--card-background); 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    text-align: center;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    /* CHANGED: Dark card background, gold border, and light text */
+    background-color: var(--card-background);
+    border: 1px solid var(--gold-accent);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #ccc;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.product-card .product-info {
+    padding: 20px;
+}
+
+.product-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: var(--royal-blue); /* Royal Blue Title */
+}
+
+.product-card p {
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.product-card .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--gold-accent); /* Gold Price */
+}
+
+/* Responsive Adjustments for Other Offers Page */
+@media (max-width: 992px) {
+    .packages-section {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book an Event - d'sis Catering</title>
+  <link rel="stylesheet" href="book.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    .package-details {
+      margin-top: 10px;
+      padding: 15px;
+      background-color: var(--booking-sidebar-bg);
+      border-radius: 5px;
+      border-left: 4px solid var(--gold-accent);
+      color: #f5f5f5;
+    }
+    .package-details h4 {
+      color: var(--gold-accent);
+      margin: 0 0 10px 0;
+    }
+    .package-details p {
+      margin: 5px 0;
+      color: #f5f5f5;
+    }
+    .package-details .price {
+      font-weight: bold;
+      color: var(--gold-accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <button onclick="history.back()" class="btn btn-outline-secondary">←</button>
+      <img src="img/logo.png" alt="d'sis Catering Logo" class="header-logo">
+      <div class="logo">d'sis Catering</div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="main.html" class="nav-compensate">Home</a></li>
+        <li><a href="menu.html" class="nav-compensate">Menu</a></li>
+        <li><a href="album.html" class="nav-compensate">Design</a></li>
+        <li><a href="other_offers.html" class="nav-compensate">Other Offers</a></li>
+        <li><a href="message.html" class="contact-btn oval-btn"><i class="fas fa-envelope"></i> Messages</a></li>
+        <li><a href="login.html" class="nav-compensate"><i class="fas fa-user-circle" style="font-size: 24px;"></i></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="booking-container">
+      <div class="booking-info">
+        <h1>Book An Event</h1>
+        <p class="sub-header">Book your catering experience with ease!</p>
+        <p>Planning an event? Let us handle the food! Whether it's a wedding, corporate gathering, birthday party, or any special occasion, we offer customized catering solutions to fit your needs.</p>
+        <hr>
+        <h2 style="text-align: center; margin-top: 13px;">Pick Your Desired Food Here</h2>
+        <p style="text-align: center;">Satisfy your cravings from the variety of delicious goodness that awaits you.<br>Build your menu now!</p>
+        <a href="menu.html" class="btn btn-dark menu-btn">Look through the Menu!</a>
+      </div>
+
+      <div class="booking-form-container">
+        <form action="#" method="POST">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" name="last-name" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="contact-number">Contact Number</label>
+              <input type="text" id="contact-number" name="contact-number" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="occasion">Occasion</label>
+              <select id="occasion" name="occasion" required onchange="updatePackageDetails()">
+                <option value="">Select Occasion & Package</option>
+                <option value="wedding" data-multiplier="1.5" data-styling="5000">Wedding (Premium Package)</option>
+                <option value="debut" data-multiplier="1.5" data-styling="4500">Debut (Premium Package)</option>
+                <option value="corporate" data-multiplier="1.4" data-styling="4000">Corporate Event (Business Package)</option>
+                <option value="anniversary" data-multiplier="1.3" data-styling="3500">Anniversary (Deluxe Package)</option>
+                <option value="christening" data-multiplier="1.3" data-styling="3000">Christening (Deluxe Package)</option>
+                <option value="birthday" data-multiplier="1.2" data-styling="2500">Birthday (Standard Package)</option>
+                <option value="graduation" data-multiplier="1.2" data-styling="2000">Graduation (Standard Package)</option>
+                <option value="reunion" data-multiplier="1.1" data-styling="1500">Family Reunion (Basic Package)</option>
+                <option value="other" data-multiplier="1.0" data-styling="1000">Other Event (Basic Package)</option>
+              </select>
+              <div id="package-details" class="package-details">
+                <p>Select an occasion to see package details and pricing</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="event-date">Event Date</label>
+              <input type="date" id="event-date" name="event-date" required onchange="checkDateAvailability()">
+            </div>
+            <div class="form-group">
+              <label for="event-time-slot">Time Slot</label>
+              <select id="event-time-slot" name="event-time-slot" required onchange="updateTimeSlotInfo()">
+                <option value="">Select a date first</option>
+              </select>
+              <div id="time-slot-info" class="package-details" style="margin-top: 10px; display: none;">
+                <h4>Time Slot Information</h4>
+                <p id="slot-details">Select a time slot to see details</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="num-guests">Number of Guests</label>
+              <input type="number" id="num-guests" name="num-guests" min="1" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="event-venue">Venue Name</label>
+              <input type="text" id="event-venue" name="event-venue" placeholder="e.g. Grand Ballroom, Garden Pavilion" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="event-address">Street Address</label>
+              <input type="text" id="event-address" name="event-address" placeholder="123 Main Street" required>
+            </div>
+            <div class="form-group">
+              <label for="event-city">City/Municipality</label>
+              <input type="text" id="event-city" name="event-city" placeholder="e.g. Cebu City" required>
+            </div>
+            <div class="form-group">
+              <label for="event-province">Province</label>
+              <input type="text" id="event-province" name="event-province" placeholder="e.g. Cebu" required>
+            </div>
+            <div class="form-group">
+              <label for="event-postal">Postal/ZIP Code</label>
+              <input type="text" id="event-postal" name="event-postal" placeholder="6000" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="additional-instructions">Additional Instructions</label>
+              <textarea id="additional-instructions" name="instructions" rows="5"></textarea>
+            </div>
+          </div>
+
+          <div class="menu-selection" style="margin-top:30px;padding:20px;border:1px solid var(--gold-accent);border-radius:10px;background-color: var(--booking-sidebar-bg);">
+            <h3>Select Menu Items</h3>
+            <div id="menu-items-container" class="menu-scroll-area"></div> 
+            
+            <div style="margin-top:20px;padding:15px;background:var(--header-footer-bg);border-radius:5px;border:1px solid var(--royal-blue);"> 
+              
+              <div id="occasion-info" style="margin-bottom:15px;padding:10px;background:var(--form-input-bg);border-radius:5px;font-size:0.9em;color:#ccc;"> 
+                <strong>Standard Package</strong><br>
+                <small>Food Cost Multiplier: 1.0x | Styling Fee: ₱500.00</small>
+              </div>
+
+              <div style="display:flex;justify-content:space-between;margin-bottom:10px;color:white;">
+                <span>Subtotal:</span>
+                <span style="font-weight:bold;">₱<span id="subtotal-amount">0.00</span></span>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:10px;color:white;">
+                <span>Multiplier:</span>
+                <span style="font-weight:bold;" id="multiplier">1.0x</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:10px;color:white;">
+                <span>Styling Fee:</span>
+                <span style="font-weight:bold;">₱<span id="styling-fee">0.00</span></span>
+              </div>
+              
+              <!-- Promo Code Section -->
+              <div style="margin-bottom:15px;padding:10px;background:var(--form-input-bg);border-radius:5px;border:1px solid var(--border-color);">
+                <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px;">
+                  <input type="text" 
+                         id="promo-code-input" 
+                         placeholder="Enter promo code" 
+                         style="flex:1;padding:8px;background:#444;color:white;border:1px solid #777;border-radius:3px;text-transform:uppercase;">
+                  <button type="button" 
+                          id="apply-promo-btn" 
+                          onclick="applyPromoCode()" 
+                          style="padding:8px 15px;background:var(--royal-blue);color:white;border:none;border-radius:3px;cursor:pointer;font-weight:bold;">
+                    Apply
+                  </button>
+                </div>
+                <div id="promo-status" style="font-size:0.9em;color:#aaa;"></div>
+              </div>
+              
+              <div style="display:flex;justify-content:space-between;margin-bottom:10px;color:white;">
+                <span>Subtotal:</span>
+                <span style="font-weight:bold;">₱<span id="subtotal-total">0.00</span></span>
+              </div>
+              <div id="promo-discount-line" style="display:none;justify-content:space-between;margin-bottom:10px;color:var(--royal-blue);">
+                <span>Promo Discount (<span id="promo-percent">0</span>%):</span>
+                <span style="font-weight:bold;">-₱<span id="promo-discount">0.00</span></span>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:10px;color:white;">
+                <span>Total Amount:</span>
+                <span style="font-weight:bold;">₱<span id="total-amount">0.00</span></span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:1.1em;color:var(--royal-blue);font-weight:bold;border-top:1px solid #333;padding-top:10px;">
+                <span>Per Person Cost:</span>
+                <span class="final-price-text">₱<span id="per-person-amount">0.00</span> <span id="per-person"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-dark submit-btn">Submit Booking & Generate Receipt</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="auth.js"></script>
+  <script src="receipt.js"></script>
+  <script>
+    // API configuration moved to config.js
+    let menuItems = [];
+    let selectedItems = [];
+    let appliedPromoCode = null;
+
+    const occasionPricing = {
+      wedding: { multiplier: 1.5, stylingFee: 2000, description: 'Premium Wedding Package' },
+      birthday: { multiplier: 1.2, stylingFee: 800, description: 'Birthday Celebration Package' },
+      corporate: { multiplier: 1.3, stylingFee: 1200, description: 'Corporate Event Package' },
+      anniversary: { multiplier: 1.4, stylingFee: 1500, description: 'Anniversary Celebration Package' },
+      graduation: { multiplier: 1.2, stylingFee: 1000, description: 'Graduation Party Package' },
+      christening: { multiplier: 1.3, stylingFee: 1200, description: 'Christening Celebration Package' },
+      reunion: { multiplier: 1.1, stylingFee: 600, description: 'Family Reunion Package' },
+      other: { multiplier: 1.0, stylingFee: 500, description: 'Standard Package' },
+      default: { multiplier: 1.0, stylingFee: 500, description: 'Standard Package' }
+    };
+
+    function getOccasionPricing(occasion) {
+      const key = occasion.toLowerCase().trim();
+      return occasionPricing[key] || occasionPricing.default;
+    }
+
+    async function loadMenuItems() {
+      try {
+        console.log('Fetching menu items from:', `${CONFIG.API_BASE_URL}/menu`);
+        const response = await fetch(`${CONFIG.API_BASE_URL}/menu`);
+        const data = await response.json();
+        console.log('API Response:', data);
+        
+        if (data && data.items && data.items.length > 0) {
+          // Debug: Log the first item to see its structure
+          console.log('First menu item:', data.items[0]);
+          
+          // Map the items with proper price handling
+          menuItems = data.items.map(item => {
+            // Log each item to debug
+            console.log('Processing item:', item);
+            
+            // Try to get price from various possible fields
+            const price = item.pricePerServing || item.price || item.unitPrice || 0;
+            console.log('Item price:', price);
+            
+            return {
+              ...item,
+              pricePerServing: parseFloat(price) || 0,
+              // Ensure we have all required fields
+              id: item.id || Math.floor(Math.random() * 10000),
+              itemName: item.itemName || item.name || 'Unnamed Item',
+              category: item.category || 'Uncategorized'
+            };
+          });
+          
+          console.log('Processed menu items:', menuItems);
+        } else {
+          console.warn('No items found in API response, using fallback');
+          throw new Error('No menu items found');
+        }
+      } catch (error) {
+        console.error('Error loading menu items:', error);
+        // Use the fallback menu with our predefined items and prices
+        showFallbackMenu();
+        return;
+      }
+      console.log('Initializing menu with items:', menuItems);
+      initializeMenuSelection();
+    }
+
+    function showFallbackMenu() {
+      menuItems = [
+        // Main Courses
+        { id: 1, itemName: 'Roast Beef with Gravy', pricePerServing: 650, category: 'Main Course' },
+        { id: 2, itemName: 'Herb Roasted Chicken', pricePerServing: 480, category: 'Main Course' },
+        { id: 3, itemName: 'Grilled Salmon with Lemon Butter', pricePerServing: 720, category: 'Main Course' },
+        { id: 4, itemName: 'Beef Caldereta', pricePerServing: 580, category: 'Main Course' },
+        { id: 5, itemName: 'Chicken Cordon Bleu', pricePerServing: 520, category: 'Main Course' },
+        { id: 6, itemName: 'Pork Belly Lechon', pricePerServing: 850, category: 'Main Course' },
+        { id: 7, itemName: 'Seafood Paella', pricePerServing: 680, category: 'Main Course' },
+        
+        // Appetizers
+        { id: 8, itemName: 'Assorted Dimsum Platter', pricePerServing: 380, category: 'Appetizer' },
+        { id: 9, itemName: 'Bruschetta', pricePerServing: 320, category: 'Appetizer' },
+        { id: 10, itemName: 'Spring Rolls', pricePerServing: 280, category: 'Appetizer' },
+        { id: 11, itemName: 'Cheese Platter', pricePerServing: 450, category: 'Appetizer' },
+        
+        // Pasta
+        { id: 12, itemName: 'Creamy Carbonara', pricePerServing: 420, category: 'Pasta' },
+        { id: 13, itemName: 'Seafood Marinara', pricePerServing: 480, category: 'Pasta' },
+        { id: 14, itemName: 'Penne Arrabbiata', pricePerServing: 380, category: 'Pasta' },
+        
+        // Salads
+        { id: 15, itemName: 'Caesar Salad', pricePerServing: 350, category: 'Salad' },
+        { id: 16, itemName: 'Greek Salad', pricePerServing: 380, category: 'Salad' },
+        { id: 17, itemName: 'Mango Salsa Salad', pricePerServing: 320, category: 'Salad' },
+        
+        // Desserts
+        { id: 18, itemName: 'Chocolate Fountain', pricePerServing: 1200, category: 'Dessert' },
+        { id: 19, itemName: 'Assorted Mini Pastries', pricePerServing: 280, category: 'Dessert' },
+        { id: 20, itemName: 'Leche Flan', pricePerServing: 200, category: 'Dessert' },
+        { id: 21, itemName: 'Mango Sago', pricePerServing: 180, category: 'Dessert' },
+        
+        // Beverages
+        { id: 22, itemName: 'Iced Tea (Pitcher)', pricePerServing: 250, category: 'Beverage' },
+        { id: 23, itemName: 'Fresh Orange Juice (Pitcher)', pricePerServing: 350, category: 'Beverage' },
+        { id: 24, itemName: 'Bottled Water (500ml)', pricePerServing: 50, category: 'Beverage' },
+        
+        // Side Dishes
+        { id: 25, itemName: 'Garlic Rice (per cup)', pricePerServing: 80, category: 'Side Dish' },
+        { id: 26, itemName: 'Steamed Vegetables', pricePerServing: 200, category: 'Side Dish' },
+        { id: 27, itemName: 'Mashed Potatoes', pricePerServing: 220, category: 'Side Dish' },
+        { id: 28, itemName: 'Buttered Corn and Carrots', pricePerServing: 180, category: 'Side Dish' }
+      ];
+      initializeMenuSelection();
+    }
+
+    function initializeMenuSelection() {
+      const container = document.getElementById('menu-items-container');
+      container.innerHTML = '';
+      
+      // Group items by category for better organization
+      const categories = {};
+      menuItems.forEach(item => {
+        if (!categories[item.category]) {
+          categories[item.category] = [];
+        }
+        categories[item.category].push(item);
+      });
+      
+      // Create a section for each category
+      Object.entries(categories).forEach(([category, items]) => {
+        // Add category header
+        const categoryHeader = document.createElement('h4');
+        categoryHeader.textContent = category;
+        categoryHeader.style.margin = '15px 0 10px 0';
+        categoryHeader.style.color = 'var(--gold-accent)';
+        container.appendChild(categoryHeader);
+        
+        // Add items for this category
+        items.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'menu-item';
+          div.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:10px;border:1px solid #555;border-radius:5px;margin-bottom:10px;background-color: var(--form-input-bg);'; 
+          
+          const price = parseFloat(item.pricePerServing || item.price || 0).toFixed(2);
+          
+          div.innerHTML = `
+            <div style="flex: 1;">
+              <strong>${item.itemName || item.name}</strong>
+              ${item.description ? `<div style="font-size: 0.85em; color: #aaa; margin-top: 3px;">${item.description}</div>` : ''}
+            </div>
+            <div style="margin: 0 15px; color: var(--gold-accent); font-weight: bold;">
+              ₱${price}
+            </div>
+            <div style="display:flex;align-items:center;">
+              <input type="number" 
+                     id="qty-input-${item.id}" 
+                     min="0" 
+                     value="0" 
+                     data-item-id="${item.id}"
+                     class="quantity-input"
+                     oninput="updateQuantityFromInput(this)" 
+                     style="width: 60px; text-align: center; background-color: #444; color: white; border: 1px solid #777; padding: 5px; border-radius: 3px;">
+            </div>`;
+          
+          container.appendChild(div);
+        });
+      });
+    }
+
+    // --- UPDATED JS LOGIC TO HANDLE INPUT FIELD ---
+    function updateQuantityFromInput(inputElement) {
+        try {
+            let qty = parseInt(inputElement.value) || 0;
+            const id = parseInt(inputElement.getAttribute('data-item-id'));
+            console.log(`Updating quantity for item ${id} to ${qty}`);
+
+            // Prevent negative numbers
+            if (qty < 0) {
+                qty = 0;
+                inputElement.value = 0;
+            }
+
+            const item = menuItems.find(i => i.id == id); // Use loose equality in case of string vs number
+            if (!item) {
+                console.error(`Item with id ${id} not found in menuItems`);
+                return;
+            }
+            
+            console.log('Found item:', item);
+            
+            // Get the price, trying multiple possible fields
+            const price = parseFloat(item.pricePerServing || item.price || item.unitPrice || 0);
+            console.log(`Item price: ${price}`);
+            
+            // Update the selectedItems array based on the new quantity
+            const existingIndex = selectedItems.findIndex(s => s.id == id);
+
+            if (qty === 0) {
+                if (existingIndex !== -1) {
+                    console.log(`Removing item ${id} from selection`);
+                    selectedItems.splice(existingIndex, 1);
+                }
+            } else {
+                if (existingIndex !== -1) {
+                    console.log(`Updating quantity for existing item ${id} to ${qty}`);
+                    selectedItems[existingIndex].quantity = qty;
+                } else {
+                    console.log(`Adding new item ${id} with quantity ${qty} and price ${price}`);
+                    selectedItems.push({ 
+                        id, 
+                        name: item.itemName || item.name || 'Unnamed Item', 
+                        price: price,
+                        quantity: qty,
+                        category: item.category || 'Uncategorized'
+                    });
+                }
+            }
+            
+            console.log('Current selected items:', selectedItems);
+            updateTotal();
+        } catch (error) {
+            console.error('Error in updateQuantityFromInput:', error);
+        }
+    }
+
+    // Previous updateQuantity(id, change) is now obsolete but kept to show comparison
+    /*
+    function updateQuantity(id, change) {
+      const item = menuItems.find(i => i.id === id);
+      const existing = selectedItems.find(s => s.id === id);
+      const qty = Math.max(0, (existing?.quantity || 0) + change);
+      if (qty === 0) selectedItems = selectedItems.filter(s => s.id !== id);
+      else if (existing) existing.quantity = qty;
+      else selectedItems.push({ id, name: item.itemName, price: item.pricePerServing, quantity: qty });
+      document.getElementById(`qty-${id}`).textContent = qty;
+      updateTotal();
+    }
+    */
+    // ------------------------------------------------
+
+    // === PROMO CODE FUNCTIONALITY ===
+    async function applyPromoCode() {
+      const promoInput = document.getElementById('promo-code-input');
+      const promoStatus = document.getElementById('promo-status');
+      const applyBtn = document.getElementById('apply-promo-btn');
+      
+      const code = promoInput.value.trim().toUpperCase();
+      
+      if (!code) {
+        promoStatus.textContent = 'Please enter a promo code';
+        promoStatus.style.color = '#ff6b6b';
+        return;
+      }
+      
+      // Disable button and show loading
+      applyBtn.disabled = true;
+      applyBtn.textContent = 'Checking...';
+      promoStatus.textContent = 'Validating promo code...';
+      promoStatus.style.color = '#aaa';
+      
+      try {
+        // Try to validate promo code via API
+        let promoCode = null;
+        try {
+          const response = await fetch(`${CONFIG.API_BASE_URL}/promo-codes/validate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.success) {
+              promoCode = data.promoCode;
+            }
+          }
+        } catch (apiError) {
+          console.log('API not available, checking sample promo codes');
+        }
+        
+        // Fallback to sample promo codes if API not available
+        if (!promoCode) {
+          promoCode = getSamplePromoCode(code);
+        }
+        
+        if (!promoCode) {
+          promoStatus.textContent = 'Invalid promo code';
+          promoStatus.style.color = '#ff6b6b';
+          return;
+        }
+        
+        // Check if promo code is still valid (date range)
+        const now = new Date();
+        const startDate = new Date(promoCode.startAt);
+        const endDate = new Date(promoCode.endAt);
+        
+        if (now < startDate) {
+          promoStatus.textContent = 'Promo code is not yet active';
+          promoStatus.style.color = '#ff6b6b';
+          return;
+        }
+        
+        if (now > endDate) {
+          promoStatus.textContent = 'Promo code has expired';
+          promoStatus.style.color = '#ff6b6b';
+          return;
+        }
+        
+        if (!promoCode.active) {
+          promoStatus.textContent = 'Promo code is no longer active';
+          promoStatus.style.color = '#ff6b6b';
+          return;
+        }
+        
+        // Apply the promo code
+        appliedPromoCode = promoCode;
+        promoStatus.innerHTML = `✅ <strong>${promoCode.discountPercent}% discount applied!</strong> ${promoCode.description || ''}`;
+        promoStatus.style.color = '#4cd137';
+        
+        // Disable input and change button to remove
+        promoInput.disabled = true;
+        applyBtn.textContent = 'Remove';
+        applyBtn.onclick = removePromoCode;
+        
+        // Update totals
+        updateTotal();
+        
+      } catch (error) {
+        console.error('Error applying promo code:', error);
+        promoStatus.textContent = 'Error validating promo code';
+        promoStatus.style.color = '#ff6b6b';
+      } finally {
+        applyBtn.disabled = false;
+        if (applyBtn.textContent === 'Checking...') {
+          applyBtn.textContent = 'Apply';
+        }
+      }
+    }
+    
+    function removePromoCode() {
+      appliedPromoCode = null;
+      
+      const promoInput = document.getElementById('promo-code-input');
+      const promoStatus = document.getElementById('promo-status');
+      const applyBtn = document.getElementById('apply-promo-btn');
+      
+      promoInput.value = '';
+      promoInput.disabled = false;
+      promoStatus.textContent = '';
+      applyBtn.textContent = 'Apply';
+      applyBtn.onclick = applyPromoCode;
+      
+      updateTotal();
+    }
+    
+    function getSamplePromoCode(code) {
+      const samplePromoCodes = {
+        'WEDDING25': {
+          id: 1,
+          code: 'WEDDING25',
+          discountPercent: 25,
+          description: 'Special wedding discount',
+          startAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
+          endAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
+          active: true
+        },
+        'DEBUT15': {
+          id: 2,
+          code: 'DEBUT15',
+          discountPercent: 15,
+          description: 'Debut celebration discount',
+          startAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+          endAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(),
+          active: true
+        },
+        'CORPORATE10': {
+          id: 3,
+          code: 'CORPORATE10',
+          discountPercent: 10,
+          description: 'Corporate event discount',
+          startAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+          endAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
+          active: true
+        },
+        'BIRTHDAY20': {
+          id: 4,
+          code: 'BIRTHDAY20',
+          discountPercent: 20,
+          description: 'Birthday celebration discount',
+          startAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+          endAt: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString(),
+          active: true
+        }
+      };
+      
+      return samplePromoCodes[code] || null;
+    }
+
+    function updateTotal() {
+      const numGuests = parseInt(document.getElementById('num-guests').value) || 0;
+      const occasionSelect = document.getElementById('occasion');
+      const occasion = occasionSelect.value;
+      
+      // Get package details
+      const packageInfo = packageDetails[occasion] || { basePrice: 0 };
+      const multiplier = occasionSelect.selectedOptions[0]?.dataset.multiplier ? 
+                        parseFloat(occasionSelect.selectedOptions[0].dataset.multiplier) : 1.0;
+      const stylingFee = occasionSelect.selectedOptions[0]?.dataset.styling ? 
+                        parseFloat(occasionSelect.selectedOptions[0].dataset.styling) : 1000;
+      
+      // Calculate food cost based on selected items or base price
+      let foodCost = 0;
+      if (selectedItems.length > 0) {
+        selectedItems.forEach(item => {
+          foodCost += item.price * item.quantity;
+        });
+      } else {
+        // If no items selected, use base price per guest
+        foodCost = packageInfo.basePrice * numGuests;
+      }
+      
+      // Calculate subtotal with multiplier and styling fee
+      const subtotal = foodCost * multiplier + stylingFee;
+      
+      // Apply promo code discount if available
+      let promoDiscount = 0;
+      let finalTotal = subtotal;
+      
+      if (appliedPromoCode) {
+        promoDiscount = subtotal * (appliedPromoCode.discountPercent / 100);
+        finalTotal = subtotal - promoDiscount;
+        
+        // Show promo discount line
+        document.getElementById('promo-discount-line').style.display = 'flex';
+        document.getElementById('promo-percent').textContent = appliedPromoCode.discountPercent;
+        document.getElementById('promo-discount').textContent = promoDiscount.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      } else {
+        // Hide promo discount line
+        document.getElementById('promo-discount-line').style.display = 'none';
+      }
+      
+      // Update the display
+      document.getElementById('subtotal-amount').textContent = `₱${foodCost.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('multiplier').textContent = `${multiplier}x`;
+      document.getElementById('styling-fee').textContent = `₱${stylingFee.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('subtotal-total').textContent = `₱${subtotal.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('total-amount').textContent = `₱${finalTotal.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      
+      // Update the estimated total per person if we have guests
+      if (numGuests > 0) {
+        const perPerson = finalTotal / numGuests;
+        document.getElementById('per-person').textContent = `(Approx. ₱${perPerson.toFixed(2)} per person)`;
+      } else {
+        document.getElementById('per-person').textContent = '';
+      }
+    }
+
+    // Package details for each occasion
+    const packageDetails = {
+      'wedding': {
+        name: 'Premium Wedding Package',
+        description: 'Elegant dining experience with premium service',
+        basePrice: 1500,
+        includes: ['Premium table setup', 'Full catering staff', 'Elegant tableware', 'Custom menu planning']
+      },
+      'debut': {
+        name: 'Premium Debut Package',
+        description: 'Special celebration package for debut events',
+        basePrice: 1400,
+        includes: ['Elegant table setting', 'Cake table setup', 'Full catering staff', 'Custom menu options']
+      },
+      'corporate': {
+        name: 'Business Corporate Package',
+        description: 'Professional catering for business events',
+        basePrice: 1300,
+        includes: ['Buffet setup', 'Basic table setting', 'Professional service', 'Business menu options']
+      },
+      'anniversary': {
+        name: 'Deluxe Anniversary Package',
+        description: 'Romantic setup for anniversary celebrations',
+        basePrice: 1200,
+        includes: ['Elegant table setting', 'Cake service', 'Special dessert table', 'Floral centerpiece']
+      },
+      'christening': {
+        name: 'Deluxe Christening Package',
+        description: 'Special package for christening celebrations',
+        basePrice: 1100,
+        includes: ['Buffet setup', 'Basic table setting', 'Cake service', 'Kid-friendly options']
+      },
+      'birthday': {
+        name: 'Standard Birthday Package',
+        description: 'Fun and festive birthday celebration',
+        basePrice: 1000,
+        includes: ['Buffet setup', 'Basic table setting', 'Cake service']
+      },
+      'graduation': {
+        name: 'Standard Graduation Package',
+        description: 'Celebratory package for graduation events',
+        basePrice: 950,
+        includes: ['Buffet setup', 'Basic table setting', 'Graduation cake service']
+      },
+      'reunion': {
+        name: 'Basic Reunion Package',
+        description: 'Casual dining for family gatherings',
+        basePrice: 850,
+        includes: ['Buffet setup', 'Basic table setting']
+      },
+      'other': {
+        name: 'Basic Event Package',
+        description: 'Standard catering for various events',
+        basePrice: 800,
+        includes: ['Buffet setup', 'Basic table setting']
+      }
+    };
+
+    // Update package details when occasion is selected
+    function updatePackageDetails() {
+      const occasion = document.getElementById('occasion');
+      const detailsDiv = document.getElementById('package-details');
+      
+      if (!occasion.value) {
+        detailsDiv.innerHTML = '<p>Select an occasion to see package details and pricing</p>';
+        return;
+      }
+      
+      const packageInfo = packageDetails[occasion.value];
+      const multiplier = parseFloat(occasion.options[occasion.selectedIndex].dataset.multiplier);
+      const stylingFee = parseInt(occasion.options[occasion.selectedIndex].dataset.styling);
+      
+      let html = `
+        <h4>${packageInfo.name}</h4>
+        <p>${packageInfo.description}</p>
+        <p><strong>Base Price:</strong> <span class="price">₱${packageInfo.basePrice.toLocaleString()}</span> per head</p>
+        <p><strong>Multiplier:</strong> ${multiplier}x (based on occasion)</p>
+        <p><strong>Styling Fee:</strong> <span class="price">₱${stylingFee.toLocaleString()}</span></p>
+        <p><strong>Includes:</strong></p>
+        <ul style="margin: 5px 0 0 20px;">
+          ${packageInfo.includes.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+        <p style="margin-top: 10px;">
+          <em>Note: Final price will be calculated based on number of guests and menu selection.</em>
+        </p>
+      `;
+      
+      detailsDiv.innerHTML = html;
+      updateTotal(); // Update the total when package changes
+    }
+
+    // Time slot availability functions
+    async function checkDateAvailability() {
+      const selectedDate = document.getElementById('event-date').value;
+      const timeSlotSelect = document.getElementById('event-time-slot');
+      
+      if (!selectedDate) {
+        timeSlotSelect.innerHTML = '<option value="">Select a date first</option>';
+        return;
+      }
+      
+      // Check if the date is in the past
+      const today = new Date();
+      const selected = new Date(selectedDate);
+      today.setHours(0, 0, 0, 0);
+      selected.setHours(0, 0, 0, 0);
+      
+      if (selected < today) {
+        timeSlotSelect.innerHTML = '<option value="">Past dates are not available</option>';
+        document.getElementById('time-slot-info').style.display = 'none';
+        return;
+      }
+      
+      try {
+        // Check availability for this date
+        const response = await fetch(`${CONFIG.API_BASE_URL}/bookings/availability/${selectedDate}`);
+        const data = await response.json();
+        
+        timeSlotSelect.innerHTML = '';
+        
+        // Define time slots
+        const timeSlots = [
+          { value: 'morning', label: 'Morning Slot (8:00 AM - 2:00 PM)', available: true },
+          { value: 'afternoon', label: 'Afternoon/Evening Slot (3:00 PM - 11:00 PM)', available: true }
+        ];
+        
+        // Mark unavailable slots based on existing bookings
+        if (data.success && data.bookings) {
+          const bookedSlots = data.bookings.map(booking => booking.timeSlot || booking.time_slot);
+          timeSlots.forEach(slot => {
+            if (bookedSlots.includes(slot.value)) {
+              slot.available = false;
+            }
+          });
+        }
+        
+        // Add available time slots to select
+        let hasAvailable = false;
+        timeSlots.forEach(slot => {
+          const option = document.createElement('option');
+          option.value = slot.value;
+          option.textContent = slot.available ? slot.label : `${slot.label} - BOOKED`;
+          option.disabled = !slot.available;
+          if (slot.available) hasAvailable = true;
+          timeSlotSelect.appendChild(option);
+        });
+        
+        if (!hasAvailable) {
+          const option = document.createElement('option');
+          option.value = '';
+          option.textContent = 'No available slots for this date';
+          option.disabled = true;
+          timeSlotSelect.appendChild(option);
+        }
+        
+      } catch (error) {
+        console.error('Error checking availability:', error);
+        timeSlotSelect.innerHTML = '<option value="">Error checking availability</option>';
+      }
+    }
+    
+    function updateTimeSlotInfo() {
+      const timeSlot = document.getElementById('event-time-slot').value;
+      const infoDiv = document.getElementById('time-slot-info');
+      const detailsP = document.getElementById('slot-details');
+      
+      if (!timeSlot) {
+        infoDiv.style.display = 'none';
+        return;
+      }
+      
+      const slotInfo = {
+        morning: {
+          title: 'Morning Event Slot',
+          time: '8:00 AM - 2:00 PM',
+          description: 'Perfect for breakfast events, brunch celebrations, lunch gatherings, and morning ceremonies.',
+          benefits: ['Fresh morning ambiance', 'Full day for post-event activities', 'Better venue availability', 'Cost-effective option']
+        },
+        afternoon: {
+          title: 'Afternoon/Evening Event Slot',
+          time: '3:00 PM - 11:00 PM',
+          description: 'Ideal for dinner parties, evening receptions, cocktail events, and night celebrations.',
+          benefits: ['Elegant evening atmosphere', 'Perfect for formal events', 'Extended celebration time', 'Premium experience']
+        }
+      };
+      
+      const info = slotInfo[timeSlot];
+      if (info) {
+        detailsP.innerHTML = `
+          <strong>${info.title}</strong><br>
+          <strong>Time:</strong> ${info.time}<br>
+          <strong>Description:</strong> ${info.description}<br>
+          <strong>Benefits:</strong>
+          <ul style="margin: 5px 0 0 20px;">
+            ${info.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+          </ul>
+        `;
+        infoDiv.style.display = 'block';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      loadMenuItems();
+      updatePackageDetails(); // Initialize package details
+      
+      // Set minimum date to today
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('event-date').setAttribute('min', today);
+      
+      // Check if booking came from an offer
+      const urlParams = new URLSearchParams(window.location.search);
+      const offerId = urlParams.get('offerId');
+      if (offerId) {
+        // Store offer ID for booking submission
+        window.bookingOfferId = offerId;
+        
+        // Show offer booking notification
+        showOfferBookingNotification(offerId);
+      }
+    });
+
+    // Show offer booking notification
+    function showOfferBookingNotification(offerId) {
+      const notification = document.createElement('div');
+      notification.className = 'offer-booking-notification';
+      notification.style.cssText = `
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        color: white;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 10px;
+        border-left: 5px solid #FFD700;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      `;
+      notification.innerHTML = `
+        <i class="fas fa-tags" style="color: #FFD700; font-size: 20px;"></i>
+        <div>
+          <strong>🎉 Special Offer Booking!</strong><br>
+          <small>You're booking through our limited-time offer. Special terms and benefits may apply!</small>
+        </div>
+      `;
+      
+      const container = document.querySelector('.booking-container .booking-info');
+      container.insertBefore(notification, container.children[2]);
+    }
+
+    // Handle form submission: create booking then generate/display receipt
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('.booking-form-container form');
+      if (!form) return;
+
+      // Prefill booking form with saved signup/login data
+      const storedUserRaw = localStorage.getItem('dsis_user');
+      if (storedUserRaw) {
+        try {
+          const storedUser = JSON.parse(storedUserRaw);
+          document.getElementById('first-name').value = storedUser.firstName || '';
+          document.getElementById('last-name').value = storedUser.lastName || '';
+          document.getElementById('email').value = storedUser.email || '';
+          document.getElementById('contact-number').value = storedUser.mobileNumber || storedUser.phoneNumber || '';
+        } catch (e) {
+          console.warn('Failed to parse stored user info:', e);
+        }
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        try {
+          const userRaw = localStorage.getItem('dsis_user');
+          if (!userRaw) {
+            alert('Please log in before booking.');
+            window.location.href = 'login.html';
+            return;
+          }
+
+          if (!selectedItems.length) {
+            alert('Please select at least one menu item.');
+            return;
+          }
+          
+          if (!document.getElementById('event-time-slot').value) {
+            alert('Please select a time slot for your event.');
+            return;
+          }
+
+          const bookingData = {
+            firstName: document.getElementById('first-name').value.trim(),
+            lastName: document.getElementById('last-name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            contactNumber: document.getElementById('contact-number').value.trim(),
+            occasion: document.getElementById('occasion').value,
+            eventDate: document.getElementById('event-date').value,
+            timeSlot: document.getElementById('event-time-slot').value,
+            numGuests: document.getElementById('num-guests').value,
+            eventVenue: document.getElementById('event-venue').value.trim(),
+            eventAddress: document.getElementById('event-address').value.trim(),
+            eventCity: document.getElementById('event-city').value.trim(),
+            eventProvince: document.getElementById('event-province').value.trim(),
+            eventPostal: document.getElementById('event-postal').value.trim(),
+            instructions: document.getElementById('additional-instructions').value.trim(),
+            fullAddress: `${document.getElementById('event-address').value.trim()}, ${document.getElementById('event-city').value.trim()}, ${document.getElementById('event-province').value.trim()} ${document.getElementById('event-postal').value.trim()}`
+          };
+
+          // Create booking and generate receipt via API
+          const receipt = await receiptSystem.generateReceipt(bookingData, selectedItems);
+
+          // Show receipt modal
+          receiptSystem.displayReceipt(receipt);
+
+          // Optionally reset form
+          // form.reset();
+          // selectedItems = [];
+          // initializeMenuSelection();
+          // updateTotal();
+
+        } catch (err) {
+          console.error('Booking/Receipt error:', err);
+          alert(err?.data?.error || err?.message || 'Failed to submit booking. Please try again.');
+        }
+      });
+
+      // Update totals when inputs change
+      ['num-guests', 'occasion'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('change', updateTotal);
+      });
+    });
+  </script>
+</body>
+</html>

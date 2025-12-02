@@ -1,0 +1,269 @@
+/* === COLOR VARIABLES (Synced with main.css) === */
+:root {
+  --royal-blue: #007bff8f; /* Vibrant blue */
+  --gold-accent: #d4af37; /* Gold accent */
+  
+  /* BACKGROUND COLORS */
+  --body-start-color: #000000fd; 
+  --header-footer-bg: #111010; 
+  --card-background: #111010; 
+  --form-input-bg: #333333;
+
+  /* HOVER SHADES */
+  --royal-blue-darker: #0056b3; 
+  --gold-accent-darker: #b3902f; 
+}
+
+/* Profile Settings Page Styles */
+.profile-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--gold-accent);
+}
+
+.profile-header h1 {
+  color: var(--gold-accent);
+  margin-bottom: 10px;
+  font-size: 2.5em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+}
+
+.profile-header p {
+  color: #ccc;
+  font-size: 1.1em;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.profile-section {
+  background: var(--card-background);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  border: 1px solid var(--gold-accent);
+}
+
+.section-header {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #333;
+}
+
+.section-header h2 {
+  color: var(--gold-accent);
+  font-size: 1.5em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+}
+
+.section-header h2 i {
+  color: var(--royal-blue);
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #eee;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group label i {
+  color: var(--royal-blue);
+  width: 20px;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: var(--form-input-bg);
+  color: #fff;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--royal-blue);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+}
+
+.form-group small {
+  color: #aaa;
+  font-size: 0.9em;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+/* Primary Button (Save/Change Password) - Royal Blue */
+.btn-primary {
+  background-color: var(--royal-blue);
+  color: white;
+  border: 1px solid var(--royal-blue);
+}
+
+.btn-primary:hover {
+  background-color: var(--royal-blue-darker);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Secondary Button (Reset) - Gold */
+.btn-secondary {
+  background-color: var(--gold-accent);
+  color: black;
+  border: 1px solid var(--gold-accent);
+}
+
+.btn-secondary:hover {
+  background-color: var(--gold-accent-darker);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: var(--form-input-bg);
+  border-radius: 5px;
+  border: 1px solid #444;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #ccc;
+}
+
+.info-value {
+  color: #fff;
+  font-weight: 500;
+}
+
+.badge-admin {
+  background: #dc3545;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+}
+
+.badge-customer {
+  background: #28a745;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+}
+
+/* Password Toggle Button */
+.password-input-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.toggle-password:hover {
+  color: var(--gold-accent);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    margin: 20px;
+    padding: 10px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}

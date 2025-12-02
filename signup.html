@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        /* Password input container */
+        .input-group {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 4px 8px;
+            font-size: 1rem;
+        }
+        
+        .toggle-password:focus {
+            outline: 2px solid #5b9dd9;
+            border-radius: 4px;
+        }
+        
+        .toggle-password:hover {
+            color: #333;
+        }
+        
+        /* Adjust input padding to make room for the eye icon */
+        .input-group input[type="password"],
+        .input-group input[type="text"] {
+            padding-right: 40px;
+            width: 100%;
+        }
+    </style>
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="signup.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="img/logo.png" alt="d'sis Catering Logo" class="header-logo">
+            <div class="logo">d'sis Catering</div>
+        </div>
+       
+    </header>
+
+    <main>
+        <div class="signup-hero-container">
+            <div class="overlay"></div>
+            <h2>Sign up</h2>
+            <span>Create account</span>
+        </div>
+
+        <div class="signup-section">
+            <h3>Sign up to your account</h3>
+            <form>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="first-name">First name</label>
+                        <input type="text" id="first-name" value="">
+                    </div>
+                    <div class="input-group">
+                        <label for="last-name">Last name</label>
+                        <input type="text" id="last-name" value="">
+                    </div>
+                </div>
+                <div class="input-group full-width">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" value="">
+                </div>
+                <div class="input-group full-width">
+                    <label for="mobile-number">Mobile Number</label>
+                    <input type="tel" id="mobile-number" value="" maxlength="11" pattern="\d{11}" inputmode="numeric" placeholder="09XXXXXXXXX">
+                </div>
+                <div class="input-group full-width">
+                    <label for="password">Password (minimum 8 characters)</label>
+                    <input type="password" id="password" value="" minlength="8" required>
+                    <button type="button" class="toggle-password" data-target="password" aria-label="Show password" aria-pressed="false">
+                        <i class="fas fa-eye" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="input-group full-width last-input-group">
+                    <label for="repeat-password">Repeat Password</label>
+                    <input type="password" id="repeat-password" value="" minlength="8" required>
+                    <button type="button" class="toggle-password" data-target="repeat-password" aria-label="Show password" aria-pressed="false">
+                        <i class="fas fa-eye" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit">Sign up</button>
+                    <div class="already-account">
+                        Already have an account? <a href="login.html">Login now!</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+  
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+        // Password toggle functionality - Fixed version
+        function setupPasswordToggles() {
+            console.log('Setting up password toggles');
+            
+            document.querySelectorAll('.toggle-password').forEach(btn => {
+                // Check if already has event listener to prevent duplicates
+                if (btn.hasAttribute('data-listener-added')) {
+                    return;
+                }
+                
+                btn.setAttribute('data-listener-added', 'true');
+                
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('Password toggle clicked');
+                    
+                    const targetId = this.dataset.target;
+                    const input = document.getElementById(targetId);
+                    
+                    if (!input) {
+                        console.error('Target input not found:', targetId);
+                        return;
+                    }
+                    
+                    const isHidden = input.type === 'password';
+                    console.log('Current input type:', input.type, 'isHidden:', isHidden);
+                    
+                    if (isHidden) {
+                        input.type = 'text';
+                        const icon = this.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-eye');
+                            icon.classList.add('fa-eye-slash');
+                        }
+                        this.setAttribute('aria-label', 'Hide password');
+                        this.setAttribute('aria-pressed', 'true');
+                    } else {
+                        input.type = 'password';
+                        const icon = this.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-eye-slash');
+                            icon.classList.add('fa-eye');
+                        }
+                        this.setAttribute('aria-label', 'Show password');
+                        this.setAttribute('aria-pressed', 'false');
+                    }
+                    
+                    console.log('New input type:', input.type);
+                });
+            });
+        }
+        
+        // Handle form submission
+        async function handleFormSubmit(e) {
+            console.log('handleFormSubmit called');
+            e.preventDefault();
+            
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            if (!submitButton) {
+                console.error('Submit button not found');
+                return;
+            }
+            
+            console.log('Getting form data...');
+            
+            // Get form data
+            const firstName = document.getElementById('first-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const mobileNumber = document.getElementById('mobile-number').value.trim();
+            const password = document.getElementById('password').value;
+            const repeatPassword = document.getElementById('repeat-password').value;
+            
+            console.log('Form data collected:', { firstName, lastName, email, mobileNumber, password: '***', repeatPassword: '***' });
+            
+            // Basic validation
+            if (!firstName || !lastName || !email || !password || !repeatPassword) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            if (password !== repeatPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+            
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            const mobileRegex = /^\d{11}$/;
+            if (mobileNumber && !mobileRegex.test(mobileNumber)) {
+                alert('Mobile number must contain exactly 11 digits.');
+                return;
+            }
+            
+            // Disable button and show loading
+            submitButton.disabled = true;
+            submitButton.textContent = 'Creating Account...';
+            
+            try {
+                console.log('Attempting API call...');
+                console.log('API object:', typeof api, api);
+                
+                if (typeof api === 'undefined') {
+                    throw new Error('API client not loaded');
+                }
+                
+                if (typeof api.register !== 'function') {
+                    throw new Error('API register method not available');
+                }
+                
+                const result = await api.register({
+                    firstName,
+                    lastName,
+                    email,
+                    mobileNumber,
+                    password,
+                    repeatPassword
+                });
+                
+                console.log('API call successful:', result);
+                alert('Account created successfully! You can now login.');
+                
+                // Store user data
+                if (result && result.user) {
+                    localStorage.setItem('dsis_user', JSON.stringify(result.user));
+                }
+                
+                // Redirect to login page
+                window.location.href = 'login.html';
+                
+            } catch (error) {
+                console.error('Signup error:', error);
+                alert('Signup failed: ' + (error.message || 'Please try again.'));
+                
+                // Reset password fields on error
+                const passwordInputs = document.querySelectorAll('input[type="password"], input[type="text"][id^="password"]');
+                passwordInputs.forEach(input => {
+                    input.type = 'password';
+                });
+                
+                // Reset toggle buttons
+                document.querySelectorAll('.toggle-password').forEach(btn => {
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                    btn.setAttribute('aria-label', 'Show password');
+                    btn.setAttribute('aria-pressed', 'false');
+                });
+                
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Sign up';
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded - initializing signup form');
+            
+            // Check if all required scripts are loaded
+            console.log('CONFIG available:', typeof CONFIG !== 'undefined');
+            console.log('api available:', typeof api !== 'undefined');
+            console.log('Utils available:', typeof Utils !== 'undefined');
+            
+            // Setup password toggles
+            setupPasswordToggles();
+            
+            // Note: Removed MutationObserver as it was causing infinite loops
+            // setupPasswordToggles() is called once on DOM load which is sufficient
+            
+            // Setup form submission with error handling
+            const form = document.querySelector('form');
+            if (form) {
+                console.log('Form found, adding event listener');
+                form.addEventListener('submit', function(e) {
+                    console.log('Form submit event triggered');
+                    try {
+                        handleFormSubmit(e);
+                    } catch (error) {
+                        console.error('Error in form submit handler:', error);
+                        alert('Form submission error: ' + error.message);
+                    }
+                });
+            } else {
+                console.error('Form not found!');
+            }
+        });
+    </script>
+</body>
+</html>

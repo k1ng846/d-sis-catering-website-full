@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Settings - d'sis Catering</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <button id="back-button" onclick="history.back()" class="btn btn-outline-secondary" style="display: none;">←</button>
+      <img src="img/logo.png" alt="d'sis Catering Logo" class="header-logo">
+      <div class="logo">d'sis Catering</div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="main.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="album.html">Design</a></li>
+        <li><a href="other_offers.html">Other Offers</a></li>
+        <li><a href="message.html" class="btn contact-btn oval-btn"><i class="fas fa-envelope"></i> Messages</a></li>
+        <li>
+          <a href="login.html" class="user-nav-link">
+            <i class="fas fa-user-circle" style="font-size: 24px;"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="profile-container">
+      <div class="profile-header">
+        <h1><i class="fas fa-user-cog"></i> Profile Settings</h1>
+        <p>Manage your account information and preferences</p>
+      </div>
+
+      <div class="profile-content">
+        <!-- Profile Information Section -->
+        <div class="profile-section">
+          <div class="section-header">
+            <h2><i class="fas fa-user"></i> Personal Information</h2>
+          </div>
+          <form id="profile-form" class="profile-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName"><i class="fas fa-user"></i> First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+              </div>
+              <div class="form-group">
+                <label for="lastName"><i class="fas fa-user"></i> Last Name</label>
+                <input type="text" id="lastName" name="lastName" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email"><i class="fas fa-envelope"></i> Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumber"><i class="fas fa-phone"></i> Phone Number</label>
+              <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g., 09123456789">
+            </div>
+
+            <div class="form-group">
+              <label for="username"><i class="fas fa-at"></i> Username</label>
+              <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Save Changes
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="loadProfile()">
+                <i class="fas fa-redo"></i> Reset
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Change Password Section -->
+        <div class="profile-section">
+          <div class="section-header">
+            <h2><i class="fas fa-lock"></i> Change Password</h2>
+          </div>
+          <form id="password-form" class="profile-form">
+            <div class="form-group">
+              <label for="currentPassword"><i class="fas fa-key"></i> Current Password</label>
+              <div class="password-input-container">
+                <input type="password" id="currentPassword" name="currentPassword" required>
+                <button type="button" class="toggle-password" data-target="currentPassword" aria-label="Show password">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="newPassword"><i class="fas fa-lock"></i> New Password</label>
+              <div class="password-input-container">
+                <input type="password" id="newPassword" name="newPassword" required minlength="6">
+                <button type="button" class="toggle-password" data-target="newPassword" aria-label="Show password">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <small class="form-text">Password must be at least 6 characters long</small>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm New Password</label>
+              <div class="password-input-container">
+                <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+                <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Show password">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-key"></i> Change Password
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Account Information Section -->
+        <div class="profile-section">
+          <div class="section-header">
+            <h2><i class="fas fa-info-circle"></i> Account Information</h2>
+          </div>
+          <div class="account-info">
+            <div class="info-item">
+              <span class="info-label">Account Type:</span>
+              <span class="info-value" id="accountType">-</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Member Since:</span>
+              <span class="info-value" id="memberSince">-</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">User ID:</span>
+              <span class="info-value" id="userId">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    // Check authentication
+    window.addEventListener('load', function() {
+      const userRaw = localStorage.getItem('dsis_user');
+      if (!userRaw) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      loadProfile();
+      setupFormHandlers();
+    });
+
+    async function loadProfile() {
+      try {
+        const userRaw = localStorage.getItem('dsis_user');
+        const user = JSON.parse(userRaw);
+        
+        // Populate form fields
+        document.getElementById('firstName').value = user.firstName || user.first_name || '';
+        document.getElementById('lastName').value = user.lastName || user.last_name || '';
+        document.getElementById('email').value = user.email || '';
+        document.getElementById('phoneNumber').value = user.phoneNumber || user.phone_number || '';
+        document.getElementById('username').value = user.username || '';
+
+        // Populate account info
+        const userType = user.userType || user.user_type || 'customer';
+        document.getElementById('accountType').textContent = userType === 'admin' ? 'Administrator' : 'Customer';
+        document.getElementById('accountType').className = 'info-value ' + (userType === 'admin' ? 'badge-admin' : 'badge-customer');
+        
+        const createdAt = user.createdAt || user.created_at || '';
+        if (createdAt) {
+          const date = new Date(createdAt);
+          document.getElementById('memberSince').textContent = date.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          });
+        } else {
+          document.getElementById('memberSince').textContent = 'N/A';
+        }
+        
+        document.getElementById('userId').textContent = user.id || 'N/A';
+      } catch (error) {
+        console.error('Error loading profile:', error);
+        alert('Failed to load profile information');
+      }
+    }
+
+    function setupFormHandlers() {
+      // Profile update form
+      document.getElementById('profile-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = {
+          firstName: document.getElementById('firstName').value.trim(),
+          lastName: document.getElementById('lastName').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          phoneNumber: document.getElementById('phoneNumber').value.trim(),
+          username: document.getElementById('username').value.trim()
+        };
+
+        try {
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+          await api.updateProfile(formData);
+          
+          // Update localStorage
+          const userRaw = localStorage.getItem('dsis_user');
+          const user = JSON.parse(userRaw);
+          const updatedUser = {
+            ...user,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            email: formData.email,
+            phoneNumber: formData.phoneNumber,
+            phone_number: formData.phoneNumber,
+            username: formData.username
+          };
+          localStorage.setItem('dsis_user', JSON.stringify(updatedUser));
+          
+          alert('Profile updated successfully!');
+          loadProfile();
+        } catch (error) {
+          console.error('Error updating profile:', error);
+          alert('Failed to update profile: ' + (error.message || 'Unknown error'));
+        } finally {
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+        }
+      });
+
+      // Password change form
+      document.getElementById('password-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (newPassword !== confirmPassword) {
+          alert('New passwords do not match!');
+          return;
+        }
+
+        if (newPassword.length < 6) {
+          alert('Password must be at least 6 characters long');
+          return;
+        }
+
+        try {
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Changing...';
+
+          await api.changePassword(currentPassword, newPassword);
+          
+          alert('Password changed successfully!');
+          e.target.reset();
+        } catch (error) {
+          console.error('Error changing password:', error);
+          alert('Failed to change password: ' + (error.message || 'Unknown error'));
+        } finally {
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-key"></i> Change Password';
+        }
+      });
+    }
+
+    // Show back button only for admin users
+    document.addEventListener('DOMContentLoaded', function() {
+        const userRaw = localStorage.getItem('dsis_user');
+        if (userRaw) {
+            try {
+                const user = JSON.parse(userRaw);
+                const userType = user.userType || user.user_type;
+                if (userType === 'admin') {
+                    const backButton = document.getElementById('back-button');
+                    if (backButton) backButton.style.display = 'block';
+                }
+            } catch (e) { console.log('Error parsing user data:', e); }
+        }
+    });
+  </script>
+</body>
+</html>
+
