@@ -1,4 +1,18 @@
-// Simple Backend Server for d'sis Catering (Student Level)
+// Enable CORS with specific options
+const corsOptions = {
+  origin: [
+    'https://k1ng846.github.io',
+    'http://localhost:3000',
+    'https://k1ng846.github.io/d-sis-catering-'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
+  credentials: true
+};
+app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));// Simple Backend Server for d'sis Catering (Student Level)
 // This server uses JSON files instead of a database for simplicity
 
 const express = require('express');
@@ -917,3 +931,4 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
