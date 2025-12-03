@@ -1,7 +1,8 @@
 // Global Configuration for d'sis Catering
 const CONFIG = {
-    // API Configuration
-    API_BASE_URL: 'https://your-render-app.onrender.com/api',  // Replace with your actual Render URL
+
+  // API Configuration
+    API_BASE_URL: 'https://d-sis-catering-website-full.onrender.com/api',
 
     
     // Application Settings
@@ -47,3 +48,4 @@ const CONFIG = {
 // Export configuration
 
 window.CONFIG = CONFIG;
+
