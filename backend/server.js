@@ -1,18 +1,4 @@
-// Enable CORS with specific options
-const corsOptions = {
-  origin: [
-    'https://k1ng846.github.io',
-    'http://localhost:3000',
-    'https://k1ng846.github.io/d-sis-catering-'
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
-  credentials: true
-};
-app.use(cors(corsOptions));
-
-// Handle preflight requests
-app.options('*', cors(corsOptions));// Simple Backend Server for d'sis Catering (Student Level)
+// Simple Backend Server for d'sis Catering (Student Level)
 // This server uses JSON files instead of a database for simplicity
 
 const express = require('express');
@@ -23,8 +9,21 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// CORS Configuration
+const corsOptions = {
+  origin: [
+    'https://k1ng846.github.io',
+    'http://localhost:3000',
+    'https://k1ng846.github.io/d-sis-catering-'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
+  credentials: true
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Enable preflight for all routes
 app.use(express.json());
 
 // Data storage directory
@@ -32,6 +31,8 @@ const DATA_DIR = path.join(__dirname, 'data');
 if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR);
 }
+
+// Rest of your server code...
 
 // Simple data storage functions
 function readData(filename) {
@@ -931,4 +932,5 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
 
